@@ -35,7 +35,7 @@ export default defineConfig({
     launchOptions: {
       slowMo: 500,
     },
-    video: 'retain-on-failure',
+    video: 'on',
   },
 
   /* Configure projects for major browsers */
