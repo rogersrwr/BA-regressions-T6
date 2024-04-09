@@ -46,14 +46,14 @@ test('#001: Make list from Create List button', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'auto list 1', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'test list 2', exact: true })).toBeVisible();
-  await expect(page).toHaveScreenshot("001-myLists-check.png", {
+  await expect(page).toHaveScreenshot("001-myLists-check-chromium-win32.png", {
     fullPage: true,
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
   });
   
   await page.getByTestId('FastRewindIcon').click();
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-  await expect(page).toHaveScreenshot("001-homePage-asExpected-check.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true });
 
 });
 
