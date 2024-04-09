@@ -40,7 +40,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   ]);
   await expect(page.getByText('List Details')).toBeVisible();
   //Failure here means screenshot comparison failed.
-  await expect(page).toHaveScreenshot("001-createList-listDetailsNew.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("001-createList-listDetailsNew-chromium-win32.png", { fullPage: true });
 
   await page.getByTestId('FastRewindIcon').click();
   await expect(page.getByRole('link', { name: 'auto list 1', exact: true })).toBeVisible();
