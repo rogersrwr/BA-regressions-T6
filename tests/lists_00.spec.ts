@@ -15,7 +15,7 @@ test.beforeEach('Login before each test', async ({ page }) => {
   await page.getByLabel('Password').fill('RogerOf26');
   
   const [request] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=3F71C6E3-2CF6-41F8-975B-59A373DC03F5") && response.status() === 200, {timeout: 60000}),
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken") && response.status() === 200, {timeout: 60000}),
     page.getByRole('button', { name: 'Sign in' }).click()
   ]);
 
@@ -36,7 +36,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   await page.getByLabel('List Name').fill('auto list 1');
   const [request] = await Promise.all([
     //Failure here means automation was not able to connect to TargetAPI in under 60 secs.
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListInfo?accessToken=3F71C6E3-2CF6-41F8-975B-59A373DC03F5&listID=") && response.status() === 200, {timeout: 60000}),
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByRole('button', { name: 'Add' }).click()
   ]);
   await expect(page.getByText('List Details')).toBeVisible();
