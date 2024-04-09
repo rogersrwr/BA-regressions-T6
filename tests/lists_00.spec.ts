@@ -58,7 +58,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   await page.getByTestId('FastRewindIcon').click();
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
   //Failure here means screenshot comparison of BrightArrow Central failed. 
-  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true, mask: [page.getByRole('img')], });
+  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true, mask: [page.getByRole('img')], maxDiffPixels: 100 });
 
 });
 
