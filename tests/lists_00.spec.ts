@@ -55,7 +55,13 @@ test('#001: Make list from Create List button', async ({ page }) => {
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
   });
   
-  await page.getByTestId('FastRewindIcon').click();
+  //await page.getByTestId('FastRewindIcon').click();
+  const [request2] = await Promise.all([
+    //Failure here means automation was not able to connect to TargetAPI in under 60 secs.
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListInfo?accessToken=3F71C6E3-2CF6-41F8-975B-59A373DC03F5&listID=") && response.status() === 200, {timeout: 60000}),
+    //Clicks back button to access home page
+    page.getByTestId('FastRewindIcon').click()
+  ]);
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
   //Failure here means screenshot comparison of BrightArrow Central failed. 
   await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true, maxDiffPixels: 100 });
