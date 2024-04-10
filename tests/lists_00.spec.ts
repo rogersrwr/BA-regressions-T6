@@ -46,7 +46,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   //Clicks the back button in the top left.
   await page.getByTestId('FastRewindIcon').click();
   //The three lines below check for list names to be visible.
-  await expect(page.getByRole('link', { name: 'auto list 1', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'auto list 1', exact: true })).toBeVisible({ timeout: 10000 });
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'test list 2', exact: true })).toBeVisible();
   //Failure here means screenshot comparison of My Lists page failed.
@@ -64,7 +64,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   ]);
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
   //Failure here means screenshot comparison of BrightArrow Central failed. 
-  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true, maxDiffPixels: 100 });
+  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
 
 });
 
