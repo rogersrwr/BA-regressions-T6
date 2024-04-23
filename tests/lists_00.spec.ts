@@ -225,7 +225,6 @@ test('#005: add contact to list, auto list 1', async ({ page }) => {
   await expect(page).toHaveScreenshot("005-MyLists-newContactCheck-chromium-win32.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
 
   await page.getByRole('link', { name: 'auto list 1' }).click();
-  //await page.getByRole('cell', { name: 'Contact1, Auto' }).click();
   const [request3] = await Promise.all([
     page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/GetContact?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByRole('cell', { name: 'Contact1, Auto' }).click()
