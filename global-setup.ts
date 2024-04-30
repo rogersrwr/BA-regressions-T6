@@ -1,7 +1,20 @@
 import { test, expect } from '@playwright/test';
+import * as fs from 'fs';
+import { json } from 'stream/consumers';
+
+
+
+const jsonData = require('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json');
+
+
 
 test("setup checks", async ({ page }) => {
   test.slow();
+  jsonData.datetime = "";
+  jsonData.started = false;
+  const jsonString = JSON.stringify(jsonData, null, 2);
+  fs.writeFileSync('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json', jsonString);
+
   // INITIAL LOG IN
   await page.goto('https://target110.brightarrow.com/r/');
   await page.getByLabel('Username').click();

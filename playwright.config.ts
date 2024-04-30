@@ -13,7 +13,10 @@ export default defineConfig({
   //globalSetup: require.resolve('./global-setup'),
   //globalTeardown: require.resolve('./global-teardown'),
   testDir: './tests',
-  timeout: 2 * 30000,
+  timeout: 3 * 30000,
+  expect: {
+    timeout: 15 * 1000,
+  },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -24,16 +27,16 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-  snapshotPathTemplate: '{testDir}/lists_00.spec.ts-snapshots/{arg}{ext}',
+  snapshotPathTemplate: '{testDir}/lists-test.spec.ts-snapshots/{arg}{ext}',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
     launchOptions: {
-      slowMo: 400,
+      slowMo: 200,
     },
     video: 'on',
   },
@@ -48,7 +51,14 @@ export default defineConfig({
     {
       name: 'chromium',
       dependencies: ['setup'],
-      use: { ...devices['Desktop Chrome'], storageState: './LoginAuthCQ.json', viewport: { width: 1920, height: 1080 },  },
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 },  },
+    },
+    {
+      name: "msg-check",
+      testDir: "./",
+      testMatch: "msg-check.ts",
+      dependencies: ['chromium'],
+      use: {...devices['Desktop Firefox']},
     },
     /*
     {

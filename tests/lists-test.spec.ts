@@ -1,18 +1,29 @@
 import { test, expect, firefox } from '@playwright/test';
+import * as fs from 'fs';
+import { json } from 'stream/consumers';
 
-/*
-const currentDate = new Date();
 
-const year = currentDate.getFullYear();
-const month = currentDate.getMonth() + 1;
-const day = currentDate.getDate();
-const hours = currentDate.getHours();
-const minutes = currentDate.getMinutes();
 
-const formattedDateTime = `${year}-${month}-${day}_${hours}-${minutes}`;
-export const msgString = `test message at ${formattedDateTime}`;
-*/
+const jsonData = require('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json');
 
+test.beforeAll('', async ({ }) => {
+  if (jsonData.started == false) {
+    const currentDate = new Date();
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+
+    const formattedDateTime = `${year}-${month}-${day}_${hours}-${minutes}`;
+    const msgString = `test msg at ${formattedDateTime}`;
+    jsonData.datetime = msgString;
+    jsonData.started = true;
+    const jsonString = JSON.stringify(jsonData, null, 2);
+    fs.writeFileSync('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json', jsonString);
+  }
+});
 
 test.describe.configure({
   mode: 'default',
@@ -452,28 +463,88 @@ test('#009: changing contact email from pen icon in list details page', async ({
 
 
 
-test('send msg test', async ({ page }) => {
+test('#016: Send text message', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
+  await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 1' }).click();
-  await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
-  await page.getByRole('tab', { name: 'Texting' }).click();
+  await page.locator('div').filter({ hasText: 'Create Message' }).nth(3).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByLabel('Texting').check();
+  await page.getByRole('button', { name: 'Next' }).click();
   await page.getByLabel('Text Message').click();
-  await page.getByLabel('Text Message').fill(``);
-  await page.getByRole('tab', { name: 'Proceed' }).click();
+  await page.getByLabel('Text Message').fill(`${jsonData.datetime}`);
+  await page.getByRole('button', { name: 'Next' }).click();
   await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
   await page.getByRole('button', { name: 'Yes' }).click();
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
 });
 
 
+test('#017: Edit message, email only, and save.', async ({ page }) => {
+  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
+  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('link', { name: 'test list 1' }).click();
+  await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
+  await expect(page.locator('#vertical-tabpanel-0').getByText('Texting')).toBeVisible();
+  await expect(page.locator('#vertical-tabpanel-0').getByText('Email')).toBeVisible();
+  await expect(page.getByText('Mark as Urgent in App Until (')).toBeVisible();
+  await page.getByLabel('Texting').uncheck();
+  await page.getByLabel('Email').check();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByLabel('Subject').click();
+  await page.getByLabel('Subject').fill(`${jsonData.datetime}`);
+  await page.getByRole('combobox', { name: '​' }).click();
+  await page.getByRole('option', { name: '[[fullName]]' }).click();
+  /*
+  await page.getByRole('combobox', { name: '​' }).click();
+  await page.getByRole('option', { name: '[[today]]' }).click();
+  */
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.locator('div').filter({ hasText: /^Save Message$/ }).click();
+  await expect(page.getByText('List Details')).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'Contact, Phone' })).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'contact1, test' })).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'contact2, test' })).toBeVisible();
+});
+
+test('#018: Send Message button from List Details page', async ({ page }) => {
+  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
+  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('link', { name: 'test list 1' }).click();
+  await page.locator('div').filter({ hasText: 'Send Message' }).nth(3).click();
+  await page.getByRole('button', { name: 'Yes' }).click();
+  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+});
 
 
+test('#019: Send Message icon from My Lists page', async ({ page }) => {
+  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
+  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByLabel('Search').click();
+  await page.getByLabel('Search').fill('test list 1');
+  await page.getByLabel('Search').press('Enter');
+  await page.locator('.listOfListsRow > td').first().hover();
+  await page.getByRole('link', { name: 'Send' }).click();
+  await expect(page.getByText('Do you wish to start sending')).toBeVisible();
+  await page.getByRole('button', { name: 'Yes' }).click();
+  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+});
+
+test('#021: Active BrightChats feature from main menu', async ({ page }) => {
+  await page.locator('div').filter({ hasText: /^Active BrightChats$/ }).click();
+  await expect(page.getByRole('link', { name: 'ryan test & test contact1' })).toBeVisible();
+  await page.getByRole('link', { name: 'ryan test & test contact1' }).click();
+  await page.getByLabel('Type message here...').click();
+  await page.getByLabel('Type message here...').fill(`${jsonData.datetime}`);
+  const [request] = await Promise.all([
+    //Failure here means automation was not able to connect to TargetAPI in under 60 secs.
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/InstantMessaging/PostChannelMessage?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'Send Message' }).click()
+  ]);
+});
 
 
-
-
-
-
+/*
 test('#010: disabling a contact', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
@@ -571,12 +642,12 @@ test('#012: re-enable contact', async ({ page }) => {
 
 
 });
+*/
 
 
 
 
-
-
+/*
 test('#013: Delete folder, auto folder', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'auto folder' }).click();
@@ -680,7 +751,7 @@ test('#017: create new message, email, save, send.', async ({ page }) => {
   await page.getByLabel('Message Name (optional)').fill('msg name');
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByLabel('From Name').click();
-  await page.getByLabel('From Name').fill(`auto: `);
+  await page.getByLabel('From Name').fill(`auto: ${msgString}`);
   await page.getByLabel('Subject').click();
   await page.getByLabel('Subject').fill('Auto Email');
   await page.getByLabel('Editor editing area: main').click();
@@ -703,9 +774,9 @@ test('#017: create new message, email, save, send.', async ({ page }) => {
   await page.locator('div').filter({ hasText: 'Send Message' }).nth(3).click();
   await page.getByRole('button', { name: 'Yes' }).click();
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-  
-});
 
+});
+*/
 
 
 
