@@ -4,7 +4,7 @@ import { json } from 'stream/consumers';
 
 
 
-const jsonData = require('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json');
+const jsonData = require('./datetime.json');
 
 
 
@@ -13,7 +13,7 @@ test("setup checks", async ({ page }) => {
   jsonData.datetime = "";
   jsonData.started = false;
   const jsonString = JSON.stringify(jsonData, null, 2);
-  fs.writeFileSync('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json', jsonString);
+  fs.writeFileSync('./datetime.json', jsonString);
 
   // INITIAL LOG IN
   await page.goto('https://target110.brightarrow.com/r/');

@@ -4,7 +4,7 @@ import { json } from 'stream/consumers';
 
 
 
-const jsonData = require('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json');
+const jsonData = require('./datetime.json');
 
 test.beforeAll('', async ({ }) => {
   if (jsonData.started == false) {
@@ -21,7 +21,7 @@ test.beforeAll('', async ({ }) => {
     jsonData.datetime = msgString;
     jsonData.started = true;
     const jsonString = JSON.stringify(jsonData, null, 2);
-    fs.writeFileSync('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json', jsonString);
+    fs.writeFileSync('./datetime.json', jsonString);
   }
 });
 

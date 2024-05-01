@@ -4,7 +4,7 @@ import { json } from 'stream/consumers';
 
 
 
-const jsonData = require('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json');
+const jsonData = require('./datetime.json');
 
 
 /*
