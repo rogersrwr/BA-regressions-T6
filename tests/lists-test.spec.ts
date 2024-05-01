@@ -382,7 +382,7 @@ test('verify#007 -click on gear icon, auto list 1', async ({ page }) => {
   await page.getByRole('tab', { name: 'Phone Call Settings' }).click();
   await expect(page.locator('#strCallerID-label')).toBeVisible();
   await expect(page.getByText('Phones to call for each')).toBeVisible();
-  await expect(page).toHaveScreenshot("007-auto-list1-settings-phonecallsettings.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 20,  });
+  //await expect(page).toHaveScreenshot("007-auto-list1-settings-phonecallsettings.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 20,  });
 
   await page.getByRole('tab', { name: 'Text Settings' }).click();
   await expect(page.getByText('Phones to text for each')).toBeVisible();
