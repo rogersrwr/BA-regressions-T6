@@ -4,7 +4,7 @@ import { json } from 'stream/consumers';
 
 
 
-const jsonData = require('./datetime.json');
+const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
 
 
@@ -13,7 +13,7 @@ test("setup checks", async ({ page }) => {
   jsonData.datetime = "";
   jsonData.started = false;
   const jsonString = JSON.stringify(jsonData, null, 2);
-  fs.writeFileSync('./datetime.json', jsonString);
+  fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
 
   // INITIAL LOG IN
   await page.goto('https://target110.brightarrow.com/r/');
