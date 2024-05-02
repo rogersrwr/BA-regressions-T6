@@ -62,7 +62,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   ]);
   await expect(page.getByText('List Details')).toBeVisible();
   //Failure here means screenshot comparison of newly created List Details failed.
-  await expect(page).toHaveScreenshot("001-createList-listDetailsNew-chromium-win32.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("001-createList-listDetailsNew-chromium-win32-chromium-win32.png", { fullPage: true });
 
   //Clicks the back button in the top left.
   await page.getByTestId('FastRewindIcon').click();
@@ -71,7 +71,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible({timeout: 10000});
   await expect(page.getByRole('link', { name: 'test list 2', exact: true })).toBeVisible();
   //Failure here means screenshot comparison of My Lists page failed.
-  await expect(page).toHaveScreenshot("001-myLists-check-chromium-win32.png", {
+  await expect(page).toHaveScreenshot("001-myLists-check-chromium-win32-chromium-win32.png", {
     fullPage: true,
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
   });
@@ -85,7 +85,7 @@ test('#001: Make list from Create List button', async ({ page }) => {
   ]);
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
   //Failure here means screenshot comparison of BrightArrow Central failed. 
-  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
+  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32-chromium-win32.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
 
 });
 
@@ -104,12 +104,12 @@ test.describe('#002', () => {
       page.getByRole('button', { name: 'Add' }).click()
     ]);
     await expect(page.getByText('List Details')).toBeVisible();
-    await expect(page).toHaveScreenshot("002-auto-list-2-initialpage.png", { fullPage: true });
+    await expect(page).toHaveScreenshot("002-auto-list-2-initialpage-chromium-win32.png", { fullPage: true });
 
     await page.getByTestId('FastRewindIcon').click();
     await expect(page.getByRole('link', { name: 'auto list 2' })).toBeVisible({timeout: 10000});
 
-    await expect(page).toHaveScreenshot("002-myLists-check.png", {
+    await expect(page).toHaveScreenshot("002-myLists-check-chromium-win32.png", {
       fullPage: true,
       maxDiffPixels: 100,
       mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
@@ -124,7 +124,7 @@ test.describe('#002', () => {
 
     await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
     //Failure here means screenshot comparison of BrightArrow Central failed. 
-    await expect(page).toHaveScreenshot("002-homePage-asExpected-check.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
+    await expect(page).toHaveScreenshot("002-homePage-asExpected-check-chromium-win32.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
 
   });
   
@@ -147,14 +147,14 @@ test('#003: create a folder', async ({ page }) => {
   ]);
 
   await expect(page.getByRole('button', { name: 'auto folder' })).toBeVisible();
-  await expect(page).toHaveScreenshot("003-myLists-newfolder-check.png", {
+  await expect(page).toHaveScreenshot("003-myLists-newfolder-check-chromium-win32.png", {
     fullPage: true,
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
   });
 
   await page.getByRole('button', { name: 'auto folder' }).click();
   await expect(page.getByText('auto folder Lists (0)')).toBeVisible();
-  await expect(page).toHaveScreenshot("003-myLists-inside-newfolder.png", {
+  await expect(page).toHaveScreenshot("003-myLists-inside-newfolder-chromium-win32.png", {
     fullPage: true,
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
   });
@@ -179,11 +179,11 @@ test('#004: create list in new folder', async ({ page }) => {
   ]);
   await expect(page.getByText('List Details')).toBeVisible();
   await expect(page.locator('#listName-label')).toBeVisible();
-  await expect(page).toHaveScreenshot("004-createList-listDetailsNew.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("004-createList-listDetailsNew-chromium-win32.png", { fullPage: true });
 
   await page.getByTestId('FastRewindIcon').click();
   await expect(page.getByRole('link', { name: 'auto list 3' })).toBeVisible({timeout: 10000});
-  await expect(page).toHaveScreenshot("004-visibleInNewFolder-check.png", {
+  await expect(page).toHaveScreenshot("004-visibleInNewFolder-check-chromium-win32.png", {
     fullPage: true,
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
   });
@@ -191,7 +191,7 @@ test('#004: create list in new folder', async ({ page }) => {
   await page.getByRole('button', { name: 'ryan test' }).click();
   await expect(page.getByRole('link', { name: 'auto list 3' })).toBeVisible();
 
-  await expect(page).toHaveScreenshot("004-visibleInMainFolder-check.png", {
+  await expect(page).toHaveScreenshot("004-visibleInMainFolder-check-chromium-win32.png", {
     fullPage: true,
     maxDiffPixels: 100,
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
@@ -239,7 +239,7 @@ test('#005: add contact to list, auto list 1', async ({ page }) => {
   ]);
   await expect(page.getByRole('cell', { name: 'Contact1, Auto' })).toBeVisible();
   await expect(page.getByRole('cell', { name: 'email@email.com' })).toBeVisible();
-  await expect(page).toHaveScreenshot("005-listDetails-addContact.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("005-listDetails-addContact-chromium-win32.png", { fullPage: true });
 
 
   const [request2] = await Promise.all([
@@ -247,7 +247,7 @@ test('#005: add contact to list, auto list 1', async ({ page }) => {
     page.getByTestId('FastRewindIcon').click()
   ]);
   await expect(page.getByRole('link', { name: 'auto list 1' })).toBeVisible();
-  await expect(page).toHaveScreenshot("005-MyLists-newContactCheck.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
+  await expect(page).toHaveScreenshot("005-MyLists-newContactCheck-chromium-win32.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
 
   await page.getByRole('link', { name: 'auto list 1' }).click();
   //await page.getByRole('cell', { name: 'Contact1, Auto' }).click();
@@ -255,7 +255,7 @@ test('#005: add contact to list, auto list 1', async ({ page }) => {
     page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/GetContact?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByRole('cell', { name: 'Contact1, Auto' }).click()
   ]);
-  await expect(page).toHaveScreenshot("005-auto-contact1-details.png", { fullPage: true, maxDiffPixels: 15 });
+  await expect(page).toHaveScreenshot("005-auto-contact1-details-chromium-win32.png", { fullPage: true, maxDiffPixels: 15 });
 });
 
 
@@ -301,14 +301,14 @@ test('#006: Access list from pen icon to make another contact, auto list 1', asy
   ]);
   await expect(page.getByRole('cell', { name: 'Contact1, Auto' })).toBeVisible();
   await expect(page.getByRole('cell', { name: 'Contact2, Auto' })).toBeVisible();
-  await expect(page).toHaveScreenshot("006-listWithTwoContacts-check.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("006-listWithTwoContacts-check-chromium-win32.png", { fullPage: true });
 
   const [request2] = await Promise.all([
     page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByTestId('FastRewindIcon').click()
   ]);
 
-  await expect(page).toHaveScreenshot("006-myLists-add2ndContact-check.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
+  await expect(page).toHaveScreenshot("006-myLists-add2ndContact-check-chromium-win32.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
   await page.getByRole('link', { name: 'auto list 1' }).click();
   //await page.getByRole('cell', { name: 'Contact2, Auto' }).click();
   const [request3] = await Promise.all([
@@ -316,7 +316,7 @@ test('#006: Access list from pen icon to make another contact, auto list 1', asy
     page.getByRole('cell', { name: 'Contact2, Auto' }).click()
   ]);
 
-  await expect(page).toHaveScreenshot("006-auto-contact2-details.png", { 
+  await expect(page).toHaveScreenshot("006-auto-contact2-details-chromium-win32.png", { 
     fullPage: true, 
     maxDiffPixels: 15, 
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
@@ -377,7 +377,7 @@ test('verify#007 -click on gear icon, auto list 1', async ({ page }) => {
   await expect(page.getByText('Users with access to')).toBeVisible();
   await expect(page.getByText('ryan test')).toBeVisible();
 
-  await expect(page).toHaveScreenshot("007-auto-list1-settings-listmanagement.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
+  await expect(page).toHaveScreenshot("007-auto-list1-settings-listmanagement-chromium-win32.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
 
   await page.getByRole('tab', { name: 'Phone Call Settings' }).click();
   await expect(page.locator('#strCallerID-label')).toBeVisible();
@@ -386,21 +386,21 @@ test('verify#007 -click on gear icon, auto list 1', async ({ page }) => {
 
   await page.getByRole('tab', { name: 'Text Settings' }).click();
   await expect(page.getByText('Phones to text for each')).toBeVisible();
-  await expect(page).toHaveScreenshot("007-auto-list1-settings-textsettings.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
+  await expect(page).toHaveScreenshot("007-auto-list1-settings-textsettings-chromium-win32.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
 
   await page.getByRole('tab', { name: 'Email Settings' }).click();
   await expect(page.locator('#strEmailSubject-label')).toBeVisible();
   await expect(page.getByText('Message Sent Reports', { exact: true })).toBeVisible();
   await expect(page.getByText('Report Emailing')).toBeVisible();
-  await expect(page).toHaveScreenshot("007-auto-list1-settings-emailsettings.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
+  await expect(page).toHaveScreenshot("007-auto-list1-settings-emailsettings-chromium-win32.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
 
   await page.getByRole('tab', { name: 'Portal Settings' }).click();
   await expect(page.getByText('Portal for recipients to')).toBeVisible();
-  await expect(page).toHaveScreenshot("007-auto-list1-settings-portalsettings.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15,});
+  await expect(page).toHaveScreenshot("007-auto-list1-settings-portalsettings-chromium-win32.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15,});
 
   await page.getByRole('tab', { name: 'CC Settings' }).click();
   await expect(page.getByText('Phones and emails to receive')).toBeVisible();
-  await expect(page).toHaveScreenshot("007-auto-list1-settings-CCsettings.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
+  await expect(page).toHaveScreenshot("007-auto-list1-settings-CCsettings-chromium-win32.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
 });
 
 
@@ -458,7 +458,7 @@ test('#009: changing contact email from pen icon in list details page', async ({
     page.getByRole('button', { name: 'Apply' }).click()
   ]);
   await expect(page.locator('tbody')).toContainText('5555555555, newemail@email.com');
-  await expect(page).toHaveScreenshot("009-listDetailsEdit-check.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("009-listDetailsEdit-check-chromium-win32.png", { fullPage: true });
 });
 
 
