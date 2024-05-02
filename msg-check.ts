@@ -42,13 +42,13 @@ test('message check in firefox', async ({ page }) => {
 
   await page.goto('https://www.google.com/gmail/about/');
   await page.getByRole('link', { name: 'Sign in' }).click();
-  /*
+  
   await page.getByLabel('Email or phone').fill('brightarrowtest1@gmail.com');
   await page.getByLabel('Email or phone').press('Enter');
   await page.getByLabel('Enter your password').fill('RogerOf25');
   await page.getByLabel('Enter your password').press('Enter');
   await page.getByRole('link', { name: `auto: ${jsonData.datetime} - Sent` }).click();
-  */
+  
   await page.getByRole('link', { name: 'BrightArrow1 brightarrowtest1' }).click();
   await expect(page.getByRole('link', { name: `${jsonData.datetime}` }).first()).toBeVisible();
   await page.getByRole('link', { name: `${jsonData.datetime}` }).first().click();
