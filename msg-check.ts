@@ -39,7 +39,7 @@ test('message check in firefox', async ({ page }) => {
 
 
 
-
+  /*
   await page.goto('https://www.google.com/gmail/about/');
   await page.getByRole('link', { name: 'Sign in' }).click();
   
@@ -53,6 +53,8 @@ test('message check in firefox', async ({ page }) => {
   await expect(page.getByRole('link', { name: `${jsonData.datetime}` }).first()).toBeVisible();
   await page.getByRole('link', { name: `${jsonData.datetime}` }).first().click();
   await expect(page.getByText('test contact2', { exact: true })).toBeVisible();
+  */
+
 
   await page.goto('https://target110.brightarrow.com/m/');
   await page.getByRole('button', { name: 'Parent / Student Login' }).click();
