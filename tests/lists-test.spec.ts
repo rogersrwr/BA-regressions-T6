@@ -462,6 +462,24 @@ test('#009: changing contact email from pen icon in list details page', async ({
 });
 
 
+test('#010: ', async ({ page }) => {
+});
+
+test('#011: ', async ({ page }) => {
+});
+
+test('#012: ', async ({ page }) => {
+});
+
+test('#013: ', async ({ page }) => {
+});
+
+test('#014: ', async ({ page }) => {
+});
+
+test('#015: ', async ({ page }) => {
+});
+
 
 test('#016: Send text message', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();

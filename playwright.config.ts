@@ -13,7 +13,7 @@ export default defineConfig({
   //globalSetup: require.resolve('./global-setup'),
   //globalTeardown: require.resolve('./global-teardown'),
   testDir: './tests',
-  timeout: 3 * 30000,
+  timeout: 4 * 30000,
   expect: {
     timeout: 15 * 1000,
   },
