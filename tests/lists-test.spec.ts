@@ -234,7 +234,7 @@ test('#005: add contact to list, auto list 1', async ({ page }) => {
   await page.getByLabel('Field 7').click();
   await page.getByLabel('Field 7').fill('field 7 test');
   const [request] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/LoadContacts?accessToken=3F71C6E3-2CF6-41F8-975B-59A373DC03F5&listID=") && response.status() === 200, {timeout: 60000}),
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/LoadContacts?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByRole('button', { name: 'Apply' }).click()
   ]);
   await expect(page.getByRole('cell', { name: 'Contact1, Auto' })).toBeVisible();
