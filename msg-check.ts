@@ -21,7 +21,7 @@ test('message check in firefox', async ({ page }) => {
   //const msgString2 = 'test message at 2024-4-23_16-10';
 
 
-  /*
+  
   await page.goto('https://voice.google.com/about');
   await page.locator('#getVoiceToggle').getByRole('button', { name: 'For personal use' }).click();
   await page.getByRole('button', { name: 'Web' }).click();
@@ -35,7 +35,7 @@ test('message check in firefox', async ({ page }) => {
   //await expect(page.getByLabel('Unread. Message by ‪79041‬:')).toBeVisible();
   await page.getByLabel('Unread. Message by ‪79041‬:').click();
   await expect(page.getByRole('list').getByText(`${jsonData.datetime}`, { exact: true })).toBeVisible();
-  */
+  
 
 
 
