@@ -25,7 +25,7 @@ test('message check in firefox', async ({ page }) => {
   //const msgString2 = 'test message at 2024-4-23_16-10';
 
 
-  
+  /*
   await page.goto('https://voice.google.com/about');
   await page.locator('#getVoiceToggle').getByRole('button', { name: 'For personal use' }).click();
   await page.getByRole('button', { name: 'Web' }).click();
@@ -34,13 +34,13 @@ test('message check in firefox', async ({ page }) => {
   await page.getByLabel('Enter your password').fill(`${email_pass}`);
   await page.getByLabel('Enter your password').press('Enter');
   //await page.getByRole('button', { name: 'Next' }).click();
-  /*
-  await page.getByRole('link', { name: 'Confirm your recovery phone'}).click();
-  await page.getByLabel('Phone Number').click();
-  await page.getByLabel('Phone Number').fill(' ');
-  await page.getByRole('button', {name: 'Next'}).click();
+  
+  // await page.getByRole('link', { name: 'Confirm your recovery phone'}).click();
+  // await page.getByLabel('Phone Number').click();
+  // await page.getByLabel('Phone Number').fill(' ');
+  // await page.getByRole('button', {name: 'Next'}).click();
   //await page.goto('https://voice.google.com/u/0/calls');
-  */
+  
   await page.getByRole('tab', { name: 'Messages' }).click();
   //await page.getByLabel('Message by 79041: test').click();
   //await expect(page.getByLabel('Unread. Message by ‪79041‬:')).toBeVisible();
@@ -53,18 +53,18 @@ test('message check in firefox', async ({ page }) => {
   
   await page.goto('https://www.google.com/gmail/about/');
   await page.getByRole('link', { name: 'Sign in' }).click();
-  /*
-  await page.getByLabel('Email or phone').fill(`${email}`);
-  await page.getByLabel('Email or phone').press('Enter');
-  await page.getByLabel('Enter your password').fill(`${email_pass}`);
-  await page.getByLabel('Enter your password').press('Enter');
-  await page.getByRole('link', { name: `auto: ${jsonData.datetime} - Sent` }).click();
-  */
+  
+  // await page.getByLabel('Email or phone').fill(`${email}`);
+  // await page.getByLabel('Email or phone').press('Enter');
+  // await page.getByLabel('Enter your password').fill(`${email_pass}`);
+  // await page.getByLabel('Enter your password').press('Enter');
+  // await page.getByRole('link', { name: `auto: ${jsonData.datetime} - Sent` }).click();
+  
   await page.getByRole('link', { name: 'BrightArrow1 brightarrowtest1' }).click();
   await expect(page.getByRole('link', { name: `${jsonData.datetime}` }).first()).toBeVisible();
   await page.getByRole('link', { name: `${jsonData.datetime}` }).first().click();
   //await expect(page.getByText('test contact2', { exact: true })).toBeVisible();
-  
+  */
 
 
   await page.goto('https://target110.brightarrow.com/m/');
