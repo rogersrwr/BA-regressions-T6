@@ -1,4 +1,6 @@
 import { test, expect, firefox } from '@playwright/test';
+const username = process.env.ACCT_LOGIN;
+const password = process.env.ACCT_PASSWORD;
 
 /*
 const currentDate = new Date();
@@ -22,9 +24,9 @@ test.describe.configure({
 test.beforeEach('', async ({ page }) => {
   await page.goto('https://target110.brightarrow.com/r/');
   await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill('ryantest');
+  await page.getByLabel('Username').fill(`${username}`);
   await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill('RogerOf26');
+  await page.getByLabel('Password').fill(`${password}`);
   
   const [request] = await Promise.all([
     page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=3F71C6E3-2CF6-41F8-975B-59A373DC03F5") && response.status() === 200, {timeout: 60000}),
