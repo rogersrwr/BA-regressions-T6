@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
+const username = process.env.ACCT_LOGIN;
+const password = process.env.ACCT_PASSWORD;
 
 
 
@@ -18,9 +20,9 @@ test("setup checks", async ({ page }) => {
   // INITIAL LOG IN
   await page.goto('https://target110.brightarrow.com/r/');
   await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill('ryantest');
+  await page.getByLabel('Username').fill(`${username}`);
   await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill('RogerOf26');
+  await page.getByLabel('Password').fill(`${password}`);
   const [request] = await Promise.all([
     page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByRole('button', { name: 'Sign in' }).click()

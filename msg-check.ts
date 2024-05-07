@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
+const email = process.env.EMAIL;
+const email_pass = process.env.EMAIL_PASS;
+const phone = process.env.PHONE_NUMBER;
+const parent_pass = process.env.PARENT_PASS;
 
 
 
@@ -25,15 +29,15 @@ test('message check in firefox', async ({ page }) => {
   await page.goto('https://voice.google.com/about');
   await page.locator('#getVoiceToggle').getByRole('button', { name: 'For personal use' }).click();
   await page.getByRole('button', { name: 'Web' }).click();
-  await page.getByLabel('Email or phone').fill('brightarrowtest1@gmail.com');
+  await page.getByLabel('Email or phone').fill(`${email}`);
   await page.getByRole('button', { name: 'Next' }).click();
-  await page.getByLabel('Enter your password').fill('Target110BA!');
+  await page.getByLabel('Enter your password').fill(`${email_pass}`);
   await page.getByLabel('Enter your password').press('Enter');
   //await page.getByRole('button', { name: 'Next' }).click();
   /*
   await page.getByRole('link', { name: 'Confirm your recovery phone'}).click();
   await page.getByLabel('Phone Number').click();
-  await page.getByLabel('Phone Number').fill('4252467014');
+  await page.getByLabel('Phone Number').fill(' ');
   await page.getByRole('button', {name: 'Next'}).click();
   //await page.goto('https://voice.google.com/u/0/calls');
   */
@@ -50,9 +54,9 @@ test('message check in firefox', async ({ page }) => {
   await page.goto('https://www.google.com/gmail/about/');
   await page.getByRole('link', { name: 'Sign in' }).click();
   /*
-  await page.getByLabel('Email or phone').fill('brightarrowtest1@gmail.com');
+  await page.getByLabel('Email or phone').fill(`${email}`);
   await page.getByLabel('Email or phone').press('Enter');
-  await page.getByLabel('Enter your password').fill('RogerOf25');
+  await page.getByLabel('Enter your password').fill(`${email_pass}`);
   await page.getByLabel('Enter your password').press('Enter');
   await page.getByRole('link', { name: `auto: ${jsonData.datetime} - Sent` }).click();
   */
@@ -66,9 +70,9 @@ test('message check in firefox', async ({ page }) => {
   await page.goto('https://target110.brightarrow.com/m/');
   await page.getByRole('button', { name: 'Parent / Student Login' }).click();
   await page.getByLabel('Enter your phone number').click();
-  await page.getByLabel('Enter your phone number').fill('8624385648');
+  await page.getByLabel('Enter your phone number').fill(`${phone}`);
   await page.getByLabel('Enter your password').click();
-  await page.getByLabel('Enter your password').fill('RogerOf26');
+  await page.getByLabel('Enter your password').fill(`${parent_pass}`);
   await page.getByLabel('Enter your password').press('Enter');
   await page.getByRole('button', { name: 'OK' }).click();
   await page.getByRole('button', { name: 'Cancel' }).click();

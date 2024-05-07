@@ -4,7 +4,11 @@ on:
 
 env:
   ACCT_LOGIN: ${{ secrets.USERNAME }}
-  ACCT_PASSWORD: ${{ secrets.PASSWORD }};
+  ACCT_PASSWORD: ${{ secrets.PASSWORD }}
+  EMAIL: ${{ secrets.EMAIL}}
+  EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+  PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+  PARENT_PASS: ${{ secrets.PARENT_PASS }}
     
 jobs:
   test:
