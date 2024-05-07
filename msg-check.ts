@@ -35,8 +35,8 @@ test('message check in firefox', async ({ page }) => {
   await page.getByLabel('Phone Number').click();
   await page.getByLabel('Phone Number').fill('4252467014');
   await page.getByRole('button', {name: 'Next'}).click();
-  await page.goto('https://voice.google.com/u/0/calls');
-  
+  //await page.goto('https://voice.google.com/u/0/calls');
+
   await page.getByRole('tab', { name: 'Messages' }).click();
   //await page.getByLabel('Message by 79041: test').click();
   //await expect(page.getByLabel('Unread. Message by ‪79041‬:')).toBeVisible();
