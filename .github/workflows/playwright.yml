@@ -1,6 +1,11 @@
 name: Playwright Tests
 on:
   workflow_dispatch:
+
+env:
+  ACCT_LOGIN: ${{ secrets.USERNAME }}
+  ACCT_PASSWORD: ${{ secrets.PASSWORD }};
+    
 jobs:
   test:
     timeout-minutes: 60
