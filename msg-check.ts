@@ -30,13 +30,13 @@ test('message check in firefox', async ({ page }) => {
   await page.getByLabel('Enter your password').fill('Target110BA!');
   await page.getByLabel('Enter your password').press('Enter');
   //await page.getByRole('button', { name: 'Next' }).click();
-
+  /*
   await page.getByRole('link', { name: 'Confirm your recovery phone'}).click();
   await page.getByLabel('Phone Number').click();
   await page.getByLabel('Phone Number').fill('4252467014');
   await page.getByRole('button', {name: 'Next'}).click();
   //await page.goto('https://voice.google.com/u/0/calls');
-
+  */
   await page.getByRole('tab', { name: 'Messages' }).click();
   //await page.getByLabel('Message by 79041: test').click();
   //await expect(page.getByLabel('Unread. Message by ‪79041‬:')).toBeVisible();
