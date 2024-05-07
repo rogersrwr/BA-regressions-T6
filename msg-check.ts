@@ -27,7 +27,7 @@ test('message check in firefox', async ({ page }) => {
   await page.getByRole('button', { name: 'Web' }).click();
   await page.getByLabel('Email or phone').fill('brightarrowtest1@gmail.com');
   await page.getByRole('button', { name: 'Next' }).click();
-  await page.getByLabel('Enter your password').fill('RogerOf25');
+  await page.getByLabel('Enter your password').fill('Target110BA!');
   await page.getByLabel('Enter your password').press('Enter');
   //await page.getByRole('button', { name: 'Next' }).click();
 
