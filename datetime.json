@@ -1,4 +1,6 @@
 {
   "datetime": "test msg at 2024-4-30_16-25",
-  "started": true
+  "started": true,
+  "failures": false,
+  "finished": false
 }

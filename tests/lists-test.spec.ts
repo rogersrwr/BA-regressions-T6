@@ -1,9 +1,20 @@
 import { test, expect, firefox } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
+const { App } = require('@slack/bolt');
+
 
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
+const phone = process.env.PHONE_NUMBER;
+const parent_pass = process.env.PARENT_PASS;
+
+const app = new App({ 
+  token: process.env.O_AUTH,
+  signingSecret: process.env.SIGN_SECRET,
+});
+
+const channelId = 'C06KJ8ML7PA';    //channelId for personal test server
 
 const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
@@ -17,10 +28,15 @@ test.beforeAll('', async ({ }) => {
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
 
+    await app.start(process.env.PORT || 3000 );
+    console.log(' app is running??');
+
     const formattedDateTime = `${year}-${month}-${day}_${hours}-${minutes}`;
     const msgString = `test msg at ${formattedDateTime}`;
     jsonData.datetime = msgString;
     jsonData.started = true;
+    jsonData.failures = false;
+    jsonData.finished = false;
     const jsonString = JSON.stringify(jsonData, null, 2);
     fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
   }
@@ -45,10 +61,36 @@ test.beforeEach('', async ({ page }) => {
 
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
   await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-  await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();
+  await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
+});
 
 
+test.afterEach(async ({ page }, testInfo) => {
+  console.log(`Finished ${testInfo.title} with status ${testInfo.status}`);
+  console.log(`${testInfo.title} finished in ${testInfo.duration}`); 
   
+  if (testInfo.status !== testInfo.expectedStatus) {
+    console.log(`Did not run as expected, ended up at ${page.url()}`);
+    jsonData.failures = true;
+  }
+  
+});
+
+
+test.afterAll(async ({ page }, testInfo) => {
+  if (jsonData.finished == true && jsonData.failures == false) {
+    await app.client.chat.postMessage({
+      token: process.env.O_AUTH,
+      channel: channelId,
+      text: `Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+    });
+  } else if (jsonData.finished == true && jsonData.failures == true ) {
+    await app.client.chat.postMessage({
+      token: process.env.O_AUTH,
+      channel: channelId,
+      text: `Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+    });
+  }
 });
 
 
@@ -797,6 +839,32 @@ test('#017: create new message, email, save, send.', async ({ page }) => {
 });
 */
 
+
+test('#025: parent hub message confirmation', async ({ page }) => {
+  jsonData.finished = true;
+  const jsonString = JSON.stringify(jsonData, null, 2);
+
+  await page.goto('https://target110.brightarrow.com/m/');
+  await page.getByRole('button', { name: 'Parent / Student Login' }).click();
+  await page.getByLabel('Enter your phone number').click();
+  await page.getByLabel('Enter your phone number').fill(`${phone}`);
+  await page.getByLabel('Enter your password').click();
+  await page.getByLabel('Enter your password').fill(`${parent_pass}`);
+  await page.getByLabel('Enter your password').press('Enter');
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.locator('div').filter({ hasText: /^FEEDS$/ }).click();
+  await page.locator('div').filter({ hasText: /^CHATS$/ }).click();
+  await page.getByRole('button', { name: 'settings' }).click();
+  await expect(page.getByText(`${jsonData.datetime}`)).toBeVisible();
+  
+
+});
+
+
+test('', async ({ page }) => {
+
+});
 
 
 

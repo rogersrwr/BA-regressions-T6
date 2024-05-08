@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
+
+
 const email = process.env.EMAIL;
 const email_pass = process.env.EMAIL_PASS;
 const phone = process.env.PHONE_NUMBER;

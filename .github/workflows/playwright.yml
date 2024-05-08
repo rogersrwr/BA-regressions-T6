@@ -9,6 +9,9 @@ env:
   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
   PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
   PARENT_PASS: ${{ secrets.PARENT_PASS }}
+  SIGN_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+  O_AUTH: ${{ secrets.O_AUTH }}
+
 
 permissions:
   id-token: write
@@ -26,6 +29,8 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
+    - name: Install Slack New
+      run: npm install @slack/bolt
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests

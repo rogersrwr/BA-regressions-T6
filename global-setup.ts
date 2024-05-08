@@ -14,6 +14,8 @@ test("setup checks", async ({ page }) => {
   test.slow();
   jsonData.datetime = "";
   jsonData.started = false;
+  jsonData.failures = false;
+  jsonData.finished = false;
   const jsonString = JSON.stringify(jsonData, null, 2);
   fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
 
