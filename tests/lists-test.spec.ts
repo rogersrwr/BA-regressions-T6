@@ -28,8 +28,6 @@ test.beforeAll('', async ({ }) => {
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
 
-    await app.start(process.env.PORT || 3000 );
-    console.log(' app is running??');
 
     const formattedDateTime = `${year}-${month}-${day}_${hours}-${minutes}`;
     const msgString = `test msg at ${formattedDateTime}`;
@@ -39,6 +37,9 @@ test.beforeAll('', async ({ }) => {
     jsonData.finished = false;
     const jsonString = JSON.stringify(jsonData, null, 2);
     fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
+
+    await app.start(process.env.PORT || 3000 );
+    console.log(' app is running??');
   }
 });
 
@@ -77,7 +78,7 @@ test.afterEach(async ({ page }, testInfo) => {
 });
 
 
-test.afterAll(async ({ page }, testInfo) => {
+test.afterAll(async ({  }) => {
   if (jsonData.finished == true && jsonData.failures == false) {
     await app.client.chat.postMessage({
       token: process.env.O_AUTH,
@@ -862,9 +863,9 @@ test('#025: parent hub message confirmation', async ({ page }) => {
 });
 
 
-test('', async ({ page }) => {
+// test('', async ({ page }) => {
 
-});
+// });
 
 
 
