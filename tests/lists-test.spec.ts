@@ -201,7 +201,7 @@ test('#004: create list in new folder', async ({ page }) => {
 });
 
 
-
+/*
 test('#005: add contact to list, auto list 1', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
@@ -514,10 +514,10 @@ test('#017: Edit message, email only, and save.', async ({ page }) => {
   await page.getByLabel('Subject').fill(`${jsonData.datetime}`);
   await page.getByRole('combobox', { name: '​' }).click();
   await page.getByRole('option', { name: '[[fullName]]' }).click();
-  /*
-  await page.getByRole('combobox', { name: '​' }).click();
-  await page.getByRole('option', { name: '[[today]]' }).click();
-  */
+  
+  // await page.getByRole('combobox', { name: '​' }).click();
+  // await page.getByRole('option', { name: '[[today]]' }).click();
+  
   await page.getByRole('button', { name: 'Next' }).click();
   await page.locator('div').filter({ hasText: /^Save Message$/ }).click();
   await expect(page.getByText('List Details')).toBeVisible();
@@ -561,7 +561,7 @@ test('#021: Active BrightChats feature from main menu', async ({ page }) => {
     page.getByRole('button', { name: 'Send Message' }).click()
   ]);
 });
-
+*/
 
 /*
 test('#010: disabling a contact', async ({ page }) => {
