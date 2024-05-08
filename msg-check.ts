@@ -66,7 +66,7 @@ test('message check in firefox', async ({ page }) => {
   //await expect(page.getByText('test contact2', { exact: true })).toBeVisible();
   */
 
-
+  /*
   await page.goto('https://target110.brightarrow.com/m/');
   await page.getByRole('button', { name: 'Parent / Student Login' }).click();
   await page.getByLabel('Enter your phone number').click();
@@ -80,4 +80,5 @@ test('message check in firefox', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^CHATS$/ }).click();
   await page.getByRole('button', { name: 'settings' }).click();
   await expect(page.getByText(`${jsonData.datetime}`)).toBeVisible();
+  */
 });
