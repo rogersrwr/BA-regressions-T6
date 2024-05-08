@@ -9,7 +9,10 @@ env:
   EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
   PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
   PARENT_PASS: ${{ secrets.PARENT_PASS }}
-    
+  
+permissions:
+  id-token: write
+
 jobs:
   test:
     timeout-minutes: 60
