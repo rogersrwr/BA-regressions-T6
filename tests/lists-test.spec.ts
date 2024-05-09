@@ -863,12 +863,12 @@ test('#025: parent hub message confirmation', async ({ page }) => {
 });
 */
 
-jsonData.finished = true;
-const jsonString = JSON.stringify(jsonData, null, 2);
 
-// test('', async ({ page }) => {
 
-// });
+test('', async ({ page }) => {
+  jsonData.finished = true;
+  const jsonString = JSON.stringify(jsonData, null, 2);
+});
 
 
 
