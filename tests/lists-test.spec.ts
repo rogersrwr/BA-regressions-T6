@@ -83,13 +83,13 @@ test.afterAll(async ({  }) => {
     await app.client.chat.postMessage({
       token: process.env.O_AUTH,
       channel: channelId,
-      text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+      text: `Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
     });
   } else if (jsonData.finished == true && jsonData.failures == true ) {
     await app.client.chat.postMessage({
       token: process.env.O_AUTH,
       channel: channelId,
-      text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+      text: `Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
     });
   }
 });
