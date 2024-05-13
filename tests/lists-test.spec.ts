@@ -247,7 +247,7 @@ test('#004: create list in new folder', async ({ page }) => {
 });
 
 
-/*
+
 test('#005: add contact to list, auto list 1', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
@@ -607,7 +607,7 @@ test('#021: Active BrightChats feature from main menu', async ({ page }) => {
     page.getByRole('button', { name: 'Send Message' }).click()
   ]);
 });
-*/
+
 
 /*
 test('#010: disabling a contact', async ({ page }) => {
@@ -707,12 +707,12 @@ test('#012: re-enable contact', async ({ page }) => {
 
 
 });
-*/
 
 
 
 
-/*
+
+
 test('#013: Delete folder, auto folder', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'auto folder' }).click();
@@ -816,7 +816,7 @@ test('#017: create new message, email, save, send.', async ({ page }) => {
   await page.getByLabel('Message Name (optional)').fill('msg name');
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByLabel('From Name').click();
-  await page.getByLabel('From Name').fill(`auto: ${msgString}`);
+  await page.getByLabel('From Name').fill(`auto: ${jsonData.datetime}`);
   await page.getByLabel('Subject').click();
   await page.getByLabel('Subject').fill('Auto Email');
   await page.getByLabel('Editor editing area: main').click();
