@@ -75,6 +75,7 @@ test.afterEach(async ({ page }, testInfo) => {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
     jsonData.failures = true;
     const jsonString = JSON.stringify(jsonData, null, 2);
+    fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
   }
   
 });
@@ -867,6 +868,7 @@ test('#025: parent hub message confirmation', async ({ page }) => {
 test('wrap up tests', async ({ page }) => {
   jsonData.finished = true;
   const jsonString = JSON.stringify(jsonData, null, 2);
+  fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
 });
 
 
