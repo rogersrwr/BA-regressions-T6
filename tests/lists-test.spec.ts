@@ -74,6 +74,7 @@ test.afterEach(async ({ page }, testInfo) => {
   if (testInfo.status !== testInfo.expectedStatus) {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
     jsonData.failures = true;
+    const jsonString = JSON.stringify(jsonData, null, 2);
   }
   
 });
