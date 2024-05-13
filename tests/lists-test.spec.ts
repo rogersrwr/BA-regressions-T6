@@ -843,9 +843,6 @@ test('#017: create new message, email, save, send.', async ({ page }) => {
 
 
 test('#025: parent hub message confirmation', async ({ page }) => {
-  jsonData.finished = true;
-  const jsonString = JSON.stringify(jsonData, null, 2);
-
   await page.goto('https://target110.brightarrow.com/m/');
   await page.getByRole('button', { name: 'Parent / Student Login' }).click();
   await page.getByLabel('Enter your phone number').click();
@@ -866,7 +863,7 @@ test('#025: parent hub message confirmation', async ({ page }) => {
 
 
 
-test('', async ({ page }) => {
+test('wrap up tests', async ({ page }) => {
   jsonData.finished = true;
   const jsonString = JSON.stringify(jsonData, null, 2);
 });
