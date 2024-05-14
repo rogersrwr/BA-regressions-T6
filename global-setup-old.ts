@@ -34,7 +34,7 @@ test("setup checks", async ({ page }) => {
   await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();
 
 
-  // 001 CREATE LIST (auto list 1) - CHECK IF NOT ALREADY DELETED
+  // 001 CREATE LIST (auto list 1) - CHECK
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -44,7 +44,6 @@ test("setup checks", async ({ page }) => {
     page.getByLabel('Search').press('Enter')
   ]);
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();      //new
-
   const myElement = page.locator('.listOfListsRow > td').first();
   if (await myElement.isVisible()) {
     await page.locator('input[name="cb_lists2039717"]').check();
@@ -60,13 +59,13 @@ test("setup checks", async ({ page }) => {
     await page.getByRole('button', { name: 'ryan test' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('auto list 1');
-    await page.getByLabel('Search').press('Enter');
+    await page.getByLabel('Search').press('Enter')
   }
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
   await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
   
   
-  //002 CREATE LIST (auto list 2) - CHECK IF NOT ALREADY DELETED
+  //002 CREATE LIST (auto list 2) - CHECK
   await page.locator('#searchBarBtn').click();
   await expect(page.getByRole('link', { name: 'test list 1' })).toBeVisible();  //new
   await page.getByRole('button', { name: 'ryan test' }).click();
@@ -78,7 +77,6 @@ test("setup checks", async ({ page }) => {
     page.getByLabel('Search').press('Enter')
   ]);
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();    //new
-
   const myElement2 = page.locator('.listOfListsRow > td').first();
   if (await myElement.isVisible()) {
     await page.locator('input[name="cb_lists2039717"]').check();
@@ -89,7 +87,6 @@ test("setup checks", async ({ page }) => {
       page.getByRole('button', { name: 'OK' }).click()
     ]);
   }
-
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
   await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
   //await page.locator('#searchBarBtn').click();
@@ -106,37 +103,33 @@ test("setup checks", async ({ page }) => {
   //await expect(page.getByText('ryan test Lists (2)')).toBeVisible();
 
 
-  //003 CREATE FOLDER - CHECK IF NOT ALREADY DELETED
-  const myElement3 = page.locator('_react=button[title="auto folder"]');
-  if (await myElement3.isVisible()) { 
-    const [request6] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/Folder/SetSelectedFolderSettings?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.locator('_react=button[title="auto folder"]').click()
-    ]);
-    //await page.locator('_react=button[title="auto folder"]').click();
-    await expect(page.getByRole('link', { name: 'test list 1' })).toBeHidden();
-
-    //await expect(page.getByRole('link', { name: 'auto list' })).toBeVisible();
-    //await expect(page.getByText('auto folder Lists (1)')).toBeVisible();
-
+  /*
+  // 003 CREATE FOLDER - CHECK
+  const myElement3 = page.getByRole('button', { name: 'auto folder' });
+  //const myElement3 = page.locator("auto folder");
+  if (await myElement3.isVisible()) {
+    await page.getByRole('button', { name: 'auto folder' }).click();
     await page.getByRole('link', { name: 'Delete Folder' }).click();
-    await expect(page.getByText('Do you wish to delete the')).toBeVisible();
     await page.getByRole('button', { name: 'OK' }).click();
-    //await expect(page.getByText('ryan test Lists (3)')).toBeVisible();
-    await expect(page.getByRole('link', { name: 'test list 1' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
     await page.getByRole('button', { name: 'ryan test' }).click();
   }
+  */
 
-  
+  await page.getByRole('button', { name: 'auto folder' }).click();
+  await page.getByRole('link', { name: 'Delete Folder' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
+  await page.getByRole('button', { name: 'ryan test' }).click();
 
-  //004 CREATE LIST IN NEW FOLDER - CHECK if not already deleted
+
+  //004 CREATE LIST IN NEW FOLDER - CHECK
   await page.getByLabel('Search').click();
   await page.getByLabel('Search').fill('auto list 3');
   const [request5] = await Promise.all([
     page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByLabel('Search').press('Enter')
   ]);
-  await page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000});
   const myElement4 = page.locator('.listOfListsRow > td').first();
   if (await myElement4.isVisible()) {
     await page.locator('input[name="cb_lists2039717"]').check();
@@ -151,5 +144,6 @@ test("setup checks", async ({ page }) => {
   await page.locator('#searchBarBtn').click();
   
 
+  // 005 CREATE CONTACT - CHECK
 
 });
