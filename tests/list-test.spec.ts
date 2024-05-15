@@ -82,19 +82,19 @@ test.afterEach(async ({ page }, testInfo) => {
 
 
 test.afterAll(async ({  }) => {
-  // if (jsonData.finished == true && jsonData.failures == false) {
-  //   await app.client.chat.postMessage({
-  //     token: process.env.O_AUTH,
-  //     channel: channelId,
-  //     text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-  //   });
-  // } else if (jsonData.finished == true && jsonData.failures == true ) {
-  //   await app.client.chat.postMessage({
-  //     token: process.env.O_AUTH,
-  //     channel: channelId,
-  //     text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-  //   });
-  // }
+  if (jsonData.finished == true && jsonData.failures == false) {
+    await app.client.chat.postMessage({
+      token: process.env.O_AUTH,
+      channel: channelId,
+      text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+    });
+  } else if (jsonData.finished == true && jsonData.failures == true ) {
+    await app.client.chat.postMessage({
+      token: process.env.O_AUTH,
+      channel: channelId,
+      text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+    });
+  }
 });
 
 
@@ -122,7 +122,7 @@ test('#001: Make list from Create List button', {
   ]);
   await expect(page.getByText('List Details')).toBeVisible();
   //Failure here means screenshot comparison of newly created List Details failed.
-  await expect(page).toHaveScreenshot("001-createList-listDetailsNew-chromium-win32chromium-win32.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("001-createList-listDetailsNew-chromium-win32-chromium-win32.png", { fullPage: true });
 
   //Clicks the back button in the top left.
   await page.getByTestId('FastRewindIcon').click();
@@ -410,7 +410,7 @@ test('#006: Access list from pen icon to make another contact, auto list 1', {
   ]);
   await expect(page.getByRole('cell', { name: 'Contact1, Auto' })).toBeVisible();
   await expect(page.getByRole('cell', { name: 'Contact2, Auto' })).toBeVisible();
-  await expect(page).toHaveScreenshot("006-listWithTwoContacts-check.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("006-listWithTwoContacts-check-chromium-win32.png", { fullPage: true });
 
   const [request2] = await Promise.all([
     page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
@@ -425,7 +425,7 @@ test('#006: Access list from pen icon to make another contact, auto list 1', {
     page.getByRole('cell', { name: 'Contact2, Auto' }).click()
   ]);
 
-  await expect(page).toHaveScreenshot("006-auto-contact2-details.png", { 
+  await expect(page).toHaveScreenshot("006-auto-contact2-details-chromium-win32.png", { 
     fullPage: true, 
     maxDiffPixels: 15, 
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
