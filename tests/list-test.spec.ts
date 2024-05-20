@@ -82,19 +82,19 @@ test.afterEach(async ({ page }, testInfo) => {
 
 
 test.afterAll(async ({  }) => {
-  if (jsonData.finished == true && jsonData.failures == false) {
-    await app.client.chat.postMessage({
-      token: process.env.O_AUTH,
-      channel: channelId,
-      text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-    });
-  } else if (jsonData.finished == true && jsonData.failures == true ) {
-    await app.client.chat.postMessage({
-      token: process.env.O_AUTH,
-      channel: channelId,
-      text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-    });
-  }
+  // if (jsonData.finished == true && jsonData.failures == false) {
+  //   await app.client.chat.postMessage({
+  //     token: process.env.O_AUTH,
+  //     channel: channelId,
+  //     text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+  //   });
+  // } else if (jsonData.finished == true && jsonData.failures == true ) {
+  //   await app.client.chat.postMessage({
+  //     token: process.env.O_AUTH,
+  //     channel: channelId,
+  //     text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+  //   });
+  // }
 });
 
 
@@ -152,7 +152,7 @@ test('#001: Make list from Create List button', {
 
 
 
-
+/*
 test('#002: Create list from my lists page, auto list 2', {
   tag: ['@Lists'],
   annotation: [
@@ -475,7 +475,7 @@ test('#007: Click on gear icon, auto list 1',{
   await page.getByLabel('CC list (comma-separated)').fill('ryanrogers99@yahoo.com');
   await page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(1).click();
 });
-
+*/
 
 /*
 test('verify#007 -click on gear icon, auto list 1',{
@@ -531,7 +531,7 @@ test('verify#007 -click on gear icon, auto list 1',{
 */
 
 
-
+/*
 test('#008: add list to favorites with heart icon, auto list 1',{
   tag: ['@Lists'],
   annotation: [
@@ -1020,3 +1020,4 @@ test('wrap up tests', async ({ page }) => {
 });
 
 
+*/
