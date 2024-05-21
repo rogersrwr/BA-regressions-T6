@@ -48,6 +48,7 @@ jobs:
         path: |
           ms-playwright
         key: playwright-${{ hashFiles('package-lock.json') }}
+        enableCrossOsArchive: true
     - name: Install Playwright Browsers
       if: steps.cache-playwright.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
