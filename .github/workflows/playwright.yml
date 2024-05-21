@@ -42,7 +42,7 @@ jobs:
       run: npm install @slack/bolt
 
     - name: Cache Playwright binaries
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: cache-playwright
       with:
         path: |
