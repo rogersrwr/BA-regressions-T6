@@ -46,7 +46,7 @@ jobs:
       id: cache-playwright
       with:
         path: |
-          D:/a/BA-regressions-T6/BA-regressions-T6/browsers
+          C:\Users\runneradmin\AppData\Local\ms-playwright
         key: playwright-${{ hashFiles('package-lock.json') }}
         enableCrossOsArchive: true
     - name: Install Playwright Browsers
