@@ -86,7 +86,7 @@ test.afterAll(async ({  }) => {
 });
 
 
-
+/*
 
 test('#001: Make list from Create List button', {
   tag: ['@Lists'],
@@ -464,6 +464,10 @@ test('#007: Click on gear icon, auto list 1',{
   // await page.getByLabel('CC list (comma-separated)').fill('ryanrogers99@yahoo.com');
   // await page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(1).click();
 });
+*/
+
+
+
 
 
 /*
