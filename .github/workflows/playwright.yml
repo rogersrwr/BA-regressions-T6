@@ -83,16 +83,19 @@ jobs:
 
     - name: Download blob reports from GitHub Actions Artifacts
       uses: actions/download-artifact@v4
+      if: always()
       with:
         path: blob-report/
         pattern: blob-report-*
         merge-multiple: true
   
     - name: Merge into HTML Report
+      if: always()
       run: npx playwright merge-reports --reporter html blob-report/
     
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: html-report--attempt-${{ github.run_attempt }}
         path: playwright-report/
