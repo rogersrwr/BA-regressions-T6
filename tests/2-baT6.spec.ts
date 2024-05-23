@@ -412,3 +412,100 @@ test('#019: Interacting from Active BrightChats page on computer',{
 
 
 
+
+test('#020: Access reports page from BA Central Reports button',{
+  tag: ['@Reports'],
+  annotation: [
+    { type: 'Test description', description: 'Clicks on Reports button from BrightArrow Central. Clicks through various tabs to confirm everything is at least visually working.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● Reports button is not working.'},
+    { type: '', description: '● Some part of navigating through Reports tabs does not work as expected.'},
+    { type: '', description: '● Extra slow network connectivity to server or APIs.'},
+  ],
+}, async ({ page }) => {
+  await page.locator('div').filter({ hasText: /^Reports$/ }).click();
+  await expect(page.getByText('Reports of Messages')).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'All Messages' })).toBeVisible();
+  await page.getByRole('tab', { name: 'Monthly Totals' }).click();
+  await page.getByRole('tab', { name: 'All Portal User Edits' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('tab', { name: 'Texting Opt Ins' }).click();
+  await page.getByRole('tab', { name: 'BrightChat Logs' }).click();
+  await expect(page.getByRole('link', { name: 'ryan test & test contact1' })).toBeVisible();
+});
+
+
+
+
+test('#021: Access user settings',{
+  tag: ['@Settings'],
+  annotation: [
+    { type: 'Test description', description: 'Clicks on User Settings from BrightArrow Central top left navigation icon. Ensures everything is visually where it should be.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● User Settings button is not working.'},
+    { type: '', description: '● Extra slow network connectivity to server or APIs.'},
+  ],
+}, async ({ page }) => {
+  await page.getByTestId('MenuIcon').click();
+  await page.getByRole('button', { name: 'User settings' }).click();
+  await expect(page.getByText('ryantest')).toBeVisible();
+  await expect(page.getByText('ryanrogers99@yahoo.com')).toBeVisible();
+});
+
+
+
+test('#022: Access My Lists from top left nav icon in BrightArrow Central',{
+  tag: ['@Lists'],
+  annotation: [
+    { type: 'Test description', description: 'Clicks on navigation icon in top left corner from BrightArrow Central and navigates to My Lists. Ensures that this button is working as expected.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● My Lists button in this navigation menu is not working.'},
+    { type: '', description: '● Extra slow network connectivity to server or APIs.'},
+  ],
+}, async ({ page }) => {
+  await page.getByTestId('MenuIcon').click();
+  await page.getByRole('button', { name: 'My Lists' }).click();
+  await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
+});
+
+
+
+test('#023: Access Active BrightChats from top left nav icon in BrightArrow Central',{
+  tag: ['@Messages'],
+  annotation: [
+    { type: 'Test description', description: 'Clicks on navigation icon in top left corner from BrightArrow Central and navigates to Active BrightChats. Ensures that this button is working as expected.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● Active BrightChats button in this navigation menu is not working.'},
+    { type: '', description: '● Extra slow network connectivity to server or APIs.'},
+  ],
+}, async ({ page }) => {
+  await page.getByTestId('MenuIcon').click();
+  await page.getByRole('button', { name: 'Active BrightChats' }).click();
+  await expect(page.getByRole('link', { name: 'ryan test & test contact1' })).toBeVisible();
+});
+
+
+
+
+
+
+test('#024: Access Reports from top left nav icon in BrightArrow Central',{
+  tag: ['@Messages'],
+  annotation: [
+    { type: 'Test description', description: 'Clicks on navigation icon in top left corner from BrightArrow Central and navigates to Reports. Ensures that this button is working as expected.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● Active BrightChats button in this navigation menu is not working.'},
+    { type: '', description: '● Extra slow network connectivity to server or APIs.'},
+  ],
+}, async ({ page }) => {
+  await page.getByTestId('MenuIcon').locator('path').click();
+  await page.getByRole('button', { name: 'Reports' }).click();
+  await expect(page.getByText('Reports of Messages')).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'All Messages' })).toBeVisible();
+});
+
+
+
+
+
+
