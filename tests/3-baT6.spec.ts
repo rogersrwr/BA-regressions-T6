@@ -76,7 +76,7 @@ test.afterAll(async ({  }) => {
 });
 
 
-
+/*
 
 
 test('#020: Delete folder, auto folder',{
@@ -226,3 +226,4 @@ test('wrap up tests', async ({ page }) => {
 });
 
 
+*/

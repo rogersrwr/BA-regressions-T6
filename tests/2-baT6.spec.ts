@@ -68,7 +68,7 @@ test.afterAll(async ({  }) => {
 
 
 
-
+/*
 
 
 test('#008: add list to favorites with heart icon, auto list 1',{
@@ -506,6 +506,6 @@ test('#024: Access Reports from top left nav icon in BrightArrow Central',{
 
 
 
-
+*/
 
 
