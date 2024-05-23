@@ -60,26 +60,26 @@ test.afterEach(async ({ page }, testInfo) => {
 
 
 test.afterAll(async ({  }) => {
-  // if (jsonData.finished == true && jsonData.failures == false) {
-  //   await app.client.chat.postMessage({
-  //     token: process.env.O_AUTH,
-  //     channel: channelId,
-  //     text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-  //   });
-  // } else if (jsonData.finished == true && jsonData.failures == true ) {
-  //   await app.client.chat.postMessage({
-  //     token: process.env.O_AUTH,
-  //     channel: channelId,
-  //     text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-  //   });
-  // }
+  if (jsonData.finished == true && jsonData.failures == false) {
+    await app.client.chat.postMessage({
+      token: process.env.O_AUTH,
+      channel: channelId,
+      text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+    });
+  } else if (jsonData.finished == true && jsonData.failures == true ) {
+    await app.client.chat.postMessage({
+      token: process.env.O_AUTH,
+      channel: channelId,
+      text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+    });
+  }
 });
 
 
-/*
 
 
-test('#020: Delete folder, auto folder',{
+
+test('#025: Delete folder, auto folder',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Selects folder named "auto folder" created at the start of the test run. Clicks the trash icon delete folder button.'},
@@ -101,7 +101,7 @@ test('#020: Delete folder, auto folder',{
 
 
 
-test('#021: Delete list, auto list 1',{
+test('#026: Delete list, auto list 1',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Searches for "auto list 1" (easier to set up for deletion this way in automation). Selects the top checkbox to select auto list 1. Then clicks Select an Action button and deletes list. '},
@@ -128,7 +128,7 @@ test('#021: Delete list, auto list 1',{
 
 
 
-test('#022: Delete list, auto list 2',{
+test('#027: Delete list, auto list 2',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Searches for "auto list 2" (easier to set up for deletion this way in automation). Selects the top checkbox to select auto list 1. Then clicks Select an Action button and deletes list. '},
@@ -159,7 +159,7 @@ test('#022: Delete list, auto list 2',{
 
 //deletes final(?) list made. this list should end up in the main user 'ryan test' folder. 
 //add some screenshot verification later to further ensure functionality
-test('#023: Delete list 3, auto list import',{
+test('#028: Delete list 3, auto list import',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Searches for "auto list 3" (easier to set up for deletion this way in automation). Selects the top checkbox to select auto list 1. Then clicks Select an Action button and deletes list. '},
@@ -188,7 +188,7 @@ test('#023: Delete list 3, auto list import',{
 
 
 
-test('#024: ParentHub message received confirmation',{
+test('#029: ParentHub message received confirmation',{
   tag: ['@Messages', '@ParentHub'],
   annotation: [
     { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},
@@ -226,4 +226,3 @@ test('wrap up tests', async ({ page }) => {
 });
 
 
-*/
