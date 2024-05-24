@@ -219,7 +219,9 @@ test('#029: ParentHub message received confirmation',{
 
 
 
-test('wrap up tests', async ({ page }) => {
+test('wrap up tests',{
+  annotation: { type: '', description: 'This can be ignored, just used for test suite wrap up.' },
+}, async ({ page }) => {
   jsonData.finished = true;
   const jsonString = JSON.stringify(jsonData, null, 2);
   fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
