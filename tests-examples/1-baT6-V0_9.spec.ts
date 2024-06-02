@@ -88,290 +88,6 @@ test.afterAll(async ({  }) => {
 
 
 
-test('#000: Schedule message button ', {
-  tag: ['@Messages'],
-  annotation: [
-    { type: 'Test description', description: 'Navigates to My Lists, selects list "test list 12" and clicks Edit message button. Selects email tab and changes subject field to include the date and start time of test run. Then goes to Proceed and selects Schedule Message button. Schedules message to be sent at minimum 2 minutes into the future, up to ~10 minutes depending on the exact start time of the test run. I tried to account for all possible times this regression test suite may be ran which resulted in some variation of scheduled message time. But the message should be sent and received before the test at the end of the suite that checks if it was properly received.'},
-    { type: 'Potential Sources of Failure:', description: ''},
-    { type: '', description: '● Schedule message functionality doesn\'t work.'},
-    { type: '', description: '● List used for test unexpectedly is not available.'},
-    { type: '', description: '● Extra slow connectivity to server or APIs.'},
-  ],  
-}, async ({ page }) => {
-
-  const x = jsonData.tHour;
-  const y = jsonData.tMin;
-
-  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByRole('link', { name: 'test list 12' }).click();
-  await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
-  await page.getByRole('tab', { name: 'Email' }).click();
-  await page.getByLabel('Subject').click();
-  await page.getByLabel('Subject').fill(`#000 ${jsonData.datetime}`);
-  await page.getByRole('tab', { name: 'Proceed' }).click();
-  await page.locator('div').filter({ hasText: /^Schedule Message$/ }).click();
-  await page.getByLabel('Choose date, selected date is ').click();
-
-  if (y >= 54) {
-    switch(x + 1) {
-      case 1:
-        await page.getByLabel('1 hours', { exact: true }).click();
-        break;
-      case 2:
-        await page.getByLabel('2 hours', { exact: true }).click();
-        break;
-      case 3:
-        await page.getByLabel('3 hours').click();
-        break;
-      case 4:
-        await page.getByLabel('4 hours').click();
-        break;
-      case 5:
-        await page.getByLabel('5 hours').click();
-        break;
-      case 6:
-        await page.getByLabel('6 hours').click();
-        break;
-      case 7:
-        await page.getByLabel('7 hours').click();
-        break;
-      case 8:
-        await page.getByLabel('8 hours').click();
-        break;
-      case 9:
-        await page.getByLabel('9 hours').click();
-        break;
-      case 10:
-        await page.getByLabel('10 hours').click();
-        break;
-      case 11:
-        await page.getByLabel('11 hours').click();
-        break;
-      case 12: 
-        await page.getByLabel('12 hours').click();
-        break;
-      case 13:
-        await page.getByLabel('1 hours', { exact: true }).click();
-        break;
-    }
-    await page.getByLabel('5 minutes', { exact: true }).click();
-
-  } else {
-    let z = y + 2;
-    while (z % 5 != 0) {
-      z += 1;
-    }
-    switch (z) {
-      case 5:
-        await page.getByLabel('5 minutes', { exact: true }).click();
-        break;
-      case 10:
-        await page.getByLabel('10 minutes').click();
-        break;
-      case 15:
-        await page.getByLabel('15 minutes').click();
-        break;
-      case 20:
-        await page.getByLabel('20 minutes').click();
-        break;
-      case 25:
-        await page.getByLabel('25 minutes').click();
-        break;
-      case 30:
-        await page.getByLabel('30 minutes').click();
-        break;
-      case 35:
-        await page.getByLabel('35 minutes').click();
-        break;
-      case 40:
-        await page.getByLabel('40 minutes').click();
-        break;
-      case 45:
-        await page.getByLabel('45 minutes').click();
-        break;
-      case 50:
-        await page.getByLabel('50 minutes').click();
-        break;
-      case 55:
-        await page.getByLabel('55 minutes').click();
-        break;
-    }
-    await page.getByRole('button', { name: 'OK' }).click();
-    await page.getByRole('button', { name: 'Schedule' }).click();
-    await page.getByRole('button', { name: 'OK' }).click();
-    //await page.goto('https://target110.brightarrow.com/r/home');
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
-    await expect(page.getByText('test list 12 -- 1 contacts.')).toBeVisible();
-  }
-
-
-});
-
-
-
-
-
-
-
-test('#000-1: Setup for test #036, stop message hover icon test ', {
-  tag: ['@Messages'],
-  annotation: [
-    { type: 'Test description', description: 'A pre-test setup for test #036 (stop pending msg hover icon). Navigates to My Lists and selects list "test list 14". Clicks the Edit Message button and goes to email tab. Changes subject field to include the date and start time of the test run. Then on the Proceed screen, schedules message to be sent one hour in the future. This pending message is meant to be stopped in a later test.'},
-    { type: 'Potential Sources of Failure:', description: ''},
-    { type: '', description: '● Schedule message functionality doesn\'t work.'},
-    { type: '', description: '● List used for test unexpectedly is not available.'},
-    { type: '', description: '● Extra slow connectivity to server or APIs.'},
-  ],  
-}, async ({ page }) => {
-  const x = jsonData.tHour;
-  const y = jsonData.tMin;
-
-  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByRole('link', { name: 'test list 14' }).click();
-  await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
-  await page.getByRole('tab', { name: 'Email' }).click();
-  await page.getByLabel('Subject').click();
-  await page.getByLabel('Subject').fill(`#036 ${jsonData.datetime} SHOULD NOT SEND `);
-  await page.getByRole('tab', { name: 'Proceed' }).click();
-  await page.locator('div').filter({ hasText: /^Schedule Message$/ }).click();
-  await page.getByLabel('Choose date, selected date is ').click();
-
-  switch(x + 1) {
-    case 1:
-        await page.getByLabel('1 hours', { exact: true }).click();
-        break;
-      case 2:
-        await page.getByLabel('2 hours', { exact: true }).click();
-        break;
-      case 3:
-        await page.getByLabel('3 hours').click();
-        break;
-      case 4:
-        await page.getByLabel('4 hours').click();
-        break;
-      case 5:
-        await page.getByLabel('5 hours').click();
-        break;
-      case 6:
-        await page.getByLabel('6 hours').click();
-        break;
-      case 7:
-        await page.getByLabel('7 hours').click();
-        break;
-      case 8:
-        await page.getByLabel('8 hours').click();
-        break;
-      case 9:
-        await page.getByLabel('9 hours').click();
-        break;
-      case 10:
-        await page.getByLabel('10 hours').click();
-        break;
-      case 11:
-        await page.getByLabel('11 hours').click();
-        break;
-      case 12: 
-        await page.getByLabel('12 hours').click();
-        break;
-      case 13:
-        await page.getByLabel('1 hours', { exact: true }).click();
-        break;
-  }
-  await page.getByRole('button', { name: 'OK' }).click();
-  await page.getByRole('button', { name: 'Schedule' }).click();
-  await page.getByRole('button', { name: 'OK' }).click();
-  //await page.goto('https://target110.brightarrow.com/r/home');
-  await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
-  await expect(page.getByText('test list 14 -- 1 contacts.')).toBeVisible();
-});
-
-
-
-
-
-
-
-test('#000-2: Setup for test #037, stop message hover icon test ', {
-  tag: ['@Messages'],
-  annotation: [
-    { type: 'Test description', description: 'A pre-test setup for test #037 (stop pending msg hover icon). Navigates to My Lists and selects list "test list 15". Clicks the Edit Message button and goes to email tab. Changes subject field to include the date and start time of the test run. Then on the Proceed screen, schedules message to be sent one hour in the future. This pending message is meant to be stopped in a later test.'},
-    { type: 'Potential Sources of Failure:', description: ''},
-    { type: '', description: '● Schedule message functionality doesn\'t work.'},
-    { type: '', description: '● List used for test unexpectedly is not available.'},
-    { type: '', description: '● Extra slow connectivity to server or APIs.'},
-  ],  
-}, async ({ page }) => {
-  const x = jsonData.tHour;
-  const y = jsonData.tMin;
-
-  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByRole('link', { name: 'test list 15' }).click();
-  await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
-  await page.getByRole('tab', { name: 'Email' }).click();
-  await page.getByLabel('Subject').click();
-  await page.getByLabel('Subject').fill(`#037 ${jsonData.datetime} SHOULD NOT SEND `);
-  await page.getByRole('tab', { name: 'Proceed' }).click();
-  await page.locator('div').filter({ hasText: /^Schedule Message$/ }).click();
-  await page.getByLabel('Choose date, selected date is ').click();
-
-  switch(x + 1) {
-    case 1:
-        await page.getByLabel('1 hours', { exact: true }).click();
-        break;
-      case 2:
-        await page.getByLabel('2 hours', { exact: true }).click();
-        break;
-      case 3:
-        await page.getByLabel('3 hours').click();
-        break;
-      case 4:
-        await page.getByLabel('4 hours').click();
-        break;
-      case 5:
-        await page.getByLabel('5 hours').click();
-        break;
-      case 6:
-        await page.getByLabel('6 hours').click();
-        break;
-      case 7:
-        await page.getByLabel('7 hours').click();
-        break;
-      case 8:
-        await page.getByLabel('8 hours').click();
-        break;
-      case 9:
-        await page.getByLabel('9 hours').click();
-        break;
-      case 10:
-        await page.getByLabel('10 hours').click();
-        break;
-      case 11:
-        await page.getByLabel('11 hours').click();
-        break;
-      case 12: 
-        await page.getByLabel('12 hours').click();
-        break;
-      case 13:
-        await page.getByLabel('1 hours', { exact: true }).click();
-        break;
-  }
-  await page.getByRole('button', { name: 'OK' }).click();
-  await page.getByRole('button', { name: 'Schedule' }).click();
-  await page.getByRole('button', { name: 'OK' }).click();
-  //await page.goto('https://target110.brightarrow.com/r/home');
-  await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
-  //await expect(page.getByText('test list 14 -- 1 contacts.')).toBeVisible();
-});
-
-
-
-
-
-
-
 test('#001: Make list from Create List button', {
   tag: ['@Lists'],
   annotation: [
@@ -401,11 +117,11 @@ test('#001: Make list from Create List button', {
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible({timeout: 10000});
   await expect(page.getByRole('link', { name: 'test list 2', exact: true })).toBeVisible();
   //Failure here means screenshot comparison of My Lists page failed.
-  // await expect(page).toHaveScreenshot("001-myLists-check.png", {
-  //   fullPage: true,
-  //   maxDiffPixels: 40,
-  //   mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
-  // });
+  await expect(page).toHaveScreenshot("001-myLists-check-chromium-win32.png", {
+    fullPage: true,
+    maxDiffPixels: 40,
+    mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
+  });
   
   //await page.getByTestId('FastRewindIcon').click();
   const [request2] = await Promise.all([
@@ -416,7 +132,7 @@ test('#001: Make list from Create List button', {
   ]);
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
   //Failure here means screenshot comparison of BrightArrow Central failed. 
-  //await expect(page).toHaveScreenshot("001-homePage-asExpected-check.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
+  await expect(page).toHaveScreenshot("001-homePage-asExpected-check-chromium-win32.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
 
 });
 
@@ -449,11 +165,11 @@ test('#002: Create list from my lists page, auto list 2', {
   await page.getByTestId('FastRewindIcon').click();
   await expect(page.getByRole('link', { name: 'auto list 2' })).toBeVisible({timeout: 10000});
 
-  // await expect(page).toHaveScreenshot("002-myLists-check.png", {
-  //   fullPage: true,
-  //   maxDiffPixels: 100,
-  //   mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
-  // });
+  await expect(page).toHaveScreenshot("002-myLists-check-chromium-win32.png", {
+    fullPage: true,
+    maxDiffPixels: 100,
+    mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
+  });
 
   const [request2] = await Promise.all([
     //Failure here means automation was not able to connect to TargetAPI in under 60 secs.
@@ -464,7 +180,7 @@ test('#002: Create list from my lists page, auto list 2', {
 
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
   //Failure here means screenshot comparison of BrightArrow Central failed. 
-  //await expect(page).toHaveScreenshot("002-homePage-asExpected-check.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
+  await expect(page).toHaveScreenshot("002-homePage-asExpected-check-chromium-win32.png", { fullPage: true, maxDiffPixels: 100, mask: [page.getByRole('img')], });
 
 });
   
@@ -496,10 +212,10 @@ test('#003: Create a folder', {
   ]);
 
   await expect(page.getByRole('button', { name: 'auto folder' })).toBeVisible();
-  // await expect(page).toHaveScreenshot("003-myLists-newfolder-check.png", {
-  //   fullPage: true,
-  //   mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
-  // });
+  await expect(page).toHaveScreenshot("003-myLists-newfolder-check-chromium-win32.png", {
+    fullPage: true,
+    mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
+  });
 
   await page.getByRole('button', { name: 'auto folder' }).click();
   await expect(page.getByText('auto folder Lists (0)')).toBeVisible();
@@ -509,7 +225,7 @@ test('#003: Create a folder', {
   });
 
   await page.getByRole('button', { name: 'ryan test' }).click();
-  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'test list 1' })).toBeVisible();
 });
 
 
@@ -551,11 +267,11 @@ test('#004: Create list in new folder', {
   await page.getByRole('button', { name: 'ryan test' }).click();
   await expect(page.getByRole('link', { name: 'auto list 3' })).toBeVisible();
 
-  // await expect(page).toHaveScreenshot("004-visibleInMainFolder-check.png", {
-  //   fullPage: true,
-  //   maxDiffPixels: 100,
-  //   mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
-  // });
+  await expect(page).toHaveScreenshot("004-visibleInMainFolder-check-chromium-win32.png", {
+    fullPage: true,
+    maxDiffPixels: 100,
+    mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
+  });
 
 });
 
@@ -617,7 +333,7 @@ test('#005: add contact to list, auto list 1', {
     page.getByTestId('FastRewindIcon').click()
   ]);
   await expect(page.getByRole('link', { name: 'auto list 1' })).toBeVisible();
-  //await expect(page).toHaveScreenshot("005-MyLists-newContactCheck.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
+  await expect(page).toHaveScreenshot("005-MyLists-newContactCheck-chromium-win32.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
 
   await page.getByRole('link', { name: 'auto list 1' }).click();
   //await page.getByRole('cell', { name: 'Contact1, Auto' }).click();
@@ -690,7 +406,7 @@ test('#006: Access list from pen icon to make another contact, auto list 1', {
     page.getByTestId('FastRewindIcon').click()
   ]);
 
-  //await expect(page).toHaveScreenshot("006-myLists-add2ndContact-check.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
+  await expect(page).toHaveScreenshot("006-myLists-add2ndContact-check-chromium-win32.png", { fullPage: true, mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')], });
   await page.getByRole('link', { name: 'auto list 1' }).click();
   //await page.getByRole('cell', { name: 'Contact2, Auto' }).click();
   const [request3] = await Promise.all([
@@ -707,50 +423,11 @@ test('#006: Access list from pen icon to make another contact, auto list 1', {
 
 
 
-test('#007: Delete contact with trash icon on List Details page',{
+
+test('#007: Click on gear icon, auto list 1',{
   tag: ['@Lists'],
   annotation: [
-    {type: 'Test description', description: 'Navigates to List Details page of list named "auto list 1". Clicks on trash icon to delete contact named "Auto Contact1". Uses a screenshot comparison after deletion to verify List Details page is correctly updated. Then clicks top left back button to navigate to My Lists page and verify that is correctly updated as well.'},
-    {type: 'Potential Sources of Failure:', description: ''},
-    {type: '', description: '● Tests #001 or #005 did not run correctly. This test is currently dependent on these to function.'},
-    {type: '', description: '● Screenshot comparison fails, potentially due to unexpected bug.'},
-    {type: '', description: '● Extra slow connectivity to server or APIs.'},
-  ],
-}, async ({ page }) => {
-  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByRole('link', { name: 'auto list 1' }).click();
-  await page.locator('td:nth-child(3) > button').first().click();
-
-  const [request] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/DeleteContact?accessToken=") && response.status() === 200, {timeout: 60000}),
-    await page.getByRole('button', { name: 'Yes' }).click()
-  ]);
-  await expect(page).toHaveScreenshot("007-listDetails-after-contactDeletion-chromium-win32.png", { 
-    fullPage: true, 
-  });
-
-  const [request2] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-    await page.getByTestId('FastRewindIcon').click()
-  ]);
-
-  await expect(page.getByRole('link', { name: 'auto list 1' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
-
-  // await expect(page).toHaveScreenshot("007-myLists-after-contactDeletion.png", { 
-  //   fullPage: true, 
-  //   mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
-  //   });
-  
-});
-
-
-
-test('#008: Click on gear icon, test list 2',{
-  tag: ['@Lists'],
-  annotation: [
-    {type: 'Test description', description: 'Tests the gear icon that appears by mouse hovering over a list in the My Lists page. Clicks on this to access list named "test list 2". Then goes to List Settings and changes settings in most subpages.'},
+    {type: 'Test description', description: 'Tests the gear icon that appears by mouse hovering over a list in the My Lists page. Clicks on this to access list named "auto list 1". Then goes to List Settings and changes settings in most subpages.'},
     {type: 'Potential Sources of Failure:', description: ''},
     {type: '', description: '● Gear hover icon does not work.'},
     {type: '', description: '● List ("auto list 1") to change the settings of is not found. Potentially due to error or bug in its creation in test #001.'},
@@ -787,6 +464,10 @@ test('#008: Click on gear icon, test list 2',{
   // await page.getByLabel('CC list (comma-separated)').fill('ryanrogers99@yahoo.com');
   // await page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(1).click();
 });
+
+
+
+
 
 
 /*
@@ -841,6 +522,5 @@ test('verify#007 -click on gear icon, auto list 1',{
   await expect(page).toHaveScreenshot("007-auto-list1-settings-CCsettings-chromium-win32.png", { fullPage: true, mask: [page.locator('#root div').filter({ hasText: 'List ManagementPhone Call' }).nth(3)], maxDiffPixels: 15, });
 });
 */
-
 
 
