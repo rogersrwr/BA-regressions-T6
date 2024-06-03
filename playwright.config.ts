@@ -59,6 +59,11 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, },
       
     },
+    {
+      name: 'chromium3',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, },
+      
+    },
     // {
     //   name: "msg-check",
     //   testDir: "./",

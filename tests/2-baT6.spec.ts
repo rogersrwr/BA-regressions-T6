@@ -350,7 +350,7 @@ test('#012: Testing "Hide Disabled Contacts" checkbox within List Details page.'
     await page.locator('#hideDisabledButton').check()
   ]);
   await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeHidden();
-  await expect(page).toHaveScreenshot("011-hideDisabledContactsCheckbox-check.png", { fullPage: true });
+  await expect(page).toHaveScreenshot("011-hideDisabledContactsCheckbox-check-chromium2-win32.png", { fullPage: true });
 
   await page.getByTestId('FastRewindIcon').click();
   await page.getByRole('link', { name: 'test list 5' }).click();
