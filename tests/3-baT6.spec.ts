@@ -148,6 +148,7 @@ test('#000: Remove email from Do Not Contact list/time',{
   await page.getByRole('button', { name: 'Do Not Contact list/time' }).click();
   await page.getByText('brightarrowtest3@gmail.com').click();
   await page.getByRole('button', { name: 'Remove >>' }).click();
+  await page.getByTestId('HomeIcon').click();
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
 });
 
@@ -378,7 +379,7 @@ test('#000: Test #000-line704 receive confirmation.',{
 test('wrap up tests', async ({ page }) => {
   jsonData.finished = true;
   const jsonString = JSON.stringify(jsonData, null, 2);
-  fs.writeFileSync('C:/Users/ryanr/Desktop/stuff/brightarrow/automation/PW_Tester/datetime.json', jsonString);
+  fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
 });
 
 
