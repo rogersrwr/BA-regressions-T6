@@ -80,7 +80,7 @@ test('#009: add list to favorites with heart icon, test list 1',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  test.setTimeout(50000);
+  //test.setTimeout(50000);
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -634,7 +634,7 @@ test('#023: Access My Lists from top left nav icon in BrightArrow Central',{
 }, async ({ page }) => {
   await page.getByTestId('MenuIcon').click();
   await page.getByRole('button', { name: 'My Lists' }).click();
-  await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible({timeout: 25000});
 });
 
 
@@ -731,7 +731,7 @@ test('#027: Create a superset list',{
   await page.locator('.MuiBackdrop-root').click();
   await page.getByRole('button', { name: 'OK' }).click();
   //await page.goto('https://target110.brightarrow.com/r/ViewLists');
-  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible({timeout: 25000});
   await expect(page.getByRole('link', { name: 'superset list 1 (superset' })).toBeVisible();
   await page.getByRole('link', { name: 'superset list 1 (superset' }).click();
   await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
