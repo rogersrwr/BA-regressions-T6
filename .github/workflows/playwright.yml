@@ -11,6 +11,7 @@ env:
   PARENT_PASS: ${{ secrets.PARENT_PASS }}
   SIGN_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
   O_AUTH: ${{ secrets.O_AUTH }}
+  PHONE_ALT: ${{ secrets.PHONE_ALT }}
 
 
 permissions:
@@ -64,7 +65,7 @@ jobs:
         retention-days: 7
 
     - name: Run Playwright tests 2
-      run: npx playwright test tests/2-baT6.spec.ts --project=chromium2 --workers=5
+      run: npx playwright test tests/2-baT6.spec.ts --project=chromium2 --workers=6
       if: always()
     - uses: actions/upload-artifact@v4
       if: always()
@@ -74,7 +75,7 @@ jobs:
         retention-days: 7
 
     - name: Run Playwright tests 3
-      run: npx playwright test tests/3-baT6.spec.ts --project=chromium3 --workers=3
+      run: npx playwright test tests/3-baT6.spec.ts --project=firefox --workers=3
       if: always()
     - uses: actions/upload-artifact@v4
       if: always()

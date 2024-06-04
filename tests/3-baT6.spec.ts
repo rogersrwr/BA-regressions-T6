@@ -8,6 +8,9 @@ const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
 const phone = process.env.PHONE_NUMBER;
 const parent_pass = process.env.PARENT_PASS;
+const email = process.env.EMAIL;
+const e_pass = process.env.EMAIL_PASS;
+const phone2 = process.env.PHONE_ALT;
 
 const app = new App({ 
   token: process.env.O_AUTH,
@@ -295,10 +298,10 @@ test('#024: ParentHub message received confirmation',{
 });
 
 
-test('#000: Test #012 receive confirmation.',{
+test('#000: Test #013 receive confirmation.',{
   tag: ['@Messages', '@ParentHub'],
   annotation: [
-    { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},
+    { type: 'Test description', description: 'Logs into Google Voice to confirm if SMS text message was properly sent and received. Selects messages to view and confirms if expected text message is there.'},
     { type: 'Potential Sources of Failure:', description: ''},
     { type: '', description: '● ParentHub access through link does not work.'},
     { type: '', description: '● Login unexpectedly doesn\'t work.'},
@@ -306,14 +309,40 @@ test('#000: Test #012 receive confirmation.',{
     { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
   ],
 }, async ({ page }) => {
+  //test.slow();
+  await page.goto('https://voice.google.com/about');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+  await page.getByLabel('Email or phone').fill(`${email}`);
+  //await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByLabel('Email or phone').press('Enter');
+  await page.getByLabel('Enter your password').fill(`${e_pass}`);
+  //await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByLabel('Enter your password').press('Enter');
 
+  try {
+    await expect(page.getByRole('link', { name: 'Confirm your recovery phone' })).toBeVisible();
+    await page.getByRole('link', { name: 'Confirm your recovery phone' }).click();
+    await page.getByLabel('Phone number').click();
+    await page.getByLabel('Phone number').fill(`${phone2}`);
+    await page.getByLabel('Phone number').press('Enter');
+    //await page.goto('https://voice.google.com/u/0/calls');
+    await expect(page.getByRole('heading', { name: 'Hi BrightArrow1!' })).toBeVisible({timeout: 10000});
+    await page.getByRole('tab', { name: 'Messages' }).click();
+    await page.getByLabel('Message by ‪79041‬:').click();
+    await expect(page.getByRole('list').getByText(`#013 ${jsonData.datetime}`, { exact: true })).toBeVisible();
+    } catch (error) {
+    await expect(page.getByRole('heading', { name: 'Hi BrightArrow1!' })).toBeVisible({timeout: 10000});
+    await page.getByRole('tab', { name: 'Messages' }).click();
+    await page.getByLabel('Message by ‪79041‬:').click();
+    await expect(page.getByRole('list').getByText(`#013 ${jsonData.datetime}`, { exact: true })).toBeVisible();
+  }
 
 });
 
-test('#000: Test #014 receive confirmation.',{
+test('#000: Test #015 receive confirmation.',{
   tag: ['@Messages', '@ParentHub'],
   annotation: [
-    { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #015 was properly sent and received.'},
     { type: 'Potential Sources of Failure:', description: ''},
     { type: '', description: '● ParentHub access through link does not work.'},
     { type: '', description: '● Login unexpectedly doesn\'t work.'},
@@ -321,7 +350,33 @@ test('#000: Test #014 receive confirmation.',{
     { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
   ],
 }, async ({ page }) => {
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+  await page.getByLabel('Email or phone').fill(`${email}`);
+  //await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByLabel('Email or phone').press('Enter');
+  await page.getByLabel('Enter your password').fill(`${e_pass}`);
+  //await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByLabel('Enter your password').press('Enter');
 
+  try {
+    await expect(page.getByRole('link', { name: 'Confirm your recovery phone' })).toBeVisible();
+    await page.getByRole('link', { name: 'Confirm your recovery phone' }).click();
+    await page.getByLabel('Phone number').click();
+    await page.getByLabel('Phone number').fill(`${phone2}`);
+    await page.getByLabel('Phone number').press('Enter');
+    await expect(page.getByRole('main').getByRole('tablist').getByText('Primary')).toBeVisible();
+    await expect(page.getByRole('main').getByRole('tablist').getByText('Promotions')).toBeVisible();
+    //await expect(page.getByRole('link', { name: `#015 ${jsonData.datetime}` })).toBeVisible();
+    //await page.getByRole('link', { name: '#000 test msg at 2024-6-3_17-' }).click();
+  } catch (error) {
+    await expect(page.getByRole('main').getByRole('tablist').getByText('Primary')).toBeVisible();
+    await expect(page.getByRole('main').getByRole('tablist').getByText('Promotions')).toBeVisible();
+    //await expect(page.getByRole('link', { name: `#015 ${jsonData.datetime}` })).toBeVisible();
+    //await page.getByRole('link', { name: `#015 ${jsonData.datetime}` }).click();
+  }
+
+  
 
 });
 

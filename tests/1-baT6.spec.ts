@@ -119,46 +119,125 @@ test('#000: Schedule message button ', {
     switch(x + 1) {
       case 1:
         await page.getByLabel('1 hours', { exact: true }).click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 2:
         await page.getByLabel('2 hours', { exact: true }).click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 3:
         await page.getByLabel('3 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 4:
         await page.getByLabel('4 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 5:
         await page.getByLabel('5 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 6:
         await page.getByLabel('6 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 7:
         await page.getByLabel('7 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 8:
         await page.getByLabel('8 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 9:
         await page.getByLabel('9 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 10:
         await page.getByLabel('10 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 11:
         await page.getByLabel('11 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
       case 12: 
         await page.getByLabel('12 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
         break;
       case 13:
         await page.getByLabel('1 hours', { exact: true }).click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 14:
+        await page.getByLabel('2 hours', { exact: true }).click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 15:
+        await page.getByLabel('3 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 16:
+        await page.getByLabel('4 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 17:
+        await page.getByLabel('5 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 18:
+        await page.getByLabel('6 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 19:
+        await page.getByLabel('7 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 20:
+        await page.getByLabel('8 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 21:
+        await page.getByLabel('9 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 22:
+        await page.getByLabel('10 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 23: 
+        await page.getByLabel('11 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('PM').click();
+        break;
+      case 24:
+        await page.getByLabel('12 hours').click();
+        await page.getByLabel('5 minutes', { exact: true }).click();
+        await page.getByLabel('AM').click();
         break;
     }
-    await page.getByLabel('5 minutes', { exact: true }).click();
-
   } else {
     let z = y + 2;
     while (z % 5 != 0) {
@@ -200,13 +279,12 @@ test('#000: Schedule message button ', {
         break;
     }
     await page.getByRole('button', { name: 'OK' }).click();
-    await page.getByRole('button', { name: 'Schedule' }).click();
-    await page.getByRole('button', { name: 'OK' }).click();
-    //await page.goto('https://target110.brightarrow.com/r/home');
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
-    await expect(page.getByText('test list 12 -- 1 contacts.')).toBeVisible();
   }
-
+  await page.getByRole('button', { name: 'Schedule' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  //await page.goto('https://target110.brightarrow.com/r/home');
+  await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
+  await expect(page.getByText('test list 12 -- 1 contacts.')).toBeVisible();
 
 });
 

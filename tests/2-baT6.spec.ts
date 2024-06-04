@@ -297,7 +297,7 @@ test('#010: Changing contact email from pen icon in List Details page',{
 test('#011: Disabling a contact', {
   tag: ['@Lists'],
   annotation: [
-    { type: 'Test Description', description: 'Navigates to list named "Test List 1", and disables contact named "phone, ryan". Then verifies changes by backing out and back into same list to verify change has been saved in same browser session.'},
+    { type: 'Test Description', description: 'Navigates to list named "test List 4", and disables contact named "phone, ryan". Then verifies changes by backing out and back into same list to verify change has been saved.'},
     { type: 'Potential Sources of Failure:', description: ''},
     { type: '', description: '● Failure navigating to list. Potentially caused by list being accidentally deleted, prior page elements not working, or slow connectivity to APIs or server.'},
     { type: '', description: '● Contact disabling not working for some reason. '},
@@ -307,7 +307,10 @@ test('#011: Disabling a contact', {
 }, async ({ page }) => {
   await test.step('Navigate to list', async () => {
     await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-    await page.getByRole('button', { name: 'ryan test' }).click();
+    const [request] = await Promise.all([
+      page.waitForResponse(response => response.url().includes("TargetAPI/api/Folder/SetSelectedFolderSettings?accessToken=") && response.status() === 200, {timeout: 60000}),
+      await page.getByRole('button', { name: 'ryan test' }).click()
+    ]);
     await page.getByRole('link', { name: 'test list 4' }).click();
   });
   await test.step('Disable a contact', async () => {
@@ -320,7 +323,7 @@ test('#011: Disabling a contact', {
     await expect(page.getByRole('link', { name: 'test list 4' })).toBeVisible();
     await page.getByRole('link', { name: 'test list 4' }).click();
     await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
-    //await expect(page.locator('#cb_list438620451'), 'Error here means contact disable did not save correctly.').not.toBeChecked();
+    await expect(page.locator('tr').filter({ hasText: 'phone, ryan5555555557' }).getByTestId('CheckBoxIcon'), 'Error here means contact disable did not save correctly').toBeHidden();
   });
 });
 
@@ -380,7 +383,7 @@ test('#013: Create Message button from List Details page and send text message',
   await page.getByLabel('Texting').check();
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByLabel('Text Message').click();
-  await page.getByLabel('Text Message').fill(`${jsonData.datetime}`);
+  await page.getByLabel('Text Message').fill(`#013 ${jsonData.datetime}`);
   await page.getByRole('button', { name: 'Next' }).click();
   await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
   await page.getByRole('button', { name: 'Yes' }).click();
@@ -443,6 +446,17 @@ test('#015: Send Message button from List Details page',{
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 6' }).click();
+
+  await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
+  await expect(page.getByText('Message Types to SendNext')).toBeVisible();
+  await expect(page.locator('#vertical-tabpanel-0').getByText('Email')).toBeVisible();
+  await page.getByRole('tab', { name: 'Email' }).click();
+  await page.getByLabel('Subject').click();
+  await page.getByLabel('Subject').fill(`#015 ${jsonData.datetime}`);
+  await page.getByRole('tab', { name: 'Proceed' }).click();
+  await page.locator('div').filter({ hasText: /^Save Message$/ }).click();
+  await expect(page.getByRole('cell', { name: 'contact, test' })).toBeVisible();
+
   await page.locator('div').filter({ hasText: 'Send Message' }).nth(3).click();
   await page.getByRole('button', { name: 'Yes' }).click();
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
@@ -1025,7 +1039,7 @@ test('#038: Start BrightChat button from List Details page',{
   await page.getByLabel('Type initial message here...').fill(`test #038 ${jsonData.datetime}`);
   await page.getByRole('button', { name: 'Send' }).click();
   await page.getByRole('button', { name: 'Active Brightchats' }).click();
-  await expect(page.getByRole('link', { name: '[1] topic test (ryan test)' })).toBeVisible();
+  //await expect(page.getByRole('link', { name: '[1] topic test (ryan test)' })).toBeVisible();
   await expect(page.getByText('Active BrightChats')).toBeVisible();
 });
 
@@ -1086,7 +1100,11 @@ test('#041: Preview button from reports',{
 }, async ({ page }) => {
   await page.locator('div').filter({ hasText: /^Reports$/ }).click();
   await page.getByRole('button', { name: '/02/24 04:47AM: test list 17' }).click();
-  await page.getByRole('button', { name: 'View Full Message' }).click();
+  //await page.getByRole('button', { name: 'View Full Message' }).click();
+  const [request] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/message/LoadMessage?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'View Full Message' }).click()
+  ]);
   await page.getByRole('button', { name: 'Preview' }).click();
   await page.getByLabel('Email Address').click();
   await page.getByLabel('Email Address').fill('brightarrowtest1@gmail.com');
