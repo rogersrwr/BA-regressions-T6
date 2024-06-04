@@ -214,27 +214,27 @@ test("setup checks part 2", async ({ page }) => {
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
+    await page.getByLabel('Username').fill(`ryantest2`);
     await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
+    await page.getByLabel('Password').fill(`RogerOf26`);
     
     const [request] = await Promise.all([
       page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
 
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('button', { name: 'ryantest2' }).click();
 
   //008 reset favorites folder
   await page.getByTestId('MenuIcon').click();
   await page.getByRole('button', { name: 'BrightArrow Central' }).click();
-  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
   //error to watch out for on line below
   // Error: locator.click: Error: strict mode violation: locator('div').filter({ hasText: /^My Lists$/ }) resolved to 2 elements:
   //   1) <div tabindex="0" role="button" class="MuiButtonBase-…>…</div> aka getByRole('button', { name: 'My Lists' })
@@ -272,7 +272,7 @@ test("setup checks part 2", async ({ page }) => {
     ]);
   }
 
-  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('button', { name: 'ryantest2' }).click();
 
 
 
@@ -295,16 +295,16 @@ test("setup checks part 2", async ({ page }) => {
       page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/DeleteList?accessToken=") && response.status() === 200, {timeout: 60000}),
       page.getByRole('button', { name: 'OK' }).click()
     ]);
-    await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+    await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
     await page.locator('input[name="cb_lists2039717"]').uncheck();
-    await page.getByRole('button', { name: 'ryan test' }).click();
+    await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('subset list 1');
     await page.getByLabel('Search').press('Enter');
   }
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
-  await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+  await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
 
 
   //  superset list test teardown
@@ -325,19 +325,19 @@ test("setup checks part 2", async ({ page }) => {
       page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/DeleteList?accessToken=") && response.status() === 200, {timeout: 60000}),
       page.getByRole('button', { name: 'OK' }).click()
     ]);
-    await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+    await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
     await page.locator('input[name="cb_lists2039717"]').uncheck();
-    await page.getByRole('button', { name: 'ryan test' }).click();
+    await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('superset list 1');
     await page.getByLabel('Search').press('Enter');
   }
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
-  await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+  await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
 
 
-  
+
 
   //  #009-2 copy a list, test list 1 copy teardown
   await page.getByLabel('Search').click();
@@ -357,16 +357,16 @@ test("setup checks part 2", async ({ page }) => {
       page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/DeleteList?accessToken=") && response.status() === 200, {timeout: 60000}),
       page.getByRole('button', { name: 'OK' }).click()
     ]);
-    await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+    await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
     await page.locator('input[name="cb_lists2039717"]').uncheck();
-    await page.getByRole('button', { name: 'ryan test' }).click();
+    await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('test list 1 copy');
     await page.getByLabel('Search').press('Enter');
   }
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
-  await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+  await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
 
   //  test list 1: Filter 1 list test teardown
   await page.getByLabel('Search').click();
@@ -386,17 +386,16 @@ test("setup checks part 2", async ({ page }) => {
       page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/DeleteList?accessToken=") && response.status() === 200, {timeout: 60000}),
       page.getByRole('button', { name: 'OK' }).click()
     ]);
-    await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+    await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
     await page.locator('input[name="cb_lists2039717"]').uncheck();
-    await page.getByRole('button', { name: 'ryan test' }).click();
+    await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('test list 1: Filter 1');
     await page.getByLabel('Search').press('Enter');
   }
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
-  await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
-
+  await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
 
 
 });

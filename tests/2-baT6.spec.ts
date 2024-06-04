@@ -71,7 +71,7 @@ test.afterAll(async ({  }) => {
 
 
 test('#009: add list to favorites with heart icon, test list 1',{
-  tag: ['@Lists'],
+  tag: ['@Lists', '@Acct2'],
   annotation: [
     {type: 'Test description', description: 'Tests the heart icon that appears by hovering over a list within the My Lists page. Hovers over list named "test list 1" and uses heart icon to add this list to "My Favorites" folder. '},
     {type: 'Potential Sources of Failure', description: ''},
@@ -92,7 +92,7 @@ test('#009: add list to favorites with heart icon, test list 1',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
@@ -134,7 +134,7 @@ test('#009: add list to favorites with heart icon, test list 1',{
 
 
 test('#009-1: add list to favorites with menu, test list 2',{
-  tag: ['@Lists'],
+  tag: ['@Lists', '@Acct2'],
   annotation: [
     {type: 'Test description', description: 'Navigates to My Lists, selects checkbox of list "test list 2", clicks Select An Action button, and selects Add list to favorites. Adds list to My Favorites folder. Selects My Favorites folder and verifies list is there.'},
     {type: 'Potential Sources of Failure', description: ''},
@@ -155,7 +155,7 @@ test('#009-1: add list to favorites with menu, test list 2',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
@@ -202,7 +202,7 @@ test('#009-1: add list to favorites with menu, test list 2',{
 
 
 test('#009-2: Copy list feature from menu (My Lists page)',{
-  tag: ['@Lists'],
+  tag: ['@Lists', '@Acct2'],
   annotation: [
     {type: 'Test description', description: 'Navigates to My Lists, clicks Select An Action button, and selects Copy a list. Inputs "test list 1 copy" into list name field. Selects source list as "test list 1". After hitting "OK", verifies new list is there when My Lists page loads, and then selects newly created list and verifies contacts are there. '},
     {type: 'Potential Sources of Failure', description: ''},
@@ -223,7 +223,7 @@ test('#009-2: Copy list feature from menu (My Lists page)',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
@@ -1067,7 +1067,7 @@ test('#025: Access Reports from top left nav icon in BrightArrow Central',{
 
 
 test('#026: Create a subset list',{
-  tag: ['@Lists'],
+  tag: ['@Lists','@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page, then clicks Select Action and Create a subset list. Creates a subset of list named "subset list 1". Sets filter to building=0. New list created only has one contact. Expects list to be visible in My Lists page. Then clicks on newly created list to verify contacts are correctly set up.'},
     { type: 'Potential Sources of Failure:', description: ''},
@@ -1087,7 +1087,7 @@ test('#026: Create a subset list',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
@@ -1116,7 +1116,7 @@ test('#026: Create a subset list',{
 
 
 test('#027: Create a superset list',{
-  tag: ['@Lists'],
+  tag: ['@Lists', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page, then clicks Select Action and Create a superset list. Creates a superset of list named "superset list 1". Uses two source lists, "test list 1" and "test list 2". New list created has 4 contacts. Expects list to be visible in My Lists page. Then clicks on newly created list to verify contacts are correctly set up.'},
     { type: 'Potential Sources of Failure:', description: ''},
@@ -1136,7 +1136,7 @@ test('#027: Create a superset list',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
@@ -1382,7 +1382,7 @@ test('#032: "Send saved message now" button within My Lists > Select An Action d
 
 
 test('#033: Apply contact filter and send saved message.',{
-  tag: ['@Messages'],
+  tag: ['@Messages', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and selects list "test list 1". In List Details page, clicks the Advanced drop down, and selects Apply Contact Filter. Contact filter set as building=0. Creates new filter list with one contact. Automatically places you in message creation process. Selects Proceed tab and hits send message.'},
     { type: 'Potential Sources of Failure:', description: ''},
@@ -1402,7 +1402,7 @@ test('#033: Apply contact filter and send saved message.',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
