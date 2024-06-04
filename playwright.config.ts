@@ -47,7 +47,7 @@ export default defineConfig({
     {
       name: "setup",
       testDir: "./",
-      testMatch: "global-setup.ts",
+      testMatch: "global-setup-new.ts",
     },
     {
       name: 'chromium',
