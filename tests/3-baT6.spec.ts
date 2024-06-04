@@ -381,7 +381,7 @@ test('#000: Test #015 receive confirmation.',{
 });
 
 
-test('#000: Test #015 receive confirmation.',{
+test('#000: Test #0 receive confirmation.',{
   tag: ['@Messages', '@ParentHub'],
   annotation: [
     { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},

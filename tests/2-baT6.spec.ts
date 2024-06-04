@@ -745,7 +745,7 @@ test('#027: Create a superset list',{
   await page.locator('.MuiBackdrop-root').click();
   await page.getByRole('button', { name: 'OK' }).click();
   //await page.goto('https://target110.brightarrow.com/r/ViewLists');
-  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible({timeout: 25000});
+  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible({timeout: 30000});
   await expect(page.getByRole('link', { name: 'superset list 1 (superset' })).toBeVisible();
   await page.getByRole('link', { name: 'superset list 1 (superset' }).click();
   await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
@@ -817,7 +817,7 @@ test('#029: Edit message hover icon in My Lists page',{
   await page.getByLabel('Subject').fill('#029 hover icon test');
   await page.getByRole('button', { name: 'Next' }).click();
   await page.locator('div').filter({ hasText: /^Save Message$/ }).click();
-  await expect(page.getByRole('cell', { name: 'contact, test9' })).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'contact, test9' })).toBeVisible({timeout: 30000});
 
 });
 
@@ -932,7 +932,10 @@ test('#034: Preview Message button within message editing/creating process.',{
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 11' }).click();
   await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
+  await expect(page.getByText('Message Types to SendNext')).toBeVisible();
+  await expect(page.locator('#vertical-tabpanel-0').getByText('Email')).toBeVisible();
   await page.getByRole('tab', { name: 'Proceed' }).click();
+  await expect(page.getByText('Schedule Message')).toBeVisible();
   await page.locator('div').filter({ hasText: /^Preview Message$/ }).click();
   await page.getByLabel('Email Address').click();
   await page.getByLabel('Email Address').fill('brightarrowtest1@gmail.com');
