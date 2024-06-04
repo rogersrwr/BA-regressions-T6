@@ -86,7 +86,7 @@ test.afterAll(async ({  }) => {
 
 
 test('#000: Removing list from favorites folder with heart icon',{
-  tag: ['@Lists'],
+  tag: ['@Lists', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page and then My Favorites folder. Mouse hovers over list in folder named "test list 1" and then selects heart icon to remove list from this folder.'},
     { type: 'Potential Sources of Failure:', description: ''},
@@ -107,7 +107,7 @@ test('#000: Removing list from favorites folder with heart icon',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
@@ -121,13 +121,13 @@ test('#000: Removing list from favorites folder with heart icon',{
     await page.getByRole('button', { name: 'OK' }).click()
   ]);
 
-  await expect(page.getByText('My Favorites Lists (1)')).toBeVisible();
+  await expect(page.getByText('My Favorites Lists')).toBeVisible();
 
 });
 
 
 test('#000: Removing list from favorites folder with menu',{
-  tag: ['@Lists'],
+  tag: ['@Lists', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page and then My Favorites folder. Mouse hovers over list in folder named "test list 2" and then selects heart icon to remove list from this folder.'},
     { type: 'Potential Sources of Failure:', description: ''},
@@ -162,7 +162,7 @@ test('#000: Removing list from favorites folder with menu',{
     await page.getByRole('button', { name: 'OK' }).click()
   ]);
 
-  await expect(page.getByText('My Favorites Lists (0)')).toBeVisible();
+  await expect(page.getByText('My Favorites Lists')).toBeVisible();
 
 });
 

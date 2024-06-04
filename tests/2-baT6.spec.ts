@@ -99,7 +99,7 @@ test('#009: add list to favorites with heart icon, test list 1',{
   
   //test.setTimeout(50000);
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('button', { name: 'ryantest2' }).click();
   await page.getByLabel('Search').click();
   await page.getByLabel('Search').fill('test list 1');
   await page.getByLabel('Search').press('Enter');
@@ -124,7 +124,7 @@ test('#009: add list to favorites with heart icon, test list 1',{
     page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByRole('button', { name: 'OK' }).click()
   ]);
-  await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'ryantest2' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
 });
 
@@ -161,7 +161,7 @@ test('#009-1: add list to favorites with menu, test list 2',{
   });
   
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('button', { name: 'ryantest2' }).click();
   await page.getByLabel('Search').click();
   await page.getByLabel('Search').fill('test list 2');
   await page.getByLabel('Search').press('Enter');
@@ -1093,7 +1093,7 @@ test('#026: Create a subset list',{
   });
   
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('button', { name: 'ryantest2' }).click();
   await page.getByRole('button', { name: 'Select an Action' }).click();
   await page.getByRole('button', { name: 'Create a subset list' }).click();
   await page.getByLabel('New list name').click();
@@ -1142,7 +1142,7 @@ test('#027: Create a superset list',{
   });
   
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('button', { name: 'ryantest2' }).click();
   await page.getByRole('button', { name: 'Select an Action' }).click();
   await page.getByRole('button', { name: 'Create a superset list' }).click();
   await page.getByLabel('New list name').click();
