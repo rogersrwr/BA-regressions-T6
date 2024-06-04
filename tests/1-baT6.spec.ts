@@ -358,6 +358,39 @@ test('#000-1: Setup for test #036, stop message hover icon test ', {
       case 13:
         await page.getByLabel('1 hours', { exact: true }).click();
         break;
+      case 14:
+        await page.getByLabel('2 hours', { exact: true }).click();
+        break;
+      case 15:
+        await page.getByLabel('3 hours').click();
+        break;
+      case 16:
+        await page.getByLabel('4 hours').click();
+        break;
+      case 17:
+        await page.getByLabel('5 hours').click();
+        break;
+      case 18:
+        await page.getByLabel('6 hours').click();
+        break;
+      case 19:
+        await page.getByLabel('7 hours').click();
+        break;
+      case 20:
+        await page.getByLabel('8 hours').click();
+        break;
+      case 21:
+        await page.getByLabel('9 hours').click();
+        break;
+      case 22:
+        await page.getByLabel('10 hours').click();
+        break;
+      case 23:
+        await page.getByLabel('11 hours').click();
+        break;
+      case 24:
+        await page.getByLabel('12 hours').click();
+        break;
   }
   await page.getByRole('button', { name: 'OK' }).click();
   await page.getByRole('button', { name: 'Schedule' }).click();
@@ -436,6 +469,39 @@ test('#000-2: Setup for test #037, stop message hover icon test ', {
         break;
       case 13:
         await page.getByLabel('1 hours', { exact: true }).click();
+        break;
+      case 14:
+        await page.getByLabel('2 hours', { exact: true }).click();
+        break;
+      case 15:
+        await page.getByLabel('3 hours').click();
+        break;
+      case 16:
+        await page.getByLabel('4 hours').click();
+        break;
+      case 17:
+        await page.getByLabel('5 hours').click();
+        break;
+      case 18:
+        await page.getByLabel('6 hours').click();
+        break;
+      case 19:
+        await page.getByLabel('7 hours').click();
+        break;
+      case 20:
+        await page.getByLabel('8 hours').click();
+        break;
+      case 21:
+        await page.getByLabel('9 hours').click();
+        break;
+      case 22:
+        await page.getByLabel('10 hours').click();
+        break;
+      case 23:
+        await page.getByLabel('11 hours').click();
+        break;
+      case 24:
+        await page.getByLabel('12 hours').click();
         break;
   }
   await page.getByRole('button', { name: 'OK' }).click();
