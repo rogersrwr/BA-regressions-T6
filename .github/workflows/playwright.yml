@@ -65,7 +65,7 @@ jobs:
         retention-days: 7
 
     - name: Run Playwright tests 2
-      run: npx playwright test tests/2-baT6.spec.ts --project=chromium2 --workers=6
+      run: npx playwright test tests/2-baT6.spec.ts --project=chromium2 --workers=5
       if: always()
     - uses: actions/upload-artifact@v4
       if: always()
@@ -75,7 +75,7 @@ jobs:
         retention-days: 7
 
     - name: Run Playwright tests 3
-      run: npx playwright test tests/3-baT6.spec.ts --project=firefox --workers=3
+      run: npx playwright test tests/3-baT6.spec.ts --project=firefox --workers=2
       if: always()
     - uses: actions/upload-artifact@v4
       if: always()
