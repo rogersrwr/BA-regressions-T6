@@ -288,7 +288,7 @@ test("setup checks part 2", async ({ page }) => {
 
   const myElement6 = page.locator('.listOfListsRow > td').first();
   if (await myElement6.isVisible()) {
-    await page.locator('input[name="cb_lists2039717"]').check();
+    await page.locator('input[name="cb_lists2161161"]').check();
     await page.getByRole('button', { name: 'Select an Action' }).click();
     await page.getByRole('button', { name: 'Delete a list' }).click();
     const [request12] = await Promise.all([
@@ -297,7 +297,7 @@ test("setup checks part 2", async ({ page }) => {
     ]);
     await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
-    await page.locator('input[name="cb_lists2039717"]').uncheck();
+    await page.locator('input[name="cb_lists2161161"]').uncheck();
     await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('subset list 1');
@@ -318,7 +318,7 @@ test("setup checks part 2", async ({ page }) => {
 
   const myElement7 = page.locator('.listOfListsRow > td').first();
   if (await myElement7.isVisible()) {
-    await page.locator('input[name="cb_lists2039717"]').check();
+    await page.locator('input[name="cb_lists2161161"]').check();
     await page.getByRole('button', { name: 'Select an Action' }).click();
     await page.getByRole('button', { name: 'Delete a list' }).click();
     const [request14] = await Promise.all([
@@ -327,7 +327,7 @@ test("setup checks part 2", async ({ page }) => {
     ]);
     await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
-    await page.locator('input[name="cb_lists2039717"]').uncheck();
+    await page.locator('input[name="cb_lists2161161"]').uncheck();
     await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('superset list 1');
@@ -350,7 +350,7 @@ test("setup checks part 2", async ({ page }) => {
 
   const myElement9 = page.locator('.listOfListsRow > td').first();
   if (await myElement9.isVisible()) {
-    await page.locator('input[name="cb_lists2039717"]').check();
+    await page.locator('input[name="cb_lists2161161"]').check();
     await page.getByRole('button', { name: 'Select an Action' }).click();
     await page.getByRole('button', { name: 'Delete a list' }).click();
     const [request18] = await Promise.all([
@@ -359,7 +359,7 @@ test("setup checks part 2", async ({ page }) => {
     ]);
     await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
-    await page.locator('input[name="cb_lists2039717"]').uncheck();
+    await page.locator('input[name="cb_lists2161161"]').uncheck();
     await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('test list 1 copy');
@@ -379,7 +379,7 @@ test("setup checks part 2", async ({ page }) => {
 
   const myElement8 = page.locator('.listOfListsRow > td').first();
   if (await myElement8.isVisible()) {
-    await page.locator('input[name="cb_lists2039717"]').check();
+    await page.locator('input[name="cb_lists2161161"]').check();
     await page.getByRole('button', { name: 'Select an Action' }).click();
     await page.getByRole('button', { name: 'Delete a list' }).click();
     const [request16] = await Promise.all([
@@ -388,7 +388,7 @@ test("setup checks part 2", async ({ page }) => {
     ]);
     await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
-    await page.locator('input[name="cb_lists2039717"]').uncheck();
+    await page.locator('input[name="cb_lists2161161"]').uncheck();
     await page.getByRole('button', { name: 'ryantest2' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('test list 1: Filter 1');
