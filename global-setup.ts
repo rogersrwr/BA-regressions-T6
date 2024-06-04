@@ -214,9 +214,9 @@ test("setup checks part 2", async ({ page }) => {
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`ryantest2`);
+    await page.getByLabel('Username').fill(`${username2}`);
     await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`RogerOf26`);
+    await page.getByLabel('Password').fill(`${password}`);
     
     const [request] = await Promise.all([
       page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
