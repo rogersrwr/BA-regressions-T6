@@ -3,14 +3,14 @@ import * as fs from 'fs';
 import { json } from 'stream/consumers';
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
-const username2 = process.env.ACCT_LOGIN2;
+
 
 
 const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
 
 
-test("setup checks part 1", async ({ page }) => {
+test("setup checks", async ({ page }) => {
   //test.slow();
   jsonData.datetime = "";
   jsonData.started = false;
@@ -196,41 +196,6 @@ test("setup checks part 1", async ({ page }) => {
   }
 
 
-
-
-  
-
-  
-
-  
-
-
-});
-
-
-
-
-test("setup checks part 2", async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-
-  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
-
   //008 reset favorites folder
   await page.getByTestId('MenuIcon').click();
   await page.getByRole('button', { name: 'BrightArrow Central' }).click();
@@ -249,9 +214,9 @@ test("setup checks part 2", async ({ page }) => {
   //await page.getByRole('button', { name: 'ryan test' }).click();
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'test list 2' })).toBeVisible();
-  // await expect(page.getByRole('link', { name: 'test list 3' })).toBeVisible();
-  // await expect(page.getByRole('link', { name: 'test list 4' })).toBeVisible();
-  // await expect(page.getByRole('link', { name: 'test list 5' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'test list 3' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'test list 4' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'test list 5' })).toBeVisible();
   //await page.getByRole('button', { name: 'My Favorites' }).click();
   const [request9] = await Promise.all([
     page.waitForResponse(response => response.url().includes("TargetAPI/api/Folder/SetSelectedFolderSettings?accessToken=") && response.status() === 200, { timeout: 60000}),
@@ -274,7 +239,18 @@ test("setup checks part 2", async ({ page }) => {
 
   await page.getByRole('button', { name: 'ryan test' }).click();
 
+  //i forgot what below was 
+  // if (await page.locator('tr').filter({ hasText: 'Contact1, Auto' }).isVisible()) {
+  //   await page.getByRole('row', { name: 'Contact1, Auto 5555555555,' }).getByRole('button').nth(1).click();
+  //   await page.getByRole('button', { name: 'Yes' }).click();
+  //   await expect(page.getByRole('cell', { name: 'Contact1, Auto' })).not.toBeVisible();
+  // }
 
+  // if (await page.locator('tr').filter({ hasText: 'Contact2, Auto' }).isVisible()) {
+  //   await page.getByRole('row', { name: 'Contact2, Auto 5555555555,' }).getByRole('button').nth(1).click();
+  //   await page.getByRole('button', { name: 'Yes' }).click();
+  //   await expect(page.getByRole('cell', { name: 'Contact2, Auto' })).not.toBeVisible();
+  // }
 
 
   //  subset list test teardown
@@ -337,7 +313,35 @@ test("setup checks part 2", async ({ page }) => {
   await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
 
 
-  
+  //  test list 1: Filter 1 list test teardown
+  await page.getByLabel('Search').click();
+  await page.getByLabel('Search').fill('test list 1: Filter 1');
+  const [request15] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByLabel('Search').press('Enter')
+  ]);
+  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();      //new
+
+  const myElement8 = page.locator('.listOfListsRow > td').first();
+  if (await myElement8.isVisible()) {
+    await page.locator('input[name="cb_lists2039717"]').check();
+    await page.getByRole('button', { name: 'Select an Action' }).click();
+    await page.getByRole('button', { name: 'Delete a list' }).click();
+    const [request16] = await Promise.all([
+      page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/DeleteList?accessToken=") && response.status() === 200, {timeout: 60000}),
+      page.getByRole('button', { name: 'OK' }).click()
+    ]);
+    await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+    await page.locator('#searchBarBtn').click();
+    await page.locator('input[name="cb_lists2039717"]').uncheck();
+    await page.getByRole('button', { name: 'ryan test' }).click();
+    await page.getByLabel('Search').click();
+    await page.getByLabel('Search').fill('test list 1: Filter 1');
+    await page.getByLabel('Search').press('Enter');
+  }
+  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
+  await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+
 
   //  #009-2 copy a list, test list 1 copy teardown
   await page.getByLabel('Search').click();
@@ -368,34 +372,6 @@ test("setup checks part 2", async ({ page }) => {
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
   await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
 
-  //  test list 1: Filter 1 list test teardown
-  await page.getByLabel('Search').click();
-  await page.getByLabel('Search').fill('test list 1: Filter 1');
-  const [request15] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-    page.getByLabel('Search').press('Enter')
-  ]);
-  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();      //new
-
-  const myElement8 = page.locator('.listOfListsRow > td').first();
-  if (await myElement8.isVisible()) {
-    await page.locator('input[name="cb_lists2039717"]').check();
-    await page.getByRole('button', { name: 'Select an Action' }).click();
-    await page.getByRole('button', { name: 'Delete a list' }).click();
-    const [request16] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/DeleteList?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'OK' }).click()
-    ]);
-    await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
-    await page.locator('#searchBarBtn').click();
-    await page.locator('input[name="cb_lists2039717"]').uncheck();
-    await page.getByRole('button', { name: 'ryan test' }).click();
-    await page.getByLabel('Search').click();
-    await page.getByLabel('Search').fill('test list 1: Filter 1');
-    await page.getByLabel('Search').press('Enter');
-  }
-  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
-  await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
 
 
 

@@ -8,7 +8,6 @@ const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
 const phone = process.env.PHONE_NUMBER;
 const parent_pass = process.env.PARENT_PASS;
-const username2 = process.env.ACCT_LOGIN2;
 
 const app = new App({ 
   token: process.env.O_AUTH,
@@ -31,19 +30,19 @@ test.describe.configure({
 
 test.beforeEach('', async ({ page }) => {
   await page.goto('https://target110.brightarrow.com/r/');
-  // await page.getByLabel('Username').click();
-  // await page.getByLabel('Username').fill(`${username}`);
-  // await page.getByLabel('Password').click();
-  // await page.getByLabel('Password').fill(`${password}`);
+  await page.getByLabel('Username').click();
+  await page.getByLabel('Username').fill(`${username}`);
+  await page.getByLabel('Password').click();
+  await page.getByLabel('Password').fill(`${password}`);
   
-  // const [request] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   page.getByRole('button', { name: 'Sign in' }).click()
-  // ]);
+  const [request] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'Sign in' }).click()
+  ]);
 
-  // await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-  // await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-  // await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
+  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
+  await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
 });
 
 
@@ -70,6 +69,7 @@ test.afterAll(async ({  }) => {
 
 
 
+
 test('#009: add list to favorites with heart icon, test list 1',{
   tag: ['@Lists'],
   annotation: [
@@ -80,23 +80,6 @@ test('#009: add list to favorites with heart icon, test list 1',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   //test.setTimeout(50000);
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
@@ -143,23 +126,6 @@ test('#009-1: add list to favorites with menu, test list 2',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -211,23 +177,6 @@ test('#009-2: Copy list feature from menu (My Lists page)',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'Select an Action' }).click();
   await page.getByRole('button', { name: 'Copy a list' }).click();
@@ -255,23 +204,6 @@ test('#009-3: Edit a message, make a change and then try backing out of page. Se
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 3' }).click();
@@ -304,23 +236,6 @@ test('#009-4: Save message button on Create Message page',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
 });
 
 
@@ -339,23 +254,6 @@ test.skip('#009-5: Send saved message to a list with 0 contacts/all disabled con
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
 });
 
 
@@ -373,23 +271,6 @@ test('#010: Changing contact email from pen icon in List Details page',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -424,23 +305,6 @@ test('#011: Disabling a contact', {
     { type: '', description: '● Random failures of web page components not working as expected, slow connectivity, or an abnormality with how Playwright interacts with the web app.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await test.step('Navigate to list', async () => {
     await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
     const [request] = await Promise.all([
@@ -480,23 +344,6 @@ test('#012: Testing "Hide Disabled Contacts" checkbox within List Details page.'
     { type: '', description: '● Random failures of web page components not working as expected, slow connectivity, or an abnormality with how Playwright interacts with the web app.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 5' }).click();
@@ -528,23 +375,6 @@ test('#013: Create Message button from List Details page and send text message',
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 1', exact: true }).click();
@@ -574,23 +404,6 @@ test('#014: Edit message, email only, and save.',{
     { type: '', description: '● List this is tested with is unexpectedly not there. '},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 2' }).click();
@@ -630,23 +443,6 @@ test('#015: Send Message button from List Details page',{
     { type: '', description: '● List used to test this is unexpectedly not available.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 6' }).click();
@@ -680,23 +476,6 @@ test('#016: Send Message hover icon from My Lists page',{
     { type: '', description: '● '},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -722,23 +501,6 @@ test('#017: Do not contact list/time feature from menu',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.getByTestId('MenuIcon').locator('path').click();
   await page.getByRole('button', { name: 'Do Not Contact list/time' }).click();
   await page.getByLabel('Phone Number or Email Address').click();
@@ -774,23 +536,6 @@ test('#018: Active BrightChats feature from main menu',{
     { type: '', description: '● Some part of the BrightChat sending process does not work as expected.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^Active BrightChats$/ }).click();
   await expect(page.getByRole('link', { name: 'ryan test & test contact1' })).toBeVisible();
   await page.getByRole('link', { name: 'ryan test & test contact1' }).click();
@@ -813,23 +558,6 @@ test('#019: Start BrightChat button from List Details page',{
     { type: 'Currently refactoring this test, is not currently being run.', description: ''},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   
 });
 
@@ -847,23 +575,6 @@ test('#020: Interacting from Active BrightChats page on computer',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^Active BrightChats$/ }).click();
   await page.getByRole('link', { name: 'ryan test & Phone Contact' }).click();
   await expect(page.getByText('04/30/24 3:10 PMryan testtest')).toBeVisible();
@@ -895,23 +606,6 @@ test('#021: Access reports page from BA Central Reports button',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^Reports$/ }).click();
   await expect(page.getByText('Reports of Messages')).toBeVisible();
   await expect(page.getByRole('tab', { name: 'All Messages' })).toBeVisible();
@@ -935,23 +629,6 @@ test('#022: Access user settings',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.getByTestId('MenuIcon').click();
   await page.getByRole('button', { name: 'User settings' }).click();
   await expect(page.getByText('ryantest')).toBeVisible();
@@ -969,23 +646,6 @@ test('#023: Access My Lists from top left nav icon in BrightArrow Central',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.getByTestId('MenuIcon').click();
   await page.getByRole('button', { name: 'My Lists' }).click();
   await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible({timeout: 25000});
@@ -1002,23 +662,6 @@ test('#024: Access Active BrightChats from top left nav icon in BrightArrow Cent
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.getByTestId('MenuIcon').click();
   await page.getByRole('button', { name: 'Active BrightChats' }).click();
   await expect(page.getByRole('link', { name: 'ryan test & test contact1' })).toBeVisible();
@@ -1038,23 +681,6 @@ test('#025: Access Reports from top left nav icon in BrightArrow Central',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.getByTestId('MenuIcon').locator('path').click();
   await page.getByRole('button', { name: 'Reports' }).click();
   await expect(page.getByText('Reports of Messages')).toBeVisible();
@@ -1075,23 +701,6 @@ test('#026: Create a subset list',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('button', { name: 'Select an Action' }).click();
@@ -1124,23 +733,6 @@ test('#027: Create a superset list',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('button', { name: 'Select an Action' }).click();
@@ -1172,23 +764,6 @@ test('#028: Create Message feature from Select An Action dropdown in My Lists pa
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.locator('#cb_list8409118').check();
@@ -1224,23 +799,6 @@ test('#029: Edit message hover icon in My Lists page',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -1278,23 +836,6 @@ test('#030: Edit prior message button within My Lists > Select an action button.
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.locator('#cb_list8329402').check();
@@ -1318,23 +859,6 @@ test('#031: Access List Settings from button in List Details page',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 1', exact: true }).click();
@@ -1353,23 +877,6 @@ test('#032: "Send saved message now" button within My Lists > Select An Action d
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.locator('#cb_list8409786').check();
   await page.getByRole('button', { name: 'Select an Action' }).click();
@@ -1390,23 +897,6 @@ test('#033: Apply contact filter and send saved message.',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 1', exact: true }).click();
@@ -1438,23 +928,6 @@ test('#034: Preview Message button within message editing/creating process.',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 11' }).click();
@@ -1486,23 +959,6 @@ test('#035: Send message with apostrophes in the from name and subject fields',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 13' }).click();
@@ -1525,23 +981,6 @@ test('#036: Stop message icon from hovering over a list',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -1572,23 +1011,6 @@ test('#037: Stop sending/pending message from menu',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.locator('#cb_list8411095').check();
   await page.getByRole('button', { name: 'Select an Action' }).click();
@@ -1610,23 +1032,6 @@ test('#038: Start BrightChat button from List Details page',{
     { type: '', description: '● List this is tested with is unexpectedly not there.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 15' }).click();
@@ -1654,23 +1059,6 @@ test('#039: BrightArrow Central feature from menu',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByTestId('MenuIcon').click();
@@ -1692,23 +1080,6 @@ test('#040: Home icon at top of page',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByTestId('MenuIcon').click();
@@ -1730,23 +1101,6 @@ test('#041: Preview button from reports',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^Reports$/ }).click();
   await page.getByRole('button', { name: '/02/24 04:47AM: test list 17' }).click();
   //await page.getByRole('button', { name: 'View Full Message' }).click();
@@ -1777,23 +1131,6 @@ test('#042: Preview button from load prior message',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 18' }).click();
@@ -1822,23 +1159,6 @@ test('#043: Disable all contacts in a list using upper checkbox, then refresh us
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
 });
@@ -1858,23 +1178,6 @@ test('#044: Edit message for a list with a pending message ',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
 });
@@ -1892,23 +1195,6 @@ test('#045: Create message for a list with a pending message ',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
 });
@@ -1927,23 +1213,6 @@ test('#046: Search bar from reports page (reports search) ',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
 });
@@ -1961,23 +1230,6 @@ test('#047: Most recent/view all feature on my lists page (most recent folders) 
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
-  
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
 });

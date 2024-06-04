@@ -11,7 +11,6 @@ const parent_pass = process.env.PARENT_PASS;
 const email = process.env.EMAIL;
 const e_pass = process.env.EMAIL_PASS;
 const phone2 = process.env.PHONE_ALT;
-const username2 = process.env.ACCT_LOGIN2;
 
 const app = new App({ 
   token: process.env.O_AUTH,
@@ -33,19 +32,19 @@ test.describe.configure({
 
 test.beforeEach('', async ({ page }) => {
   await page.goto('https://target110.brightarrow.com/r/');
-  // await page.getByLabel('Username').click();
-  // await page.getByLabel('Username').fill(`${username}`);
-  // await page.getByLabel('Password').click();
-  // await page.getByLabel('Password').fill(`${password}`);
+  await page.getByLabel('Username').click();
+  await page.getByLabel('Username').fill(`${username}`);
+  await page.getByLabel('Password').click();
+  await page.getByLabel('Password').fill(`${password}`);
   
-  // const [request] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   page.getByRole('button', { name: 'Sign in' }).click()
-  // ]);
+  const [request] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'Sign in' }).click()
+  ]);
 
-  // await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-  // await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-  // await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
+  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
+  await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
 });
 
 
@@ -95,22 +94,6 @@ test('#000: Removing list from favorites folder with heart icon',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'My Favorites' }).click();
   await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
@@ -136,22 +119,6 @@ test('#000: Removing list from favorites folder with menu',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'My Favorites' }).click();
   await page.getByRole('link', { name: 'test list 2', exact: true }).hover();
@@ -180,22 +147,6 @@ test('#000: Remove email from Do Not Contact list/time',{
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
   await page.getByTestId('MenuIcon').locator('path').click();
   await page.getByRole('button', { name: 'Do Not Contact list/time' }).click();
   await page.getByText('brightarrowtest3@gmail.com').click();
@@ -218,22 +169,6 @@ test('#020: Delete folder, auto folder',{
     { type: '', description: '● The folder that this test runs off of is not there, potentially due to an error with its initial creation.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'auto folder' }).click();
   await page.getByRole('link', { name: 'Delete Folder' }).click();
@@ -256,22 +191,6 @@ test('#021: Delete list, auto list 1',{
     { type: '', description: '● The list that this test runs off of is not there, potentially due to an error with its initial creation.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByLabel('Search').click();
   await page.getByLabel('Search').fill('auto list 1');
@@ -299,22 +218,6 @@ test('#022: Delete list, auto list 2',{
     { type: '', description: '● The list that this test runs off of is not there, potentially due to an error with its initial creation.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();
@@ -346,22 +249,6 @@ test('#023: Delete list 3, auto list import',{
     { type: '', description: '● The list that this test runs off of is not there, potentially due to an error with its initial creation.'},
   ],
 }, async ({ page }) => {
-  await test.step('Login', async () => {
-    await page.goto('https://target110.brightarrow.com/r/');
-    await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
-    await page.getByLabel('Password').click();
-    await page.getByLabel('Password').fill(`${password}`);
-    
-    const [request] = await Promise.all([
-      page.waitForResponse(response => response.url().includes("TargetAPI/api/report/GetWeeklySummary?accessToken=") && response.status() === 200, {timeout: 60000}),
-      page.getByRole('button', { name: 'Sign in' }).click()
-    ]);
-  
-    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
-    await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
-    await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
-  });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByLabel('Search').click();

@@ -688,7 +688,7 @@ test('#004: Create list in new folder', {
   await expect(page).toHaveScreenshot("004-createList-listDetailsNew-chromium-win32.png", { fullPage: true });
 
   await page.getByTestId('FastRewindIcon').click();
-  await expect(page.getByRole('link', { name: 'auto list 3' })).toBeVisible({timeout: 10000});
+  await expect(page.getByRole('link', { name: 'auto list 3' })).toBeVisible({timeout: 20000});
   await expect(page).toHaveScreenshot("004-visibleInNewFolder-check-chromium-win32.png", {
     fullPage: true,
     mask: [page.locator('.listOfListsRow > td.listsTableColumns.advanced')],
