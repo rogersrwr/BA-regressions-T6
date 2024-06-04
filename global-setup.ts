@@ -260,6 +260,16 @@ test("setup checks part 2", async ({ page }) => {
   await page.waitForResponse(response => response.url().includes("TargetAPI/api/Message/Logger") && response.status() === 200, { timeout: 60000});
   await expect(page.getByRole('link', { name: 'test list 4' })).not.toBeVisible();  //sometimes there is split second window where api responds but page doesnt fully update
   await expect(page.getByText('My Favorites Lists')).toBeVisible();
+
+  await page.getByLabel('Search').click();
+  await page.getByLabel('Search').fill('test list 1');
+  const [request2] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByLabel('Search').press('Enter')
+  ]);
+  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();
+
+
   const myElement5 = page.locator('.listOfListsRow > td').first();
   //const myElement5 = page.getByRole('link', { name: 'test list' });
   //const myElement5 = page.locator('_react=[id="btn_list8281415"]')
@@ -270,9 +280,79 @@ test("setup checks part 2", async ({ page }) => {
       page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, { timeout: 60000}),
       page.getByRole('button', { name: 'OK' }).click()
     ]);
+
+    await page.getByRole('button', { name: 'My Favorites' }).click();
+
+    //await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+    await page.locator('#searchBarBtn').click();
+    //await page.locator('input[name="cb_lists2161161"]').uncheck();
+    await page.getByRole('button', { name: 'My Favorites' }).click();
+    await page.getByLabel('Search').click();
+    await page.getByLabel('Search').fill('test list 1');
+    await page.getByLabel('Search').press('Enter');
   }
 
-  await page.getByRole('button', { name: 'ryantest2' }).click();
+  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
+  await expect(page.getByText('My Favorites Lists (0)')).toBeVisible();
+
+
+
+
+  //009-1 favorites test list 2 - CHECK IF NOT ALREADY DELETED
+  await page.locator('#searchBarBtn').click();
+  //await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();  //new
+  //await page.getByRole('button', { name: 'My Favorites' }).click();
+  // const [request19] = await Promise.all([
+  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/Folder/SetSelectedFolderSettings?accessToken=") && response.status() === 200, { timeout: 60000}),
+  //   page.getByRole('button', { name: 'My Favorites' }).click()
+  // ]);
+  await page.waitForResponse(response => response.url().includes("TargetAPI/api/Message/Logger") && response.status() === 200, { timeout: 60000});
+  await expect(page.getByRole('link', { name: 'test list 4' })).not.toBeVisible();  //sometimes there is split second window where api responds but page doesnt fully update
+  await expect(page.getByText('My Favorites Lists')).toBeVisible();
+
+  await page.getByLabel('Search').click();
+  await page.getByLabel('Search').fill('test list 2');
+  //await page.getByLabel('Search').press('Enter');
+  const [request4_1] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByLabel('Search').press('Enter')
+  ]);
+  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();    //new
+
+  const myElement10 = page.locator('.listOfListsRow > td').first();
+  if (await myElement10.isVisible()) {
+    await page.getByRole('link', { name: 'test list 2' }).hover();
+    await page.getByRole('link', { name: 'Remove from folder' }).click();
+    const [request21] = await Promise.all([
+      page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, { timeout: 60000}),
+      page.getByRole('button', { name: 'OK' }).click()
+    ]);
+
+    //await page.getByRole('button', { name: 'My Favorites' }).click();
+
+    //await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
+    //await page.locator('#searchBarBtn').click();
+    const [request22] = await Promise.all([
+      page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, { timeout: 60000}),
+      page.locator('#searchBarBtn').click()
+    ]);
+    //await page.locator('input[name="cb_lists2161161"]').uncheck();
+    await page.getByRole('button', { name: 'My Favorites' }).click();
+    await page.getByLabel('Search').click();
+    await page.getByLabel('Search').fill('test list 2');
+    await page.getByLabel('Search').press('Enter');
+  }
+
+  await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
+  await expect(page.getByText('My Favorites Lists (0)')).toBeVisible();
+
+
+
+  const [request22] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/Folder/SetSelectedFolderSettings?accessToken=") && response.status() === 200, { timeout: 60000}),
+    page.getByRole('button', { name: 'ryantest' }).click()
+  ]);
+
 
 
 
@@ -396,6 +476,7 @@ test("setup checks part 2", async ({ page }) => {
   }
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();         //new
   await expect(page.getByText('ryantest2 Lists (0)')).toBeVisible();
+
 
 
 });
