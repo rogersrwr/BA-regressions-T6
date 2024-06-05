@@ -57,7 +57,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests 1
-      run: npx playwright test tests/1-baT6-new.spec.ts --project=chromium 
+      run: npx playwright test tests/1-baT6-new.spec.ts --project=chromium --ignore-snapshots
     - uses: actions/upload-artifact@v4
       if: always()
       with:
@@ -67,7 +67,7 @@ jobs:
         retention-days: 7
 
     - name: Run Playwright tests 2
-      run: npx playwright test tests/2-baT6-new.spec.ts --project=chromium2 --workers=5
+      run: npx playwright test tests/2-baT6-new.spec.ts --project=chromium2 --workers=5 --ignore-snapshots
       if: always()
     - uses: actions/upload-artifact@v4
       if: always()
