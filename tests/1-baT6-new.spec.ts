@@ -91,7 +91,7 @@ test.afterAll(async ({  }) => {
 
 
 
-test('#000: Schedule message button ', {
+test('#001: Schedule message button ', {
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists, selects list "test list 12" and clicks Edit message button. Selects email tab and changes subject field to include the date and start time of test run. Then goes to Proceed and selects Schedule Message button. Schedules message to be sent at minimum 2 minutes into the future, up to ~10 minutes depending on the exact start time of the test run. I tried to account for all possible times this regression test suite may be ran which resulted in some variation of scheduled message time. But the message should be sent and received before the test at the end of the suite that checks if it was properly received.'},
@@ -295,7 +295,7 @@ test('#000: Schedule message button ', {
 
 
 
-test('#000-1: Setup for test #036, stop message hover icon test ', {
+test('#002: Setup for test #036, stop message hover icon test ', {
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'A pre-test setup for test #036 (stop pending msg hover icon). Navigates to My Lists and selects list "test list 14". Clicks the Edit Message button and goes to email tab. Changes subject field to include the date and start time of the test run. Then on the Proceed screen, schedules message to be sent one hour in the future. This pending message is meant to be stopped in a later test.'},
@@ -407,7 +407,7 @@ test('#000-1: Setup for test #036, stop message hover icon test ', {
 
 
 
-test('#000-2: Setup for test #037, stop message hover icon test ', {
+test('#003: Setup for test #037, stop message hover icon test ', {
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'A pre-test setup for test #037 (stop pending msg hover icon). Navigates to My Lists and selects list "test list 15". Clicks the Edit Message button and goes to email tab. Changes subject field to include the date and start time of the test run. Then on the Proceed screen, schedules message to be sent one hour in the future. This pending message is meant to be stopped in a later test.'},
@@ -519,7 +519,7 @@ test('#000-2: Setup for test #037, stop message hover icon test ', {
 
 
 
-test('#001: Make list from Create List button', {
+test('#004: Make list from Create List button', {
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Creates a new list from the Create List button in BrightArrow Central. List is named "auto list 1". A few visual regression screenshot comparisons are made to verify everything is loaded as expected within the new List Details page, My Lists page, and BrightArrow Central.'},
@@ -571,7 +571,7 @@ test('#001: Make list from Create List button', {
 
 
 
-test('#002: Create list from my lists page, auto list 2', {
+test('#005: Create list from my lists page, auto list 2', {
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Creates a new list by going to My Lists from the My Lists button within BrightArrow Central, then clicks the Select Action button to create a new list. List is named "auto list 2". A few visual regression screenshot comparisons are made to verify everything is loaded as expected within the new List Details page, My Lists page, and BrightArrow Central.'},
@@ -621,7 +621,7 @@ test('#002: Create list from my lists page, auto list 2', {
 
 
 //change screenshot comparison to make this test unable to be impacted by either of previous two tests failing.
-test('#003: Create a folder', {
+test('#006: Create a folder', {
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Creates a new folder by going to the My Lists page, then clicking the Select Action button to create a list. New list is named "auto folder". A couple of visual regression screenshot comparisons are made to verify everything is visually where it should be '},
@@ -662,7 +662,7 @@ test('#003: Create a folder', {
 
 
 
-test('#004: Create list in new folder', {
+test('#007: Create list in new folder', {
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Creates new list within the newly created folder (auto folder), this new list is named "auto list 3". This is to test if lists will remain in the folder they were created in. List is created with Select an Action button. A few visual screenshot comparison tests are made to verify everything is visually where it should be. '},
@@ -708,7 +708,7 @@ test('#004: Create list in new folder', {
 
 
 
-test('#005: add contact to list, auto list 1', {
+test('#008: add contact to list, auto list 1', {
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Adds a contact to recently created list "auto list 1". Uses the "Add Contact" button in List Details page to do this. Information is added to most fields except the portal fields. One number and one email added. Contact is named "Auto Contact1". There are a few visual regression tests to make sure List Details, My Lists, and Edit Contact pages are all updated correctly.'},
@@ -779,7 +779,7 @@ test('#005: add contact to list, auto list 1', {
 
 
 
-test('#006: Access list from pen icon to make another contact, auto list 1', {
+test('#009: Access list from pen icon to make another contact, auto list 1', {
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Tests the pen icon that appears by mouse hovering over a list in the My Lists page. Clicks on this to then add another contact to the list "auto list 1". New contact is named "Auto Contact2". Information is added to most fields except the portal fields. One number and one email added. Contact is named "Auto Contact1". There are a few visual regression tests to make sure List Details, My Lists, and Edit Contact pages are all updated correctly.'},
@@ -854,7 +854,7 @@ test('#006: Access list from pen icon to make another contact, auto list 1', {
 
 
 
-test('#007: Delete contact with trash icon on List Details page',{
+test('#010: Delete contact with trash icon on List Details page',{
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Navigates to List Details page of list named "auto list 1". Clicks on trash icon to delete contact named "Auto Contact1". Uses a screenshot comparison after deletion to verify List Details page is correctly updated. Then clicks top left back button to navigate to My Lists page and verify that is correctly updated as well.'},
@@ -894,7 +894,7 @@ test('#007: Delete contact with trash icon on List Details page',{
 
 
 
-test('#008: Click on gear icon, test list 2',{
+test('#011: Click on gear icon, test list 2',{
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Tests the gear icon that appears by mouse hovering over a list in the My Lists page. Clicks on this to access list named "test list 2". Then goes to List Settings and changes settings in most subpages.'},

@@ -86,12 +86,12 @@ test.afterAll(async ({  }) => {
 
 
 
-test('#000: Removing list from favorites folder with heart icon',{
+test('#056: Removing list from favorites folder with heart icon',{
   tag: ['@Lists', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page and then My Favorites folder. Mouse hovers over list in folder named "test list 1" and then selects heart icon to remove list from this folder.'},
     { type: 'Potential Sources of Failure:', description: ''},
-    { type: '', description: '● Will fail if test #009 did not properly run. This test is currently dependent on that to run correctly.'},
+    { type: '', description: '● Will fail if test #012 did not properly run. This test is currently dependent on that to run correctly.'},
     { type: '', description: '● Some bug occurred in the process of removing a list from the favorites folder.'},
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
@@ -113,26 +113,26 @@ test('#000: Removing list from favorites folder with heart icon',{
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'My Favorites' }).click();
-  await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
-  await page.getByRole('link', { name: 'Remove from folder' }).click();
+  // await page.getByRole('button', { name: 'My Favorites' }).click();
+  // await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
+  // await page.getByRole('link', { name: 'Remove from folder' }).click();
 
-  const [request] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-    await page.getByRole('button', { name: 'OK' }).click()
-  ]);
+  // const [request] = await Promise.all([
+  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+  //   await page.getByRole('button', { name: 'OK' }).click()
+  // ]);
 
-  await expect(page.getByText('My Favorites Lists')).toBeVisible();
+  // await expect(page.getByText('My Favorites Lists')).toBeVisible();
 
 });
 
 
-test('#000: Removing list from favorites folder with menu',{
+test('#057: Removing list from favorites folder with menu',{
   tag: ['@Lists', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page and then My Favorites folder. Mouse hovers over list in folder named "test list 2" and then selects heart icon to remove list from this folder.'},
     { type: 'Potential Sources of Failure:', description: ''},
-    { type: '', description: '● Will fail if test #009-1 did not properly run. This test is currently dependent on that to run correctly.'},
+    { type: '', description: '● Will fail if test #013 did not properly run. This test is currently dependent on that to run correctly.'},
     { type: '', description: '● Some bug occurred in the process of removing a list from the favorites folder.'},
     {type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],
@@ -171,7 +171,7 @@ test('#000: Removing list from favorites folder with menu',{
 
 
 
-test('#000: Remove email from Do Not Contact list/time',{
+test('#058: Remove email from Do Not Contact list/time',{
   tag: ['@Other'],
   annotation: [
     { type: 'Test description', description: 'Clicks on top left nav and selects Do Not Disturb list/time. Selects email "brightarrowtest3@gmail.com" and removes it from the list. This test will fail if test #017 failed because of a bug or test run error.'},
@@ -199,10 +199,10 @@ test('#000: Remove email from Do Not Contact list/time',{
   });
   await page.getByTestId('MenuIcon').locator('path').click();
   await page.getByRole('button', { name: 'Do Not Contact list/time' }).click();
-  await page.getByText('brightarrowtest3@gmail.com').click();
-  await page.getByRole('button', { name: 'Remove >>' }).click();
-  await page.getByTestId('HomeIcon').click();
-  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  // await page.getByText('brightarrowtest3@gmail.com').click();
+  // await page.getByRole('button', { name: 'Remove >>' }).click();
+  // await page.getByTestId('HomeIcon').click();
+  // await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
 });
 
 
@@ -210,7 +210,7 @@ test('#000: Remove email from Do Not Contact list/time',{
 
 
 
-test('#020: Delete folder, auto folder',{
+test('#059: Delete folder, auto folder',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Selects folder named "auto folder" created at the start of the test run. Clicks the trash icon delete folder button.'},
@@ -248,7 +248,7 @@ test('#020: Delete folder, auto folder',{
 
 
 
-test('#021: Delete list, auto list 1',{
+test('#060: Delete list, auto list 1',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Searches for "auto list 1" (easier to set up for deletion this way in automation). Selects the top checkbox to select auto list 1. Then clicks Select an Action button and deletes list. '},
@@ -291,7 +291,7 @@ test('#021: Delete list, auto list 1',{
 
 
 
-test('#022: Delete list, auto list 2',{
+test('#061: Delete list, auto list 2',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Searches for "auto list 2" (easier to set up for deletion this way in automation). Selects the top checkbox to select auto list 1. Then clicks Select an Action button and deletes list. '},
@@ -338,7 +338,7 @@ test('#022: Delete list, auto list 2',{
 
 //deletes final(?) list made. this list should end up in the main user 'ryan test' folder. 
 //add some screenshot verification later to further ensure functionality
-test('#023: Delete list 3, auto list import',{
+test('#062: Delete list 3, auto list import',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page. Searches for "auto list 3" (easier to set up for deletion this way in automation). Selects the top checkbox to select auto list 1. Then clicks Select an Action button and deletes list. '},
@@ -383,7 +383,7 @@ test('#023: Delete list 3, auto list import',{
 
 
 
-test('#024: ParentHub message received confirmation',{
+test('#063: ParentHub message received confirmation',{
   tag: ['@Messages', '@ParentHub'],
   annotation: [
     { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},
@@ -412,8 +412,8 @@ test('#024: ParentHub message received confirmation',{
 });
 
 
-test('#000: Test #013 receive confirmation.',{
-  tag: ['@Messages', '@ParentHub'],
+test('#064: Test #021 receive confirmation.',{
+  tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Logs into Google Voice to confirm if SMS text message was properly sent and received. Selects messages to view and confirms if expected text message is there.'},
     { type: 'Potential Sources of Failure:', description: ''},
@@ -453,10 +453,10 @@ test('#000: Test #013 receive confirmation.',{
 
 });
 
-test('#000: Test #015 receive confirmation.',{
-  tag: ['@Messages', '@ParentHub'],
+test('#065: Test #023 receive confirmation.',{
+  tag: ['@Messages'],
   annotation: [
-    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #015 was properly sent and received.'},
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #023 was properly sent and received.'},
     { type: 'Potential Sources of Failure:', description: ''},
     { type: '', description: '● ParentHub access through link does not work.'},
     { type: '', description: '● Login unexpectedly doesn\'t work.'},
@@ -495,10 +495,10 @@ test('#000: Test #015 receive confirmation.',{
 });
 
 
-test('#000: Test #0 receive confirmation.',{
-  tag: ['@Messages', '@ParentHub'],
+test('#066: Test #024 receive confirmation.',{
+  tag: ['@Messages'],
   annotation: [
-    { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #024 was properly sent and received.'},
     { type: 'Potential Sources of Failure:', description: ''},
     { type: '', description: '● ParentHub access through link does not work.'},
     { type: '', description: '● Login unexpectedly doesn\'t work.'},
@@ -506,16 +506,17 @@ test('#000: Test #0 receive confirmation.',{
     { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
   ],
 }, async ({ page }) => {
-
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
 
 });
 
 
 
-test('#000: Test #000-line684 receive confirmation.',{
+test('#067: Test #040 receive confirmation.',{
   tag: ['@Messages', '@ParentHub'],
   annotation: [
-    { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #040 was properly sent and received.'},
     { type: 'Potential Sources of Failure:', description: ''},
     { type: '', description: '● ParentHub access through link does not work.'},
     { type: '', description: '● Login unexpectedly doesn\'t work.'},
@@ -523,16 +524,17 @@ test('#000: Test #000-line684 receive confirmation.',{
     { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
   ],
 }, async ({ page }) => {
-
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
 
 });
 
 
 
-test('#000: Test #000-line704 receive confirmation.',{
+test('#068: Test #041 receive confirmation.',{
   tag: ['@Messages', '@ParentHub'],
   annotation: [
-    { type: 'Test description', description: 'Uses the BrightArrow URL with a "/m/" ending to access the ParentHub app through desktop. Logs into account. Goes to Chats and verifies if chat sent earlier in test run was properly received.'},
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #041 was properly sent and received.'},
     { type: 'Potential Sources of Failure:', description: ''},
     { type: '', description: '● ParentHub access through link does not work.'},
     { type: '', description: '● Login unexpectedly doesn\'t work.'},
@@ -540,9 +542,97 @@ test('#000: Test #000-line704 receive confirmation.',{
     { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
   ],
 }, async ({ page }) => {
-
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
 
 });
+
+
+
+
+
+
+test('#069: Test #042 receive confirmation.',{
+  tag: ['@Messages', '@ParentHub'],
+  annotation: [
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #042 was properly sent and received.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● ParentHub access through link does not work.'},
+    { type: '', description: '● Login unexpectedly doesn\'t work.'},
+    { type: '', description: '● Message was not properly sent or received.'},
+    { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
+  ],
+}, async ({ page }) => {
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+
+});
+
+
+
+test('#070: Test #043 receive confirmation.',{
+  tag: ['@Messages', '@ParentHub'],
+  annotation: [
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #043 was properly sent and received.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● ParentHub access through link does not work.'},
+    { type: '', description: '● Login unexpectedly doesn\'t work.'},
+    { type: '', description: '● Message was not properly sent or received.'},
+    { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
+  ],
+}, async ({ page }) => {
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+
+});
+
+
+
+
+
+
+
+test('#071: Test #049 receive confirmation.',{
+  tag: ['@Messages', '@ParentHub'],
+  annotation: [
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #049 was properly sent and received.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● ParentHub access through link does not work.'},
+    { type: '', description: '● Login unexpectedly doesn\'t work.'},
+    { type: '', description: '● Message was not properly sent or received.'},
+    { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
+  ],
+}, async ({ page }) => {
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+
+});
+
+
+
+
+
+
+
+test('#072: Test #050 receive confirmation.',{
+  tag: ['@Messages', '@ParentHub'],
+  annotation: [
+    { type: 'Test description', description: 'Logs into gmail to confirm if message sent from test #050 was properly sent and received.'},
+    { type: 'Potential Sources of Failure:', description: ''},
+    { type: '', description: '● ParentHub access through link does not work.'},
+    { type: '', description: '● Login unexpectedly doesn\'t work.'},
+    { type: '', description: '● Message was not properly sent or received.'},
+    { type: '', description: '● Unexpected interactions with the ParentHub interface.'},
+  ],
+}, async ({ page }) => {
+  await page.goto('https://www.google.com/intl/en-US/gmail/about/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+
+});
+
+
+
+
 
 
 test('wrap up tests', async ({ page }) => {

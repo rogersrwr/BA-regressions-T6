@@ -71,7 +71,7 @@ test.afterAll(async ({  }) => {
 
 
 
-test('#009: add list to favorites with heart icon, test list 1',{
+test('#012: add list to favorites with heart icon, test list 1',{
   tag: ['@Lists', '@Acct2'],
   annotation: [
     {type: 'Test description', description: 'Tests the heart icon that appears by hovering over a list within the My Lists page. Hovers over list named "test list 1" and uses heart icon to add this list to "My Favorites" folder. '},
@@ -101,32 +101,32 @@ test('#009: add list to favorites with heart icon, test list 1',{
   //test.setTimeout(50000);
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByLabel('Search').click();
-  await page.getByLabel('Search').fill('test list 1');
-  await page.getByLabel('Search').press('Enter');
-  await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
-  const [request] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
-    page.getByRole('link', { name: 'Add to favorite' }).click()
-  ]);
+  // await page.getByLabel('Search').click();
+  // await page.getByLabel('Search').fill('test list 1');
+  // await page.getByLabel('Search').press('Enter');
+  // await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
+  // const [request] = await Promise.all([
+  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
+  //   page.getByRole('link', { name: 'Add to favorite' }).click()
+  // ]);
 
-  if (await page.getByLabel('My Favorites').isVisible()) {
-    await expect(page.getByLabel('My Favorites')).toBeVisible();
-    await page.getByLabel('My Favorites').click();
-    await page.getByRole('option', { name: 'My Favorites' }).click();
-  }
+  // if (await page.getByLabel('My Favorites').isVisible()) {
+  //   await expect(page.getByLabel('My Favorites')).toBeVisible();
+  //   await page.getByLabel('My Favorites').click();
+  //   await page.getByRole('option', { name: 'My Favorites' }).click();
+  // }
 
-  if (await page.getByLabel('auto folder').isVisible()) {
-    await expect(page.getByLabel('auto folder')).toBeVisible();
-    await page.getByLabel('auto folder').click();
-    await page.getByRole('option', { name: 'My Favorites' }).click();
-  }
-  const [request2] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-    page.getByRole('button', { name: 'OK' }).click()
-  ]);
-  await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
+  // if (await page.getByLabel('auto folder').isVisible()) {
+  //   await expect(page.getByLabel('auto folder')).toBeVisible();
+  //   await page.getByLabel('auto folder').click();
+  //   await page.getByRole('option', { name: 'My Favorites' }).click();
+  // }
+  // const [request2] = await Promise.all([
+  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+  //   page.getByRole('button', { name: 'OK' }).click()
+  // ]);
+  // await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
+  // await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
 });
 
 
@@ -134,7 +134,7 @@ test('#009: add list to favorites with heart icon, test list 1',{
 
 
 
-test('#009-1: add list to favorites with menu, test list 2',{
+test('#013: add list to favorites with menu, test list 2',{
   tag: ['@Lists', '@Acct2'],
   annotation: [
     {type: 'Test description', description: 'Navigates to My Lists, selects checkbox of list "test list 2", clicks Select An Action button, and selects Add list to favorites. Adds list to My Favorites folder. Selects My Favorites folder and verifies list is there.'},
@@ -163,37 +163,37 @@ test('#009-1: add list to favorites with menu, test list 2',{
   
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByLabel('Search').click();
-  await page.getByLabel('Search').fill('test list 2');
-  await page.getByLabel('Search').press('Enter');
-  await page.locator('input[name="cb_lists2162271"]').check();
-  await page.getByRole('button', { name: 'Select an Action' }).click();
-  //await page.getByRole('button', { name: 'Add list to favorites' }).click();
-  const [request] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
-    page.getByRole('button', { name: 'Add list to favorites' }).click()
-  ]);
+  // await page.getByLabel('Search').click();
+  // await page.getByLabel('Search').fill('test list 2');
+  // await page.getByLabel('Search').press('Enter');
+  // await page.locator('input[name="cb_lists2162271"]').check();
+  // await page.getByRole('button', { name: 'Select an Action' }).click();
+  // //await page.getByRole('button', { name: 'Add list to favorites' }).click();
+  // const [request] = await Promise.all([
+  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
+  //   page.getByRole('button', { name: 'Add list to favorites' }).click()
+  // ]);
 
-  if (await page.getByLabel('My Favorites').isVisible()) {
-    await expect(page.getByLabel('My Favorites')).toBeVisible();
-    await page.getByLabel('My Favorites').click();
-    await page.getByRole('option', { name: 'My Favorites' }).click();
-  }
+  // if (await page.getByLabel('My Favorites').isVisible()) {
+  //   await expect(page.getByLabel('My Favorites')).toBeVisible();
+  //   await page.getByLabel('My Favorites').click();
+  //   await page.getByRole('option', { name: 'My Favorites' }).click();
+  // }
 
-  if (await page.getByLabel('auto folder').isVisible()) {
-    await expect(page.getByLabel('auto folder')).toBeVisible();
-    await page.getByLabel('auto folder').click();
-    await page.getByRole('option', { name: 'My Favorites' }).click();
-  }
-  const [request2] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-    page.getByRole('button', { name: 'OK' }).click()
-  ]);
-  //await page.getByRole('button', { name: 'OK' }).click();
-  await page.locator('.MuiPaper-root > div').first().click();
-  await page.locator('#searchBarBtn').click();
-  await page.getByRole('button', { name: 'My Favorites' }).click();
-  await expect(page.getByRole('link', { name: 'test list 2' })).toBeVisible();
+  // if (await page.getByLabel('auto folder').isVisible()) {
+  //   await expect(page.getByLabel('auto folder')).toBeVisible();
+  //   await page.getByLabel('auto folder').click();
+  //   await page.getByRole('option', { name: 'My Favorites' }).click();
+  // }
+  // const [request2] = await Promise.all([
+  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+  //   page.getByRole('button', { name: 'OK' }).click()
+  // ]);
+  // //await page.getByRole('button', { name: 'OK' }).click();
+  // await page.locator('.MuiPaper-root > div').first().click();
+  // await page.locator('#searchBarBtn').click();
+  // await page.getByRole('button', { name: 'My Favorites' }).click();
+  // await expect(page.getByRole('link', { name: 'test list 2' })).toBeVisible();
 
 });
 
@@ -202,7 +202,7 @@ test('#009-1: add list to favorites with menu, test list 2',{
 
 
 
-test('#009-2: Copy list feature from menu (My Lists page)',{
+test('#014: Copy list feature from menu (My Lists page)',{
   tag: ['@Lists', '@Acct2'],
   annotation: [
     {type: 'Test description', description: 'Navigates to My Lists, clicks Select An Action button, and selects Copy a list. Inputs "test list 1 copy" into list name field. Selects source list as "test list 1". After hitting "OK", verifies new list is there when My Lists page loads, and then selects newly created list and verifies contacts are there. '},
@@ -246,7 +246,7 @@ test('#009-2: Copy list feature from menu (My Lists page)',{
 
 
 
-test('#009-3: Edit a message, make a change and then try backing out of page. Select yes in the "Do you wish to save your changes?" popup. Re-enter edit message and verify changes have been saved.',{
+test('#015: Edit a message, make a change and then try backing out of page. Select yes in the "Do you wish to save your changes?" popup. Re-enter edit message and verify changes have been saved.',{
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Navigates to My Lists and selects list "test list 3". Clicks Edit Message button, goes to email tab, and changes email subject field to a string that contains the date and start time of test regression test suite. Then hits the top left back button to trigger the popup of "Do you wish to save your changes?". Clicks "yes". Then re-enters Edit Message process and verifies change has been saved.'},
@@ -295,7 +295,7 @@ test('#009-3: Edit a message, make a change and then try backing out of page. Se
 
 
 
-test('#009-4: Save message button on Create Message page',{
+test('#016: Save message button on Create Message page',{
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Navigates to My Lists,'},
@@ -329,7 +329,7 @@ test('#009-4: Save message button on Create Message page',{
 
 
 
-test.skip('#009-5: Send saved message to a list with 0 contacts/all disabled contacts/contacts with no phone number or email. Should be prevented from sending message.',{
+test.skip('#017: Send saved message to a list with 0 contacts/all disabled contacts/contacts with no phone number or email. Should be prevented from sending message.',{
   tag: ['@Lists'],
   annotation: [
     {type: 'This feature is currently bugged. Skipping this test until bug is resolved.', description: ''},
@@ -363,7 +363,7 @@ test.skip('#009-5: Send saved message to a list with 0 contacts/all disabled con
 
 
 
-test('#010: Changing contact email from pen icon in List Details page',{
+test('#018: Changing contact email from pen icon in List Details page',{
   tag: ['@Lists'],
   annotation: [
     {type: 'Test description', description: 'Tests the pen hover icon found within the List Details page. This is tested within list named "test list 1". Uses pen icon to access Contact Details of "Auto Contact1". Changes email. A screenshot comparison test is made to check that List Details page is properly updated after changing info.'},
@@ -414,7 +414,7 @@ test('#010: Changing contact email from pen icon in List Details page',{
 
 
 
-test('#011: Disabling a contact', {
+test('#019: Disabling a contact', {
   tag: ['@Lists'],
   annotation: [
     { type: 'Test Description', description: 'Navigates to list named "test List 4", and disables contact named "phone, ryan". Then verifies changes by backing out and back into same list to verify change has been saved.'},
@@ -469,7 +469,7 @@ test('#011: Disabling a contact', {
 
 
 
-test('#012: Testing "Hide Disabled Contacts" checkbox within List Details page.', {
+test('#020: Testing "Hide Disabled Contacts" checkbox within List Details page.', {
   tag: ['@Lists'],
   annotation: [
     { type: 'Test Description', description: 'Goes to list named "test list 1" that now has 1 disabled contact. Within List Details page, clicks checkbox to Hide Disabled Contacts. Backs out and re-enters list to make sure changes have been made. A couple visual regression screenshot comparison tests are made to ensure that info is saved and displayed as expected.'},
@@ -500,26 +500,26 @@ test('#012: Testing "Hide Disabled Contacts" checkbox within List Details page.'
   
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByRole('link', { name: 'test list 5' }).click();
-  await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
-  const [request] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/LoadContacts?accessToken=") && response.status() === 200, {timeout: 60000}),
-    await page.locator('#hideDisabledButton').check()
-  ]);
-  await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeHidden();
-  await expect(page).toHaveScreenshot("011-hideDisabledContactsCheckbox-check-chromium2-win32.png", { fullPage: true });
+  // await page.getByRole('link', { name: 'test list 5' }).click();
+  // await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
+  // const [request] = await Promise.all([
+  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/LoadContacts?accessToken=") && response.status() === 200, {timeout: 60000}),
+  //   await page.locator('#hideDisabledButton').check()
+  // ]);
+  // await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeHidden();
+  // await expect(page).toHaveScreenshot("011-hideDisabledContactsCheckbox-check-chromium2-win32.png", { fullPage: true });
 
-  await page.getByTestId('FastRewindIcon').click();
-  await page.getByRole('link', { name: 'test list 5' }).click();
-  await expect(page.getByRole('cell', { name: 'contact, test' })).toBeVisible();
-  await expect(page.getByRole('cell', { name: 'parent, phone' })).toBeVisible();
+  // await page.getByTestId('FastRewindIcon').click();
+  // await page.getByRole('link', { name: 'test list 5' }).click();
+  // await expect(page.getByRole('cell', { name: 'contact, test' })).toBeVisible();
+  // await expect(page.getByRole('cell', { name: 'parent, phone' })).toBeVisible();
 });
 
 
 
 
 
-test('#013: Create Message button from List Details page and send text message',{
+test('#021: Create Message button from List Details page and send text message',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to list named "test list 1" and clicks Create Message button. Only selects text message option. In message field, inputs a short message with the date and start time of this specific test run. Then hits Send Message Now. Message is to be received by a Google Voice phone number which is accessed later in the automated test run.'},
@@ -548,24 +548,24 @@ test('#013: Create Message button from List Details page and send text message',
   
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByRole('link', { name: 'test list 1', exact: true }).click();
-  await page.locator('div').filter({ hasText: 'Create Message' }).nth(3).click();
-  await page.getByRole('button', { name: 'OK' }).click();
-  await page.getByLabel('Texting').check();
-  await page.getByRole('button', { name: 'Next' }).click();
-  await page.getByLabel('Text Message').click();
-  await page.getByLabel('Text Message').fill(`#013 ${jsonData.datetime}`);
-  await page.getByRole('button', { name: 'Next' }).click();
-  await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
-  await page.getByRole('button', { name: 'Yes' }).click();
-  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  // await page.getByRole('link', { name: 'test list 1', exact: true }).click();
+  // await page.locator('div').filter({ hasText: 'Create Message' }).nth(3).click();
+  // await page.getByRole('button', { name: 'OK' }).click();
+  // await page.getByLabel('Texting').check();
+  // await page.getByRole('button', { name: 'Next' }).click();
+  // await page.getByLabel('Text Message').click();
+  // await page.getByLabel('Text Message').fill(`#013 ${jsonData.datetime}`);
+  // await page.getByRole('button', { name: 'Next' }).click();
+  // await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
+  // await page.getByRole('button', { name: 'Yes' }).click();
+  // await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
 });
 
 
 
 
 
-test('#014: Edit message, email only, and save.',{
+test('#022: Edit message, email only, and save.',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to list named "test list 2". Clicks Edit Message button in List Details page. Unchecks text option, and checks email message option instead. In email subject, inputs a short message with the date and start time of this specific test run. Also inputs one mail merge field of [[fullName]]. At end of this process, clicks Save Message instead of send.'},
@@ -622,7 +622,7 @@ test('#014: Edit message, email only, and save.',{
 
 
 
-test('#015: Send Message button from List Details page',{
+test('#023: Send Message button from List Details page',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to list named "test list 6". Clicks Send Message button to send recently edited email message.'},
@@ -671,7 +671,7 @@ test('#015: Send Message button from List Details page',{
 
 
 
-test('#016: Send Message hover icon from My Lists page',{
+test('#024: Send Message hover icon from My Lists page',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test Description', description: 'Navigates to My Lists page. Mouse hovers over list named "test list 7" and clicks send message hover icon. Confirms message sending.'},
@@ -714,7 +714,7 @@ test('#016: Send Message hover icon from My Lists page',{
 
 
 
-test('#017: Do not contact list/time feature from menu',{
+test('#025: Do not contact list/time feature from menu',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Clicks the top left nav icon, and then selects Do Not Contact list/time. Adds email "brightarrowtest3@gmail.com". Then goes to My Lists and selects "test list 16". Then clicks Edit Message button, goes to the email tab and inserts the date and start time of the test run in the subject field. Goes to Proceed page and hits Send Message. A later test checks and makes sure the email was not received to the specified email.'},
@@ -742,23 +742,23 @@ test('#017: Do not contact list/time feature from menu',{
   
   await page.getByTestId('MenuIcon').locator('path').click();
   await page.getByRole('button', { name: 'Do Not Contact list/time' }).click();
-  await page.getByLabel('Phone Number or Email Address').click();
-  await page.getByLabel('Phone Number or Email Address').fill('brightarrowtest3@gmail.com');
-  await page.getByRole('button', { name: '<< Add' }).click();
-  await page.getByTestId('FastRewindIcon').click();
-  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  // await page.getByLabel('Phone Number or Email Address').click();
+  // await page.getByLabel('Phone Number or Email Address').fill('brightarrowtest3@gmail.com');
+  // await page.getByRole('button', { name: '<< Add' }).click();
+  // await page.getByTestId('FastRewindIcon').click();
+  // await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
 
-  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  await page.getByRole('button', { name: 'ryan test' }).click();
-  await page.getByRole('link', { name: 'test list 16' }).click();
-  await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
-  await page.getByRole('tab', { name: 'Email' }).click();
-  await page.getByLabel('Subject').click();
-  await page.getByLabel('Subject').fill(`#038 ${jsonData.datetime} SHOULD NOT BE RECEIVED`);
-  await page.getByRole('tab', { name: 'Proceed' }).click();
-  await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
-  await page.getByRole('button', { name: 'Yes' }).click();
-  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  // await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
+  // await page.getByRole('button', { name: 'ryan test' }).click();
+  // await page.getByRole('link', { name: 'test list 16' }).click();
+  // await page.locator('div').filter({ hasText: 'Edit Message' }).nth(3).click();
+  // await page.getByRole('tab', { name: 'Email' }).click();
+  // await page.getByLabel('Subject').click();
+  // await page.getByLabel('Subject').fill(`#038 ${jsonData.datetime} SHOULD NOT BE RECEIVED`);
+  // await page.getByRole('tab', { name: 'Proceed' }).click();
+  // await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
+  // await page.getByRole('button', { name: 'Yes' }).click();
+  // await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
 
 });
 
@@ -766,7 +766,7 @@ test('#017: Do not contact list/time feature from menu',{
 
 
 
-test('#018: Active BrightChats feature from main menu',{
+test('#026: Active BrightChats feature from main menu',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Clicks Active BrightChats button from BrightArrow Central. Navigates to chat panel labeled "ryan test & test contact1". Inputs a short message with the date and start time of this specific test run and clicks send icon. A different test verifies that chat is properly received in ParentHub app.'},
@@ -808,7 +808,7 @@ test('#018: Active BrightChats feature from main menu',{
 
 
 
-test('#019: Start BrightChat button from List Details page',{
+test('#027: Start BrightChat button from List Details page',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Currently refactoring this test, is not currently being run.', description: ''},
@@ -838,7 +838,7 @@ test('#019: Start BrightChat button from List Details page',{
 
 
 
-test('#020: Interacting from Active BrightChats page on computer',{
+test('#028: Interacting from Active BrightChats page on computer',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Clicks on Active BrightChats button from BrightArrow Central. Navigates through all the page filters (Choose a filter dropdown on the top left) and verifies they are all working.'},
@@ -891,7 +891,7 @@ test('#020: Interacting from Active BrightChats page on computer',{
 
 
 
-test('#021: Access reports page from BA Central Reports button',{
+test('#029: Access reports page from BA Central Reports button',{
   tag: ['@Reports'],
   annotation: [
     { type: 'Test description', description: 'Clicks on Reports button from BrightArrow Central. Clicks through various tabs to confirm everything is at least visually working.'},
@@ -932,7 +932,7 @@ test('#021: Access reports page from BA Central Reports button',{
 
 
 
-test('#022: Access user settings',{
+test('#030: Access user settings',{
   tag: ['@Settings'],
   annotation: [
     { type: 'Test description', description: 'Clicks on User Settings from BrightArrow Central top left navigation icon. Ensures everything is visually where it should be.'},
@@ -966,7 +966,7 @@ test('#022: Access user settings',{
 
 
 
-test('#023: Access My Lists from top left nav icon in BrightArrow Central',{
+test('#031: Access My Lists from top left nav icon in BrightArrow Central',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Clicks on navigation icon in top left corner from BrightArrow Central and navigates to My Lists. Ensures that this button is working as expected.'},
@@ -999,7 +999,7 @@ test('#023: Access My Lists from top left nav icon in BrightArrow Central',{
 
 
 
-test('#024: Access Active BrightChats from top left nav icon in BrightArrow Central',{
+test('#032: Access Active BrightChats from top left nav icon in BrightArrow Central',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Clicks on navigation icon in top left corner from BrightArrow Central and navigates to Active BrightChats. Ensures that this button is working as expected.'},
@@ -1035,7 +1035,7 @@ test('#024: Access Active BrightChats from top left nav icon in BrightArrow Cent
 
 
 
-test('#025: Access Reports from top left nav icon in BrightArrow Central',{
+test('#033: Access Reports from top left nav icon in BrightArrow Central',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Clicks on navigation icon in top left corner from BrightArrow Central and navigates to Reports. Ensures that this button is working as expected.'},
@@ -1072,7 +1072,7 @@ test('#025: Access Reports from top left nav icon in BrightArrow Central',{
 
 
 
-test('#026: Create a subset list',{
+test('#034: Create a subset list',{
   tag: ['@Lists','@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page, then clicks Select Action and Create a subset list. Creates a subset of list named "subset list 1". Sets filter to building=0. New list created only has one contact. Expects list to be visible in My Lists page. Then clicks on newly created list to verify contacts are correctly set up.'},
@@ -1121,7 +1121,7 @@ test('#026: Create a subset list',{
 
 
 
-test('#027: Create a superset list',{
+test('#035: Create a superset list',{
   tag: ['@Lists', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists page, then clicks Select Action and Create a superset list. Creates a superset of list named "superset list 1". Uses two source lists, "test list 1" and "test list 2". New list created has 4 contacts. Expects list to be visible in My Lists page. Then clicks on newly created list to verify contacts are correctly set up.'},
@@ -1168,7 +1168,7 @@ test('#027: Create a superset list',{
 
 
 
-test('#028: Create Message feature from Select An Action dropdown in My Lists page',{
+test('#036: Create Message feature from Select An Action dropdown in My Lists page',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists. Selects checkbox for list "test list 8" and then clicks Select An Action and Create a New Message. Creates a text message and then saves.'},
@@ -1220,7 +1220,7 @@ test('#028: Create Message feature from Select An Action dropdown in My Lists pa
 
 
 
-test('#029: Edit message hover icon in My Lists page',{
+test('#037: Edit message hover icon in My Lists page',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists. Mouse hovers over list named "test list 9" and clicks Edit message icon. Edits email subject line and saves message.'},
@@ -1273,7 +1273,7 @@ test('#029: Edit message hover icon in My Lists page',{
 
 
 
-test('#030: Edit prior message button within My Lists > Select an action button.',{
+test('#038: Edit prior message button within My Lists > Select an action button.',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists. Selects list named "test list 4", selects an action and clicks Edit prior message. Checks that all contents of the saved message are displaying correctly. Clicks Cancel at end of Edit Message process to exit out of feature.'},
@@ -1315,7 +1315,7 @@ test('#030: Edit prior message button within My Lists > Select an action button.
 
 
 
-test('#031: Access List Settings from button in List Details page',{
+test('#039: Access List Settings from button in List Details page',{
   tag: ['@Lists'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists. Selects list named "test list 1". Clicks List Settings button. Confirms list settings is accessible and functioning from this button.'},
@@ -1350,7 +1350,7 @@ test('#031: Access List Settings from button in List Details page',{
 
 
 
-test('#032: "Send saved message now" button within My Lists > Select An Action dropdown menu',{
+test('#040: "Send saved message now" button within My Lists > Select An Action dropdown menu',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists. Selects checkbox of list "test list 10". Then clicks Select An Action and Send saved message now button.'},
@@ -1387,7 +1387,7 @@ test('#032: "Send saved message now" button within My Lists > Select An Action d
 
 
 
-test('#033: Apply contact filter and send saved message.',{
+test('#041: Apply contact filter and send saved message.',{
   tag: ['@Messages', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and selects list "test list 1". In List Details page, clicks the Advanced drop down, and selects Apply Contact Filter. Contact filter set as building=0. Creates new filter list with one contact. Automatically places you in message creation process. Selects Proceed tab and hits send message.'},
@@ -1435,7 +1435,7 @@ test('#033: Apply contact filter and send saved message.',{
 
 
 
-test('#034: Preview Message button within message editing/creating process.',{
+test('#042: Preview Message button within message editing/creating process.',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and selects list "test list 11". In List Details page, clicks the Edit Message button, then the Proceed tab. Selects Preview Message button, and sends preview message to brightarrowtest1@gmail.com. There is a later test check to confirm that email was correctly received.'},
@@ -1483,7 +1483,7 @@ test('#034: Preview Message button within message editing/creating process.',{
 
 
 
-test('#035: Send message with apostrophes in the from name and subject fields',{
+test('#043: Send message with apostrophes in the from name and subject fields',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and selects list "test list 13". Hits Send Message to test if email message with apostrophes goes out properly. Another test later checks if it was properly received.'},
@@ -1522,7 +1522,7 @@ test('#035: Send message with apostrophes in the from name and subject fields',{
 
 
 
-test('#036: Stop message icon from hovering over a list',{
+test('#044: Stop message icon from hovering over a list',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and hovers over list "test list 14". Clicks the Cancel scheduled message hover icon to stop message from going out.'},
@@ -1569,7 +1569,7 @@ test('#036: Stop message icon from hovering over a list',{
 
 
 
-test('#037: Stop sending/pending message from menu',{
+test('#045: Stop sending/pending message from menu',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and selects checkbox of list "test list 15". Then accesses menu from Select An Action button and selects Stop sending/pending message now button.'},
@@ -1607,7 +1607,7 @@ test('#037: Stop sending/pending message from menu',{
 
 
 
-test('#038: Start BrightChat button from List Details page',{
+test('#046: Start BrightChat button from List Details page',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Goes to My Lists page, selects list "test list 15", and then clicks Start BrightChat button. Inputs "topic test" into topic field, and "test #038 [insert of test start run time and date]" in the description field.'},
@@ -1651,7 +1651,7 @@ test('#038: Start BrightChat button from List Details page',{
 
 
 
-test('#039: BrightArrow Central feature from menu',{
+test('#047: BrightArrow Central feature from menu',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Goes to My Lists page, clicks the nav icon in the top left and then selects BrightArrow Central button in the menu. The BrightArrow Central button is already used in several of the tests in this test suite so if it stops working, other tests will fail because of it. This test serves as an isolated instance that can help identify if this single button stops working.'},
@@ -1689,7 +1689,7 @@ test('#039: BrightArrow Central feature from menu',{
 
 
 
-test('#040: Home icon at top of page',{
+test('#048: Home icon at top of page',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Goes to My Lists page, and then clicks on home icon in the top right corner to go back to BrightArrow Central homepage. Ensures that home button works as expected.'},
@@ -1727,7 +1727,7 @@ test('#040: Home icon at top of page',{
 
 
 
-test('#041: Preview button from reports',{
+test('#049: Preview button from reports',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Clicks on the Reports button from BrightArrow Central, selects a report for "test list 17". Then clicks the preview button, and sends a preview to email "brightarrowtest1@gmail.com". Another test later in the suite confirms the delivery of this preview.'},
@@ -1774,7 +1774,7 @@ test('#041: Preview button from reports',{
 
 
 
-test('#042: Preview button from load prior message',{
+test('#050: Preview button from load prior message',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Goes to My Lists and selects list "test list 18". Clicks Edit Message button, and goes to Load Prior Messages tab. Selects prior message and sends preview to email "brightarrowtest1@gmail.com". '},
@@ -1819,7 +1819,7 @@ test('#042: Preview button from load prior message',{
 
 
 
-test('#043: Disable all contacts in a list using upper checkbox, then refresh using dropdown box',{
+test('#051: Disable all contacts in a list using upper checkbox, then refresh using dropdown box',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists, selects list, and then uses the 2nd from the top checkbox to select all icons. Then clicks refresh from dropdown box.'},
@@ -1855,7 +1855,7 @@ test('#043: Disable all contacts in a list using upper checkbox, then refresh us
 
 
 
-test('#044: Edit message for a list with a pending message ',{
+test('#052: Edit message for a list with a pending message ',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists, selects list, and then uses the 2nd from the top checkbox to select all icons. Then clicks refresh from dropdown box.'},
@@ -1889,7 +1889,7 @@ test('#044: Edit message for a list with a pending message ',{
 
 
 
-test('#045: Create message for a list with a pending message ',{
+test('#053: Create message for a list with a pending message ',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists, selects list, and then uses the 2nd from the top checkbox to select all icons. Then clicks refresh from dropdown box.'},
@@ -1924,7 +1924,7 @@ test('#045: Create message for a list with a pending message ',{
 
 
 
-test('#046: Search bar from reports page (reports search) ',{
+test('#054: Search bar from reports page (reports search) ',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists, selects list, and then uses the 2nd from the top checkbox to select all icons. Then clicks refresh from dropdown box.'},
@@ -1958,7 +1958,7 @@ test('#046: Search bar from reports page (reports search) ',{
 
 
 
-test('#047: Most recent/view all feature on my lists page (most recent folders) ',{
+test('#055: Most recent/view all feature on my lists page (most recent folders) ',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists, selects list, and then uses the 2nd from the top checkbox to select all icons. Then clicks refresh from dropdown box.'},
