@@ -441,7 +441,7 @@ test("setup checks part 2", async ({ page }) => {
     await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
     await page.locator('input[name="cb_lists2162271"]').uncheck();
-    await page.getByRole('button', { name: 'ryantest2' }).click();
+    await page.getByRole('button', { name: 'ryan test' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('test list 1 copy');
     await page.getByLabel('Search').press('Enter');

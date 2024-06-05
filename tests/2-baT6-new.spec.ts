@@ -298,7 +298,7 @@ test('#015: Edit a message, make a change and then try backing out of page. Sele
 test('#016: Save message button on Create Message page',{
   tag: ['@Lists'],
   annotation: [
-    {type: 'Test description', description: 'Navigates to My Lists,'},
+    {type: 'Test description', description: 'Navigates to My Lists, selects list and edits message. Saves message, and list is re-entered to confirm changes have been saved.'},
     {type: 'Potential Sources of Failure', description: ''},
     {type: '', description: '● Save changes popup does not work.'},
     {type: '', description: '● List which is used to test this ("test list 3") is not found.'},
@@ -333,7 +333,7 @@ test.skip('#017: Send saved message to a list with 0 contacts/all disabled conta
   tag: ['@Lists'],
   annotation: [
     {type: 'This feature is currently bugged. Skipping this test until bug is resolved.', description: ''},
-    {type: 'Test description', description: 'Navigates to My Lists,'},
+    {type: 'Test description', description: 'Navigates to My Lists, selects list "test list 3" with 0 contacts. Clicks the Send message button, and expects to receive a popup that does not allow a message to be sent using a list with 0 contacts.'},
     {type: 'Potential Sources of Failure', description: ''},
     {type: '', description: '● Save changes popup does not work.'},
     {type: '', description: '● List which is used to test this ("test list 3") is not found.'},
