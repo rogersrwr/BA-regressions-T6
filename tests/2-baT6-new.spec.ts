@@ -1119,8 +1119,13 @@ test('#034: Create a subset list',{
   await page.getByRole('option', { name: '0' }).click();
   await page.getByRole('button', { name: 'Add >>' }).click();
   await expect(page.getByText('Building =')).toBeVisible();
-  await page.getByRole('button', { name: 'OK' }).click();
+  //await page.getByRole('button', { name: 'OK' }).click();
+  const [request2] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'OK' }).click()
+  ]);
   //await page.goto('https://target110.brightarrow.com/r/ViewLists');
+  await page.getByRole('button', { name: 'ryan test' }).click();
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'subset list 1 (linked)' })).toBeVisible();
   await page.getByRole('link', { name: 'subset list 1 (linked)' }).click();
@@ -1166,8 +1171,20 @@ test('#035: Create a superset list',{
   await page.getByText('test list 1 (3 entries)').click();
   await page.getByText('test list 2 (1 entries)').click();
   await page.locator('.MuiBackdrop-root').click();
-  await page.getByRole('button', { name: 'OK' }).click();
+  //await page.getByRole('button', { name: 'OK' }).click();
+  /*
+   * response url's for hitting OK on create superset list in order:
+   * TargetAPI/api/dialList/CreateSupersetList?accessToken=
+   * TargetAPI/api/Folder/GetSelectedFolderSettings?accessToken=
+   * TargetAPI/api/contact/GetFolderList?accessToken=
+   * TargetAPI/api/dialList/GetListsFromFolder?accessToken=
+  */
+  const [request2] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'OK' }).click()
+  ]);
   //await page.goto('https://target110.brightarrow.com/r/ViewLists');
+  await page.getByRole('button', { name: 'ryan test' }).click();
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible({timeout: 30000});
   await expect(page.getByRole('link', { name: 'superset list 1 (superset' })).toBeVisible();
   await page.getByRole('link', { name: 'superset list 1 (superset' }).click();
@@ -1435,7 +1452,16 @@ test('#041: Apply contact filter and send saved message.',{
   await page.getByRole('option', { name: '0' }).click();
   await page.getByRole('button', { name: 'Add >>' }).click();
   await expect(page.getByText('Building =')).toBeVisible();
-  await page.getByRole('button', { name: 'Confirm' }).click();
+  //await page.getByRole('button', { name: 'Confirm' }).click();
+  const [request2] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/CreateFilterList?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'Confirm' }).click()
+  ]);
+  
+  await expect(page.getByText('Message Types to SendNext')).toBeVisible();
+  await expect(page.locator('#vertical-tabpanel-0').getByText('Email')).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'Load Prior Message' })).toBeVisible();
+
   await page.getByRole('tab', { name: 'Proceed' }).click();
   await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
   await page.getByRole('button', { name: 'Yes' }).click();
