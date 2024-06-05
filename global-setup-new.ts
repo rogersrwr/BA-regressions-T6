@@ -366,7 +366,7 @@ test("setup checks part 2", async ({ page }) => {
   await page.getByRole('button', { name: 'BrightArrow Central' }).click();
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
-  await expect(page.getByRole('link', { name: 'test list 1' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
 
 
   //  subset list test teardown
