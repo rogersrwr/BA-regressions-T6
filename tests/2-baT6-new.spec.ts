@@ -10,6 +10,14 @@ const phone = process.env.PHONE_NUMBER;
 const parent_pass = process.env.PARENT_PASS;
 const username2 = process.env.ACCT_LOGIN2;
 const username3 = process.env.ACCT_LOGIN3;
+const username4 = process.env.ACCT_LOGIN4;
+
+
+
+//D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json        
+
+
+
 
 const app = new App({ 
   token: process.env.O_AUTH,
@@ -84,7 +92,7 @@ test('#012: add list to favorites with heart icon, test list 1',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -101,32 +109,32 @@ test('#012: add list to favorites with heart icon, test list 1',{
   //test.setTimeout(50000);
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
-  // await page.getByLabel('Search').click();
-  // await page.getByLabel('Search').fill('test list 1');
-  // await page.getByLabel('Search').press('Enter');
-  // await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
-  // const [request] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   page.getByRole('link', { name: 'Add to favorite' }).click()
-  // ]);
+  await page.getByLabel('Search').click();
+  await page.getByLabel('Search').fill('test list 1');
+  await page.getByLabel('Search').press('Enter');
+  await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
+  const [request] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('link', { name: 'Add to favorite' }).click()
+  ]);
 
-  // if (await page.getByLabel('My Favorites').isVisible()) {
-  //   await expect(page.getByLabel('My Favorites')).toBeVisible();
-  //   await page.getByLabel('My Favorites').click();
-  //   await page.getByRole('option', { name: 'My Favorites' }).click();
-  // }
+  if (await page.getByLabel('My Favorites').isVisible()) {
+    await expect(page.getByLabel('My Favorites')).toBeVisible();
+    await page.getByLabel('My Favorites').click();
+    await page.getByRole('option', { name: 'My Favorites' }).click();
+  }
 
-  // if (await page.getByLabel('auto folder').isVisible()) {
-  //   await expect(page.getByLabel('auto folder')).toBeVisible();
-  //   await page.getByLabel('auto folder').click();
-  //   await page.getByRole('option', { name: 'My Favorites' }).click();
-  // }
-  // const [request2] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   page.getByRole('button', { name: 'OK' }).click()
-  // ]);
-  // await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
-  // await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
+  if (await page.getByLabel('auto folder').isVisible()) {
+    await expect(page.getByLabel('auto folder')).toBeVisible();
+    await page.getByLabel('auto folder').click();
+    await page.getByRole('option', { name: 'My Favorites' }).click();
+  }
+  const [request2] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'OK' }).click()
+  ]);
+  await expect(page.getByRole('button', { name: 'ryan test' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
 });
 
 
@@ -147,7 +155,7 @@ test('#013: add list to favorites with menu, test list 2',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -163,37 +171,38 @@ test('#013: add list to favorites with menu, test list 2',{
   
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
-  // await page.getByLabel('Search').click();
-  // await page.getByLabel('Search').fill('test list 2');
-  // await page.getByLabel('Search').press('Enter');
-  // await page.locator('input[name="cb_lists2162271"]').check();
-  // await page.getByRole('button', { name: 'Select an Action' }).click();
-  // //await page.getByRole('button', { name: 'Add list to favorites' }).click();
-  // const [request] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   page.getByRole('button', { name: 'Add list to favorites' }).click()
-  // ]);
+  await page.getByLabel('Search').click();
+  await page.getByLabel('Search').fill('test list 2');
+  await page.getByLabel('Search').press('Enter');
+  //await page.locator('input[name="cb_lists2162271"]').check();      //for username3
+  await page.locator('input[name="cb_lists2162281"]').check();
+  await page.getByRole('button', { name: 'Select an Action' }).click();
+  //await page.getByRole('button', { name: 'Add list to favorites' }).click();
+  const [request] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/GetFavoriteFolders?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'Add list to favorites' }).click()
+  ]);
 
-  // if (await page.getByLabel('My Favorites').isVisible()) {
-  //   await expect(page.getByLabel('My Favorites')).toBeVisible();
-  //   await page.getByLabel('My Favorites').click();
-  //   await page.getByRole('option', { name: 'My Favorites' }).click();
-  // }
+  if (await page.getByLabel('My Favorites').isVisible()) {
+    await expect(page.getByLabel('My Favorites')).toBeVisible();
+    await page.getByLabel('My Favorites').click();
+    await page.getByRole('option', { name: 'My Favorites' }).click();
+  }
 
-  // if (await page.getByLabel('auto folder').isVisible()) {
-  //   await expect(page.getByLabel('auto folder')).toBeVisible();
-  //   await page.getByLabel('auto folder').click();
-  //   await page.getByRole('option', { name: 'My Favorites' }).click();
-  // }
-  // const [request2] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   page.getByRole('button', { name: 'OK' }).click()
-  // ]);
-  // //await page.getByRole('button', { name: 'OK' }).click();
-  // await page.locator('.MuiPaper-root > div').first().click();
-  // await page.locator('#searchBarBtn').click();
-  // await page.getByRole('button', { name: 'My Favorites' }).click();
-  // await expect(page.getByRole('link', { name: 'test list 2' })).toBeVisible();
+  if (await page.getByLabel('auto folder').isVisible()) {
+    await expect(page.getByLabel('auto folder')).toBeVisible();
+    await page.getByLabel('auto folder').click();
+    await page.getByRole('option', { name: 'My Favorites' }).click();
+  }
+  const [request2] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/folder/AddToFavoriteFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'OK' }).click()
+  ]);
+  //await page.getByRole('button', { name: 'OK' }).click();
+  await page.locator('.MuiPaper-root > div').first().click();
+  await page.locator('#searchBarBtn').click();
+  await page.getByRole('button', { name: 'My Favorites' }).click();
+  await expect(page.getByRole('link', { name: 'test list 2' })).toBeVisible();
 
 });
 
@@ -215,7 +224,7 @@ test('#014: Copy list feature from menu (My Lists page)',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -239,7 +248,7 @@ test('#014: Copy list feature from menu (My Lists page)',{
   await page.getByRole('button', { name: 'OK' }).click();
   await expect(page.getByRole('link', { name: 'test list 1 copy (linked)' })).toBeVisible();
   await page.getByRole('link', { name: 'test list 1 copy (linked)' }).click();
-  //await expect(page.getByRole('cell', { name: 'contact, test' })).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'contact, test' })).toBeVisible();
 });
 
 
@@ -1084,7 +1093,7 @@ test('#034: Create a subset list',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -1115,7 +1124,7 @@ test('#034: Create a subset list',{
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'subset list 1 (linked)' })).toBeVisible();
   await page.getByRole('link', { name: 'subset list 1 (linked)' }).click();
-  //await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
 });
 
 
@@ -1133,7 +1142,7 @@ test('#035: Create a superset list',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -1162,7 +1171,7 @@ test('#035: Create a superset list',{
   await expect(page.getByRole('link', { name: 'test list 1', exact: true })).toBeVisible({timeout: 30000});
   await expect(page.getByRole('link', { name: 'superset list 1 (superset' })).toBeVisible();
   await page.getByRole('link', { name: 'superset list 1 (superset' }).click();
-  //await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'phone, ryan' })).toBeVisible();
 });
 
 
@@ -1399,7 +1408,7 @@ test('#041: Apply contact filter and send saved message.',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -1413,24 +1422,24 @@ test('#041: Apply contact filter and send saved message.',{
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
   
-  // await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  // await page.getByRole('button', { name: 'ryantest2' }).click();
-  // await page.getByRole('link', { name: 'test list 1', exact: true }).click();
-  // await page.getByLabel('', { exact: true }).click();
-  // await page.getByRole('option', { name: 'Apply Contact Filter' }).click();
-  // await page.locator('#strSelectedFieldName').click();
-  // await page.getByRole('option', { name: 'Building' }).click();
-  // await page.locator('#strSelectedComparator').click();
-  // await page.getByRole('option', { name: 'Is equal to' }).click();
-  // await page.getByRole('combobox', { name: '​', exact: true }).click();
-  // await page.getByRole('option', { name: '0' }).click();
-  // await page.getByRole('button', { name: 'Add >>' }).click();
-  // await expect(page.getByText('Building =')).toBeVisible();
-  // await page.getByRole('button', { name: 'Confirm' }).click();
-  // await page.getByRole('tab', { name: 'Proceed' }).click();
-  // await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
-  // await page.getByRole('button', { name: 'Yes' }).click();
-  // await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
+  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
+  await page.getByRole('button', { name: 'ryan test' }).click();
+  await page.getByRole('link', { name: 'test list 1', exact: true }).click();
+  await page.getByLabel('', { exact: true }).click();
+  await page.getByRole('option', { name: 'Apply Contact Filter' }).click();
+  await page.locator('#strSelectedFieldName').click();
+  await page.getByRole('option', { name: 'Building' }).click();
+  await page.locator('#strSelectedComparator').click();
+  await page.getByRole('option', { name: 'Is equal to' }).click();
+  await page.getByRole('combobox', { name: '​', exact: true }).click();
+  await page.getByRole('option', { name: '0' }).click();
+  await page.getByRole('button', { name: 'Add >>' }).click();
+  await expect(page.getByText('Building =')).toBeVisible();
+  await page.getByRole('button', { name: 'Confirm' }).click();
+  await page.getByRole('tab', { name: 'Proceed' }).click();
+  await page.locator('div').filter({ hasText: /^Send Message Now$/ }).click();
+  await page.getByRole('button', { name: 'Yes' }).click();
+  await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
 });
 
 

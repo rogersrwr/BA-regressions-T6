@@ -13,6 +13,7 @@ const e_pass = process.env.EMAIL_PASS;
 const phone2 = process.env.PHONE_ALT;
 const username2 = process.env.ACCT_LOGIN2;
 const username3 = process.env.ACCT_LOGIN3;
+const username4 = process.env.ACCT_LOGIN4;
 
 const app = new App({ 
   token: process.env.O_AUTH,
@@ -99,7 +100,7 @@ test('#056: Removing list from favorites folder with heart icon',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -113,16 +114,16 @@ test('#056: Removing list from favorites folder with heart icon',{
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  // await page.getByRole('button', { name: 'My Favorites' }).click();
-  // await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
-  // await page.getByRole('link', { name: 'Remove from folder' }).click();
+  await page.getByRole('button', { name: 'My Favorites' }).click();
+  await page.getByRole('link', { name: 'test list 1', exact: true }).hover();
+  await page.getByRole('link', { name: 'Remove from folder' }).click();
 
-  // const [request] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   await page.getByRole('button', { name: 'OK' }).click()
-  // ]);
+  const [request] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    await page.getByRole('button', { name: 'OK' }).click()
+  ]);
 
-  // await expect(page.getByText('My Favorites Lists')).toBeVisible();
+  await expect(page.getByText('My Favorites Lists')).toBeVisible();
 
 });
 
@@ -140,7 +141,7 @@ test('#057: Removing list from favorites folder with menu',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username3}`);
+    await page.getByLabel('Username').fill(`${username4}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -153,17 +154,17 @@ test('#057: Removing list from favorites folder with menu',{
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
-  // await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
-  // await page.getByRole('button', { name: 'My Favorites' }).click();
-  // await page.getByRole('link', { name: 'test list 2', exact: true }).hover();
-  // await page.getByRole('link', { name: 'Remove from folder' }).click();
+  await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
+  await page.getByRole('button', { name: 'My Favorites' }).click();
+  await page.getByRole('link', { name: 'test list 2', exact: true }).hover();
+  await page.getByRole('link', { name: 'Remove from folder' }).click();
 
-  // const [request] = await Promise.all([
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   await page.getByRole('button', { name: 'OK' }).click()
-  // ]);
+  const [request] = await Promise.all([
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
+    await page.getByRole('button', { name: 'OK' }).click()
+  ]);
 
-  // await expect(page.getByText('My Favorites Lists')).toBeVisible();
+  await expect(page.getByText('My Favorites Lists')).toBeVisible();
 
 });
 
