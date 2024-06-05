@@ -8,7 +8,6 @@ const username3 = process.env.ACCT_LOGIN3;
 const username4 = process.env.ACCT_LOGIN4;
 
 
-
 //D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json        
 
 
@@ -287,7 +286,7 @@ test("setup checks part 2", async ({ page }) => {
       page.getByRole('button', { name: 'OK' }).click()
     ]);
 
-    await page.getByRole('button', { name: 'My Favorites' }).click();
+    //await page.getByRole('button', { name: 'My Favorites' }).click();
 
     //await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
     await page.locator('#searchBarBtn').click();
