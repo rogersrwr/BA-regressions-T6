@@ -108,7 +108,7 @@ test('#000: Removing list from favorites folder with heart icon',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
@@ -149,7 +149,7 @@ test('#000: Removing list from favorites folder with menu',{
       page.getByRole('button', { name: 'Sign in' }).click()
     ]);
   
-    await expect(page.getByText('Welcome, Ryantest2')).toBeVisible();
+    await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
     await expect(page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByText('Hi, I\'m the new BrightArrow')).toBeVisible();
     await page.frameLocator('iframe[title="Help Scout Beacon - Messages and Notifications"]').getByRole('button', { name: 'Close' }).click();  
   });
