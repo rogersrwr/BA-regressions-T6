@@ -8,6 +8,7 @@ const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
 const phone = process.env.PHONE_NUMBER;
 const parent_pass = process.env.PARENT_PASS;
+const username3 = process.env.ACCT_LOGIN3;
 
 const app = new App({ 
   token: process.env.O_AUTH,
@@ -54,7 +55,7 @@ test.describe.configure({
 test.beforeEach('', async ({ page }) => {
   await page.goto('https://target110.brightarrow.com/r/');
   await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill(`${username}`);
+  await page.getByLabel('Username').fill(`${username3}`);
   await page.getByLabel('Password').click();
   await page.getByLabel('Password').fill(`${password}`);
   

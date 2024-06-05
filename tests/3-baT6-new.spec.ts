@@ -12,6 +12,7 @@ const email = process.env.EMAIL;
 const e_pass = process.env.EMAIL_PASS;
 const phone2 = process.env.PHONE_ALT;
 const username2 = process.env.ACCT_LOGIN2;
+const username3 = process.env.ACCT_LOGIN3;
 
 const app = new App({ 
   token: process.env.O_AUTH,
@@ -98,7 +99,7 @@ test('#000: Removing list from favorites folder with heart icon',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -139,7 +140,7 @@ test('#000: Removing list from favorites folder with menu',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -183,7 +184,7 @@ test('#000: Remove email from Do Not Contact list/time',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -221,7 +222,7 @@ test('#020: Delete folder, auto folder',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -259,7 +260,7 @@ test('#021: Delete list, auto list 1',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -302,7 +303,7 @@ test('#022: Delete list, auto list 2',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     
@@ -349,7 +350,7 @@ test('#023: Delete list 3, auto list import',{
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     

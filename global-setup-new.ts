@@ -4,6 +4,7 @@ import { json } from 'stream/consumers';
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
 const username2 = process.env.ACCT_LOGIN2;
+const username3 = process.env.ACCT_LOGIN3;
 
 
 const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
@@ -22,7 +23,7 @@ test("setup checks part 1", async ({ page }) => {
   // INITIAL LOG IN
   await page.goto('https://target110.brightarrow.com/r/');
   await page.getByLabel('Username').click();
-  await page.getByLabel('Username').fill(`${username}`);
+  await page.getByLabel('Username').fill(`${username3}`);
   await page.getByLabel('Password').click();
   await page.getByLabel('Password').fill(`${password}`);
   const [request] = await Promise.all([
@@ -214,7 +215,7 @@ test("setup checks part 2", async ({ page }) => {
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
-    await page.getByLabel('Username').fill(`${username2}`);
+    await page.getByLabel('Username').fill(`${username3}`);
     await page.getByLabel('Password').click();
     await page.getByLabel('Password').fill(`${password}`);
     

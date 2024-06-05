@@ -13,6 +13,7 @@ env:
   O_AUTH: ${{ secrets.O_AUTH }}
   PHONE_ALT: ${{ secrets.PHONE_ALT }}
   ACCT_LOGIN2: ${{ secrets.USERNAME2 }}
+  ACCT_LOGIN3: ${{ secrets.USERNAME3 }}
 
 
 permissions:
