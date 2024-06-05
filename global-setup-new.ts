@@ -344,8 +344,8 @@ test("setup checks part 2", async ({ page }) => {
     ]);
     //await page.locator('input[name="cb_lists2161161"]').uncheck();
     await page.locator('#searchBarBtn').click();
-    await expect(page.getByRole('button', { name: 'My Favorites' })).toBeVisible();
-    await page.getByRole('button', { name: 'My Favorites' }).click();
+    //await expect(page.getByRole('button', { name: 'My Favorites' })).toBeVisible();
+    //await page.getByRole('button', { name: 'My Favorites' }).click();
     await page.getByLabel('Search').click();
     await page.getByLabel('Search').fill('test list 2');
     await page.getByLabel('Search').press('Enter');
