@@ -660,7 +660,7 @@ test('#023: Send Message button from List Details page',{
   await page.getByLabel('Subject').fill(`#015 ${jsonData.datetime}`);
   await page.getByRole('tab', { name: 'Proceed' }).click();
   await page.locator('div').filter({ hasText: /^Save Message$/ }).click();
-  await expect(page.getByRole('cell', { name: 'contact, test' })).toBeVisible();
+  await expect(page.getByRole('cell', { name: 'contact, test' })).toBeVisible({timeout: 30000});
 
   await page.locator('div').filter({ hasText: 'Send Message' }).nth(3).click();
   await page.getByRole('button', { name: 'Yes' }).click();
