@@ -1238,7 +1238,7 @@ test('#036: Create Message feature from Select An Action dropdown in My Lists pa
   await page.getByRole('option', { name: '[[today]]' }).click();
   await page.getByRole('tab', { name: 'Proceed' }).click();
   await page.locator('div').filter({ hasText: /^Save Message$/ }).click();
-  await expect(page.getByText('List Details')).toBeVisible();
+  await expect(page.getByText('List Details'), 'Error here likely means that loading took too long after hitting "Save Message" and items on the expected page after clicking "Save Message" were not able to be viewed.').toBeVisible({timeout: 30000});
   await expect(page.getByRole('cell', { name: 'contact, test8' })).toBeVisible();
 });
 
@@ -1457,7 +1457,7 @@ test('#041: Apply contact filter and send saved message.',{
     page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/CreateFilterList?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByRole('button', { name: 'Confirm' }).click()
   ]);
-  
+
   await expect(page.getByText('Message Types to SendNext')).toBeVisible();
   await expect(page.locator('#vertical-tabpanel-0').getByText('Email')).toBeVisible();
   await expect(page.getByRole('tab', { name: 'Load Prior Message' })).toBeVisible();
