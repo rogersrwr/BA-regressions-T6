@@ -37,9 +37,15 @@ test.beforeAll('', async ({ }) => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1;
     const day = currentDate.getDate();
-    const hours = currentDate.getHours();
+    let hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
 
+    if (hours < 7) {
+      hours = (hours + 24) - 7;
+
+    } else if (hours > 7) {
+      hours = hours -7;
+    }
 
     const formattedDateTime = `${year}-${month}-${day}_${hours}-${minutes}`;
     const msgString = `test msg at ${formattedDateTime}`;
