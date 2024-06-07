@@ -52,21 +52,21 @@ export default defineConfig({
     {
       name: 'chromium',
       dependencies: ['setup'],
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 },  },
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, timezoneId: 'America/Los_Angeles' },
     },
     {
       name: 'chromium2',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, },
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, timezoneId: 'America/Los_Angeles' },
       
     },
     {
       name: 'chromium3',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, },
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 }, timezoneId: 'America/Los_Angeles' },
       
     },
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'], viewport: { width: 1920, height: 1080 }, },
+      use: { ...devices['Desktop Firefox'], viewport: { width: 1920, height: 1080 }, timezoneId: 'America/Los_Angeles' },
     },
     // {
     //   name: "msg-check",
