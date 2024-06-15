@@ -17,6 +17,7 @@ export default defineConfig({
   expect: {
     timeout: 25 * 1000,
   },
+  maxFailures: process.env.CI ? 1:1,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -26,8 +27,8 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  //reporter: 'html',
-  reporter: process.env.CI ? 'blob' : 'html',
+  reporter: 'html',
+  //reporter: process.env.CI ? 'blob' : 'html',
   snapshotPathTemplate: '{testDir}/{testFileName}-snapshots/{arg}{ext}',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -47,7 +48,7 @@ export default defineConfig({
     {
       name: "setup",
       testDir: "./",
-      testMatch: "global-setup-new.ts",
+      testMatch: "global-setup-new2.ts",
     },
     {
       name: 'chromium',
