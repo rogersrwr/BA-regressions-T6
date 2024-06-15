@@ -47,16 +47,16 @@ test.beforeAll('', async ({ }) => {
     let hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
 
-    if (hours < 7) {
-      hours = (hours + 24) - 7;
+    // if (hours < 7) {
+    //   hours = (hours + 24) - 7;
 
-    } else if (hours > 7) {
-      hours = hours -7;
-    }
-    hours = hours - 7;
-    if (hours < 0) {
-      hours = hours + 24;
-    }
+    // } else if (hours > 7) {
+    //   hours = hours -7;
+    // }
+    // hours = hours - 7;
+    // if (hours < 0) {
+    //   hours = hours + 24;
+    // }
 
     const formattedDateTime = `${year}-${month}-${day}_${hours}-${minutes}`;
     const msgString = `test msg at ${formattedDateTime}`;
