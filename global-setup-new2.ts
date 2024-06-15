@@ -431,15 +431,17 @@ test("setup checks part 2", async ({ page }) => {
   await expect(page.getByText('ryan test Lists (0)')).toBeVisible();
 
 
-
+//TargetAPI/api/dialList/GetListsFromFolder?accessToken=
+//TargetAPI/api/Message/Logger
 
   //  #009-2 copy a list, test list 1 copy teardown
   await page.getByLabel('Search').click();
   await page.getByLabel('Search').fill('copy t list 1');
   const [request17] = await Promise.all([
-    page.waitForResponse(response => response.url().includes("TargetAPI/api/Message/Logger") && response.status() === 200, {timeout: 60000}),
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByLabel('Search').press('Enter')
   ]);
+  await page.waitForResponse(response => response.url().includes("TargetAPI/api/Message/Logger") && response.status() == 200, {timeout: 60000});
   await expect(page.getByRole('button', { name: 'test folder' })).toBeHidden();      //new
 
   const myElement9 = page.locator('.listOfListsRow > td').first();
