@@ -63,6 +63,7 @@ test.beforeAll('', async ({ }) => {
     jsonData.datetime = msgString;
     jsonData.tHour = hours;
     jsonData.tMin = minutes;
+    jsonData.tDay = day;
     jsonData.started = true;
     jsonData.failures = false;
     jsonData.finished = false;
@@ -334,6 +335,7 @@ test('#002: Setup for test #044, stop message hover icon test ', {
 }, async ({ page }) => {
   const x = jsonData.tHour;
   const y = jsonData.tMin;
+  let w = jsonData.tDay;
 
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
@@ -345,6 +347,14 @@ test('#002: Setup for test #044, stop message hover icon test ', {
   await page.getByRole('tab', { name: 'Proceed' }).click();
   await page.locator('div').filter({ hasText: /^Schedule Message$/ }).click();
   await page.getByLabel('Choose date, selected date is ').click();
+
+  if (w != 29) {
+    w += 2;
+  }
+
+  await page.getByRole('gridcell', { name: `${w}` }).click();
+  
+
 
   switch(x + 1) {
     case 1:
@@ -474,6 +484,7 @@ test('#003: Setup for test #037, stop message hover icon test ', {
 }, async ({ page }) => {
   const x = jsonData.tHour;
   const y = jsonData.tMin;
+  let w = jsonData.tDay;
 
   await page.locator('div').filter({ hasText: /^My Lists$/ }).click();
   await page.getByRole('button', { name: 'ryan test' }).click();
@@ -485,6 +496,14 @@ test('#003: Setup for test #037, stop message hover icon test ', {
   await page.getByRole('tab', { name: 'Proceed' }).click();
   await page.locator('div').filter({ hasText: /^Schedule Message$/ }).click();
   await page.getByLabel('Choose date, selected date is ').click();
+
+  if (w != 29) {
+    w += 2;
+  }
+
+  await page.getByRole('gridcell', { name: `${w}` }).click();
+
+  
 
   switch(x + 1) {
     case 1:
