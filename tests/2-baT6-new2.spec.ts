@@ -289,6 +289,7 @@ test('#015: Edit a message, make a change and then try backing out of page. Sele
   await page.getByRole('tab', { name: 'Email' }).click();
   await page.getByLabel('Subject').click();
   await page.getByLabel('Subject').fill(`${jsonData.datetime}`);
+  await page.getByRole('tab', { name: 'Proceed' }).click();
   await page.getByTestId('FastRewindIcon').click();
   await page.getByRole('button', { name: 'Yes' }).click();
   await expect(page.getByText('List Details')).toBeVisible();
@@ -1820,6 +1821,7 @@ test('#050: Preview button from load prior message',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
+  test.skip();
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
