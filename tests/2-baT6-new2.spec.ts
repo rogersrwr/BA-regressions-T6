@@ -803,15 +803,15 @@ test('#026: Active BrightChats feature from main menu',{
   });
   
   await page.locator('div').filter({ hasText: /^Active BrightChats$/ }).click();
-  // await expect(page.getByRole('link', { name: 'ryan test & test contact1' })).toBeVisible();
-  // await page.getByRole('link', { name: 'ryan test & test contact1' }).click();
-  // await page.getByLabel('Type message here...').click();
-  // await page.getByLabel('Type message here...').fill(`${jsonData.datetime}`);
-  // const [request] = await Promise.all([
-  //   //Failure here means automation was not able to connect to TargetAPI in under 60 secs.
-  //   page.waitForResponse(response => response.url().includes("TargetAPI/api/InstantMessaging/PostChannelMessage?accessToken=") && response.status() === 200, {timeout: 60000}),
-  //   page.getByRole('button', { name: 'Send Message' }).click()
-  // ]);
+  await expect(page.getByRole('link', { name: 'ryan test & test contact1' })).toBeVisible();
+  await page.getByRole('link', { name: 'ryan test & test contact1' }).click();
+  await page.getByLabel('Type message here...').click();
+  await page.getByLabel('Type message here...').fill(`${jsonData.datetime}`);
+  const [request] = await Promise.all([
+    //Failure here means automation was not able to connect to TargetAPI in under 60 secs.
+    page.waitForResponse(response => response.url().includes("TargetAPI/api/InstantMessaging/PostChannelMessage?accessToken=") && response.status() === 200, {timeout: 60000}),
+    page.getByRole('button', { name: 'Send Message' }).click()
+  ]);
 });
 
 
