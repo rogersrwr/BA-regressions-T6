@@ -401,9 +401,9 @@ test('#063: ParentHub message received confirmation',{
   await page.goto('https://target110.brightarrow.com/m/');
   await page.getByRole('button', { name: 'Parent / Student Login' }).click();
   await page.getByLabel('Enter your phone number').click();
-  await page.getByLabel('Enter your phone number').fill(`8624385648`);
+  await page.getByLabel('Enter your phone number').fill(`${phone}`);
   await page.getByLabel('Enter your password').click();
-  // await page.getByLabel('Enter your password').fill(`RogerOf26`);
+  // await page.getByLabel('Enter your password').fill(`${parent_pass}`);
   // await page.getByLabel('Enter your password').press('Enter');
   // await page.getByRole('button', { name: 'OK' }).click();
   // await page.getByRole('button', { name: 'Cancel' }).click();
