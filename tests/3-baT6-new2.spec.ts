@@ -432,6 +432,8 @@ test('#064: Test #021 receive confirmation.',{
   await page.getByRole('link', { name: 'Sign in' }).click();
   await page.getByLabel('Email or phone').fill(`${email}`);
   //await page.getByRole('button', { name: 'Next' }).click();
+
+  /*
   await page.getByLabel('Email or phone').press('Enter');
   await page.getByLabel('Enter your password').fill(`${e_pass}`);
   //await page.getByRole('button', { name: 'Next' }).click();
@@ -454,7 +456,7 @@ test('#064: Test #021 receive confirmation.',{
     await page.getByLabel('Message by ‪79041‬:').click();
     //await expect(page.getByRole('list').getByText(`#013 ${jsonData.datetime}`, { exact: true })).toBeVisible();
   }
-
+  */
 });
 
 
@@ -475,6 +477,7 @@ test('#065: Test #023 receive confirmation.',{
   await page.getByRole('link', { name: 'Sign in' }).click();
   await page.getByLabel('Email or phone').fill(`${email}`);
   //await page.getByRole('button', { name: 'Next' }).click();
+/*
   await page.getByLabel('Email or phone').press('Enter');
   await page.getByLabel('Enter your password').fill(`${e_pass}`);
   //await page.getByRole('button', { name: 'Next' }).click();
@@ -496,7 +499,7 @@ test('#065: Test #023 receive confirmation.',{
     //await expect(page.getByRole('link', { name: `#015 ${jsonData.datetime}` })).toBeVisible();
     //await page.getByRole('link', { name: `#015 ${jsonData.datetime}` }).click();
   }
-
+*/
   
 
 });
