@@ -58,7 +58,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests 
-      run: npx playwright test tests/test-msg.spec.ts --project=chromium2 --ignore-snapshots
+      run: npx playwright test --project=chromium --ignore-snapshots
     - uses: actions/upload-artifact@v4
       if: always()
       with:
@@ -75,3 +75,17 @@ jobs:
         name: html-report--attempt-${{ github.run_attempt }}
         path: playwright-report/
         retention-days: 14
+
+    - name: Setup Pages
+      if: always()
+      uses: actions/configure-pages@v5
+    - name: Upload artifact
+      if: always()
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: 'playwright-report/'
+    - name: Deploy to GitHub Pages
+      if: always()
+      id: deployment
+      uses: actions/deploy-pages@v4
+
