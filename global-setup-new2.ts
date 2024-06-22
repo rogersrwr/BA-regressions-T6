@@ -149,7 +149,7 @@ test("setup checks part 1", async ({ page }) => {
     page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000}),
     page.getByLabel('Search').press('Enter')
   ]);
-  await page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000});
+  //await page.waitForResponse(response => response.url().includes("TargetAPI/api/dialList/GetListsFromFolder?accessToken=") && response.status() === 200, {timeout: 60000});
   const myElement4 = page.locator('.listOfListsRow > td').first();
   if (await myElement4.isVisible()) {
     await page.locator('input[name="cb_lists2162271"]').check();
