@@ -462,8 +462,8 @@ test('#019: Disabling a contact', {
   });
   await test.step('Disable a contact', async () => {
     //old one was #cb_list438620451
-    await expect(page.locator('#cb_list593465373'), 'Error here means test was likely not properly setup due to pre-test setup failing.').toBeChecked();
-    await page.locator('#cb_list593465373').uncheck();
+    await expect(page.locator('#cb_list58424192'), 'Error here means test was likely not properly setup due to pre-test setup failing.').toBeChecked();
+    await page.locator('#cb_list58424192').uncheck();
   });
   await test.step('Back out and re-enter list to verify changes have been saved', async () => {
     await page.getByTestId('FastRewindIcon').click();
