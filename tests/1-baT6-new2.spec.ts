@@ -352,7 +352,7 @@ test('#002: Setup for test #044, stop message hover icon test ', {
     w += 2;
   }
 
-  await page.getByRole('gridcell', { name: `${w}` }).click();
+  await page.getByRole('gridcell', { name: `${w}`, exact: true }).click();
   
 
 
@@ -501,7 +501,7 @@ test('#003: Setup for test #037, stop message hover icon test ', {
     w += 2;
   }
 
-  await page.getByRole('gridcell', { name: `${w}` }).click();
+  await page.getByRole('gridcell', { name: `${w}`, exact: true }).click();
 
   
 
