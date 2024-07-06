@@ -196,8 +196,8 @@ test("setup checks part 1", async ({ page }) => {
   if (await page.locator('tr').filter({ hasText: 'phone, ryan5555555557' }).getByTestId('CheckBoxIcon').isHidden()) {
     //await page.locator('#cb_list438620451').check();
     const [request8] = await Promise.all([
-      //page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/EnableContact?accessToken=") && response.status() === 200, { timeout: 60000}),
-      page.locator('#cb_list593465373').check()
+      page.waitForResponse(response => response.url().includes("TargetAPI/api/dialListContact/EnableContact?accessToken=") && response.status() === 200, { timeout: 60000}),
+      page.locator('#cb_list58424192').check()
     ]);
   }
 
