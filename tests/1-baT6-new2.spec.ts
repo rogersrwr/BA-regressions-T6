@@ -2,7 +2,7 @@ import { test, expect, firefox } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
 const { App } = require('@slack/bolt');
-const { Octokit } = require('@octokit/core');
+import axios from 'axios';
 
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
@@ -12,8 +12,6 @@ const username3 = process.env.ACCT_LOGIN3;
 const username4 = process.env.ACCT_LOGIN4;
 
 
-const octokit = new Octokit({
-})
 
 
 
@@ -27,7 +25,25 @@ const octokit = new Octokit({
 */  
 
 
+async function sendPostRequest() {
+  const url = 'http://44.243.106.99:3000/your-endpoint';
+  const data = {
+    action: 'addBV'
+  };
 
+  const headers = {
+    'Content-Type': 'application/json'
+  };
+
+  try {
+    const response = await axios.post(url, data, { headers });
+    console.log('Response data:', response.data);
+  } catch (error) {
+    console.error('Error sending POST request:', error);
+  }
+}
+
+sendPostRequest();
 
 
 const app = new App({ 
@@ -41,14 +57,6 @@ const channelId = 'C06LGR0MJRW';       //channelId for BA slack, automated_test_
 const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
 test.beforeAll('', async ({ }) => {
-
-  await octokit.request('POST http://44.243.106.99:3000/your-endpoint', {
-    action: 'addBV',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-
 
   if (jsonData.started == false) {
     const currentDate = new Date();
