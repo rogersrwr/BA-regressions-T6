@@ -2,7 +2,7 @@ import { test, expect, firefox } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
 const { App } = require('@slack/bolt');
-import { Octokit } from '@octokit/core';
+const { Octokit } = await import('@octokit/core');
 
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
