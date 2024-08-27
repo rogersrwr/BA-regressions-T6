@@ -15,12 +15,7 @@ const username4 = process.env.ACCT_LOGIN4;
 const octokit = new Octokit({
 })
 
-await octokit.request('POST http://44.243.106.99:3000/your-endpoint', {
-  action: 'addBV',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
+
 
 
 /*
@@ -46,6 +41,15 @@ const channelId = 'C06LGR0MJRW';       //channelId for BA slack, automated_test_
 const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
 test.beforeAll('', async ({ }) => {
+
+  await octokit.request('POST http://44.243.106.99:3000/your-endpoint', {
+    action: 'addBV',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  
   if (jsonData.started == false) {
     const currentDate = new Date();
 
