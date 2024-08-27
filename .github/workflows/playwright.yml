@@ -44,6 +44,8 @@ jobs:
       run: npm ci
     - name: Install Slack New
       run: npm install @slack/bolt
+    - name: Install octokit
+      run: npm i @octokit/core
 
     - name: Cache Playwright binaries
       uses: actions/cache@v4
