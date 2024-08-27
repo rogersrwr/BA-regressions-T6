@@ -2,7 +2,7 @@ import { test, expect, firefox } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
 const { App } = require('@slack/bolt');
-
+import { Octokit } from "@octokit/core";
 
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
@@ -12,7 +12,15 @@ const username3 = process.env.ACCT_LOGIN3;
 const username4 = process.env.ACCT_LOGIN4;
 
 
+const octokit = new Octokit({
+})
 
+await octokit.request('POST http://44.243.106.99:3000/your-endpoint', {
+  action: 'addBV',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
 
 
 /*
