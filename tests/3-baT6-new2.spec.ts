@@ -2,7 +2,7 @@ import { test, expect, firefox } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
 const { App } = require('@slack/bolt');
-
+import axios from 'axios';
 
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
@@ -14,6 +14,7 @@ const phone2 = process.env.PHONE_ALT;
 const username2 = process.env.ACCT_LOGIN2;
 const username3 = process.env.ACCT_LOGIN3;
 const username4 = process.env.ACCT_LOGIN4;
+const endp = process.env.ENDPOINT;
 
 
 
@@ -653,3 +654,23 @@ test('wrap up tests', async ({ page }) => {
 
 
 
+
+async function sendPostRequest() {
+  const url = `${endp}`;
+  const data = {
+    action: 'addBV'
+  };
+
+  const headers = {
+    'Content-Type': 'application/json'
+  };
+
+  try {
+    const response = await axios.post(url, data, { headers });
+    console.log('Response data:', response.data);
+  } catch (error) {
+    console.error('Error sending POST request:', error);
+  }
+}
+
+sendPostRequest();

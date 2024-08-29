@@ -15,6 +15,7 @@ env:
   ACCT_LOGIN2: ${{ secrets.USERNAME2 }}
   ACCT_LOGIN3: ${{ secrets.USERNAME3 }}
   ACCT_LOGIN4: ${{ secrets.USERNAME4 }}
+  ENDPOINT: ${{ secrets.ENDPOINT }}
 
 
 permissions:
