@@ -2,7 +2,8 @@ import { test, expect, firefox } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
 const { App } = require('@slack/bolt');
-
+const endp = process.env.ENDPOINT;
+import axios from 'axios';
 
 const username = process.env.ACCT_LOGIN;
 const password = process.env.ACCT_PASSWORD;
@@ -38,6 +39,22 @@ const channelId = 'C06LGR0MJRW';       //channelId for BA slack, automated_test_
 const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
 test.beforeAll('', async ({ }) => {
+
+  const url = `${endp}`;
+  const data = {
+    action: 'addBV'
+  };
+
+  const headers = {
+    'Content-Type': 'application/json'
+  };
+
+  try {
+    const response = await axios.post(url, data, { headers });
+    console.log('Response data:', response.data);
+  } catch (error) {
+    console.error('Error sending POST request:', error);
+  }
 
   if (jsonData.started == false) {
     const currentDate = new Date();
