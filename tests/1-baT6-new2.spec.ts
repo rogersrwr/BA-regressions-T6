@@ -40,23 +40,27 @@ const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json
 
 test.beforeAll('', async ({ }) => {
 
-  const url = `${endp}`;
-  const data = {
-    action: 'addBV'
-  };
 
-  const headers = {
-    'Content-Type': 'application/json'
-  };
-
-  try {
-    const response = await axios.post(url, data, { headers });
-    console.log('Response data:', response.data);
-  } catch (error) {
-    console.error('Error sending POST request:', error);
-  }
 
   if (jsonData.started == false) {
+
+
+    const url = `${endp}`;
+    const data = {
+      action: 'addBV'
+    };
+  
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+  
+    try {
+      const response = await axios.post(url, data, { headers });
+      console.log('Response data:', response.data);
+    } catch (error) {
+      console.error('Error sending POST request:', error);
+    }
+    
     const currentDate = new Date();
 
     const year = currentDate.getFullYear();
