@@ -2,7 +2,7 @@ import { test, expect, firefox } from '@playwright/test';
 import * as fs from 'fs';
 import { json } from 'stream/consumers';
 const { App } = require('@slack/bolt');
-const endp = process.env.ENDPOINT;
+
 import axios from 'axios';
 
 const username = process.env.ACCT_LOGIN;
@@ -11,7 +11,7 @@ const phone = process.env.PHONE_NUMBER;
 const parent_pass = process.env.PARENT_PASS;
 const username3 = process.env.ACCT_LOGIN3;
 const username4 = process.env.ACCT_LOGIN4;
-
+const endp = process.env.ENDPOINT;
 
 
 
