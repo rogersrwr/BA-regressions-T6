@@ -650,12 +650,7 @@ test('wrap up tests', async ({ page }) => {
   jsonData.finished = true;
   const jsonString = JSON.stringify(jsonData, null, 2);
   fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
-});
 
-
-
-
-async function sendPostRequest() {
   const url = `${endp}`;
   const data = {
     action: 'addBV'
@@ -671,6 +666,28 @@ async function sendPostRequest() {
   } catch (error) {
     console.error('Error sending POST request:', error);
   }
-}
 
-sendPostRequest();
+});
+
+
+
+
+// async function sendPostRequest() {
+//   const url = `${endp}`;
+//   const data = {
+//     action: 'addBV'
+//   };
+
+//   const headers = {
+//     'Content-Type': 'application/json'
+//   };
+
+//   try {
+//     const response = await axios.post(url, data, { headers });
+//     console.log('Response data:', response.data);
+//   } catch (error) {
+//     console.error('Error sending POST request:', error);
+//   }
+// }
+
+// sendPostRequest();
