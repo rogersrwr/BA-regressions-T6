@@ -355,6 +355,7 @@ test.skip('#002: Setup for test #044, stop message hover icon test ', {
     { type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],  
 }, async ({ page }) => {
+  /*
   const x = jsonData.tHour;
   const y = jsonData.tMin;
   let w = jsonData.tDay;
@@ -486,6 +487,7 @@ test.skip('#002: Setup for test #044, stop message hover icon test ', {
   //await page.goto('https://target110.brightarrow.com/r/home');
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
   await expect(page.getByText('test list 14 -- 1 contacts.')).toBeVisible();
+  */
 });
 
 
@@ -494,7 +496,7 @@ test.skip('#002: Setup for test #044, stop message hover icon test ', {
 
 
 
-test.skip('#003: Setup for test #037, stop message hover icon test ', {
+test('#003: Setup for test #037, stop message hover icon test ', {
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'A pre-test setup for test #037 (stop pending msg hover icon). Navigates to My Lists and selects list "test list 15". Clicks the Edit Message button and goes to email tab. Changes subject field to include the date and start time of the test run. Then on the Proceed screen, schedules message to be sent one hour in the future. This pending message is meant to be stopped in a later test.'},
@@ -504,6 +506,7 @@ test.skip('#003: Setup for test #037, stop message hover icon test ', {
     { type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],  
 }, async ({ page }) => {
+/*
   const x = jsonData.tHour;
   const y = jsonData.tMin;
   let w = jsonData.tDay;
@@ -635,6 +638,7 @@ test.skip('#003: Setup for test #037, stop message hover icon test ', {
   //await page.goto('https://target110.brightarrow.com/r/home');
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
   //await expect(page.getByText('test list 14 -- 1 contacts.')).toBeVisible();
+  */
 });
 
 

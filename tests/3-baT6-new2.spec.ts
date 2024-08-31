@@ -650,7 +650,7 @@ test('wrap up tests', async ({ page }) => {
   jsonData.finished = true;
   const jsonString = JSON.stringify(jsonData, null, 2);
   fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
-
+  /*
   const url = `${endp}`;
   const data = {
     action: 'addBV'
@@ -666,7 +666,7 @@ test('wrap up tests', async ({ page }) => {
   } catch (error) {
     console.error('Error sending POST request:', error);
   }
-
+*/
 });
 
 
