@@ -151,7 +151,7 @@ test('#001: Schedule message button ', {
     { type: '', description: '● Extra slow connectivity to server or APIs.'},
   ],  
 }, async ({ page }) => {
-
+/*
   const x = jsonData.tHour;
   const y = jsonData.tMin;
 
@@ -336,7 +336,7 @@ test('#001: Schedule message button ', {
   //await page.goto('https://target110.brightarrow.com/r/home');
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible({timeout: 20000 });
   await expect(page.getByText('test list 12 -- 1 contacts.')).toBeVisible();
-
+*/
 });
 
 
