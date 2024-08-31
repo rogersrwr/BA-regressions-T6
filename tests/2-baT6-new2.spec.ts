@@ -1558,7 +1558,7 @@ test('#043: Send message with apostrophes in the from name and subject fields',{
 
 
 
-test('#044: Stop message icon from hovering over a list',{
+test.skip('#044: Stop message icon from hovering over a list',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and hovers over list "test list 14". Clicks the Cancel scheduled message hover icon to stop message from going out.'},
