@@ -345,7 +345,7 @@ test('#001: Schedule message button ', {
 
 
 
-test.skip('#002: Setup for test #044, stop message hover icon test ', {
+test('#002: Setup for test #044, stop message hover icon test ', {
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'A pre-test setup for test #036 (stop pending msg hover icon). Navigates to My Lists and selects list "test list 14". Clicks the Edit Message button and goes to email tab. Changes subject field to include the date and start time of the test run. Then on the Proceed screen, schedules message to be sent one hour in the future. This pending message is meant to be stopped in a later test.'},
