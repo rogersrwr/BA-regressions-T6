@@ -71,19 +71,19 @@ test.afterEach(async ({ page }, testInfo) => {
 
 test.afterAll(async ({  }) => {
   
-  if (jsonData.finished == true && jsonData.failures == false) {
-    await app.client.chat.postMessage({
-      token: process.env.O_AUTH,
-      channel: channelId,
-      text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-    });
-  } else if (jsonData.finished == true && jsonData.failures == true ) {
-    await app.client.chat.postMessage({
-      token: process.env.O_AUTH,
-      channel: channelId,
-      text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
-    });
-  }
+  // if (jsonData.finished == true && jsonData.failures == false) {
+  //   await app.client.chat.postMessage({
+  //     token: process.env.O_AUTH,
+  //     channel: channelId,
+  //     text: `:white_check_mark: Tests ran successfully. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+  //   });
+  // } else if (jsonData.finished == true && jsonData.failures == true ) {
+  //   await app.client.chat.postMessage({
+  //     token: process.env.O_AUTH,
+  //     channel: channelId,
+  //     text: `:x: Test run has failed. Visit https://rogersrwr.github.io/BA-regressions-T6/ for full results.`,
+  //   });
+  // }
   
 });
 
