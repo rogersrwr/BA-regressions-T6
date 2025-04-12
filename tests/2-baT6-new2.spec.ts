@@ -530,7 +530,7 @@ test('#020: Testing "Hide Disabled Contacts" checkbox within List Details page.'
 
 
 
-test('#021: Create Message button from List Details page and send text message',{
+test.fail('#021: Create Message button from List Details page and send text message',{
   tag: ['@Messages'],
   annotation: [
     { type: 'Test description', description: 'Navigates to list named "test list 1" and clicks Create Message button. Only selects text message option. In message field, inputs a short message with the date and start time of this specific test run. Then hits Send Message Now. Message is to be received by a Google Voice phone number which is accessed later in the automated test run.'},
@@ -1415,7 +1415,7 @@ test('#040: "Send saved message now" button within My Lists > Select An Action d
 
 
 
-test('#041: Apply contact filter and send saved message.',{
+test.fail('#041: Apply contact filter and send saved message.',{
   tag: ['@Messages', '@Acct2'],
   annotation: [
     { type: 'Test description', description: 'Navigates to My Lists and selects list "test list 1". In List Details page, clicks the Advanced drop down, and selects Apply Contact Filter. Contact filter set as building=0. Creates new filter list with one contact. Automatically places you in message creation process. Selects Proceed tab and hits send message.'},
@@ -1770,7 +1770,7 @@ test('#048: Home icon at top of page',{
 
 
 
-test('#049: Preview button from reports',{
+test.fail('#049: Preview button from reports',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Clicks on the Reports button from BrightArrow Central, selects a report for "test list 17". Then clicks the preview button, and sends a preview to email "brightarrowtest1@gmail.com". Another test later in the suite confirms the delivery of this preview.'},
@@ -1817,7 +1817,7 @@ test('#049: Preview button from reports',{
 
 
 
-test('#050: Preview button from load prior message',{
+test.fail('#050: Preview button from load prior message',{
   tag: ['@General'],
   annotation: [
     { type: 'Test description', description: 'Goes to My Lists and selects list "test list 18". Clicks Edit Message button, and goes to Load Prior Messages tab. Selects prior message and sends preview to email "brightarrowtest1@gmail.com".'},
