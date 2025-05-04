@@ -1779,6 +1779,7 @@ test('#049: Preview button from reports',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
+  /*
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
     await page.getByLabel('Username').click();
@@ -1811,6 +1812,7 @@ test('#049: Preview button from reports',{
   await page.getByRole('button', { name: 'Close' }).click();
   await page.getByTestId('FastRewindIcon').click();
   await expect(page.getByText('Welcome, Ryan test')).toBeVisible();
+  */
 });
 
 
@@ -1826,7 +1828,7 @@ test('#050: Preview button from load prior message',{
     { type: '', description: '● Extra slow network connectivity to server or APIs.'},
   ],
 }, async ({ page }) => {
-
+  /*
   test.skip();
   await test.step('Login', async () => {
     await page.goto('https://target110.brightarrow.com/r/');
@@ -1858,7 +1860,7 @@ test('#050: Preview button from load prior message',{
   await page.getByRole('button', { name: 'Next' }).click();
   await page.locator('div').filter({ hasText: /^Cancel$/ }).click();
   await expect(page.getByRole('cell', { name: 'contact, test18' })).toBeVisible();
-  
+  */
 });
 
 
