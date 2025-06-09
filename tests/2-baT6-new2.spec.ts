@@ -27,7 +27,7 @@ const app = new App({
 //const channelId = 'C06KJ8ML7PA';    //channelId for personal test server
 const channelId = 'C06LGR0MJRW';       //channelId for BA slack, automated_test_alerts channel
 
-const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
+const jsonData = require('C:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
 test.beforeAll('', async ({ }) => {
   
@@ -64,7 +64,7 @@ test.afterEach(async ({ page }, testInfo) => {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
     jsonData.failures = true;
     const jsonString = JSON.stringify(jsonData, null, 2);
-    fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
+    fs.writeFileSync('C:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
   }
   
 });
