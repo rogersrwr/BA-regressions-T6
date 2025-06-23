@@ -13,7 +13,7 @@ const username4 = process.env.ACCT_LOGIN4;
 
 
 
-const jsonData = require('C:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
+const jsonData = require('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json');
 
 
 test("setup checks part 1", async ({ page }) => {
@@ -23,7 +23,7 @@ test("setup checks part 1", async ({ page }) => {
   jsonData.failures = false;
   jsonData.finished = false;
   const jsonString = JSON.stringify(jsonData, null, 2);
-  fs.writeFileSync('C:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
+  fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
 
   // INITIAL LOG IN
   await page.goto('https://target110.brightarrow.com/r/');
