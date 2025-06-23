@@ -649,7 +649,7 @@ test('#072: Test #050 receive confirmation.',{
 test('wrap up tests', async ({ page }) => {
   jsonData.finished = true;
   const jsonString = JSON.stringify(jsonData, null, 2);
-  fs.writeFileSync('C:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
+  fs.writeFileSync('D:/a/BA-regressions-T6/BA-regressions-T6/datetime.json', jsonString);
   /*
   const url = `${endp}`;
   const data = {
