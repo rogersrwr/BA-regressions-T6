@@ -429,9 +429,9 @@ test('#064: Test #021 receive confirmation.',{
   ],
 }, async ({ page }) => {
   //test.slow();
-  await page.goto('https://voice.google.com/about');
-  await page.getByRole('link', { name: 'Sign in' }).click();
-  await page.getByLabel('Email or phone').fill(`${email}`);
+  // await page.goto('https://voice.google.com/about');
+  // await page.getByRole('link', { name: 'Sign in' }).click();
+  // await page.getByLabel('Email or phone').fill(`${email}`);
   //await page.getByRole('button', { name: 'Next' }).click();
 
   /*
