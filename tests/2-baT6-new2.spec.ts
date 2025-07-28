@@ -1373,7 +1373,7 @@ test('#039: Access List Settings from button in List Details page',{
   await page.getByRole('button', { name: 'ryan test' }).click();
   await page.getByRole('link', { name: 'test list 1', exact: true }).click();
   await page.locator('div').filter({ hasText: 'List Settings' }).nth(3).click();
-  await expect(page.getByText('List Settings')).toBeVisible();
+  await expect(page.getByText('List Settings', { exact: true })).toBeVisible();
 });
 
 
